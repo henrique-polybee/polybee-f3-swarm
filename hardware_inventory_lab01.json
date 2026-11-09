@@ -1,0 +1,60 @@
+{
+  "inventory_metadata": {
+    "project": "Polybee F3-Swarm",
+    "laboratory": "Polybee AI Research",
+    "lab_phase": "Lab 01 (Inferencia Distribuida em RAM Ociosa)",
+    "timestamp_utc": "2026-11-09T02:05:57.570920+00:00"
+  },
+  "operating_system": {
+    "system": "Windows",
+    "product_name": "Windows 10 Home Single Language",
+    "edition_display": "Windows 11 25H2 (Build 26200.9711)",
+    "release": "11",
+    "version": "10.0.26200",
+    "build_number": "26200.9711",
+    "build_lab": "26100.ge_release.240331-1435",
+    "architecture": "AMD64",
+    "python_version": "3.14.0"
+  },
+  "cpu": {
+    "model": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+    "vendor": "GenuineIntel",
+    "nominal_mhz": 3302,
+    "identifier": "Intel64 Family 6 Model 140 Stepping 1",
+    "physical_cores": 4,
+    "logical_cores": 8,
+    "instruction_extensions": {
+      "AVX2": true,
+      "AVX-512": true,
+      "AVX-512_extensions": {
+        "AVX512F": true,
+        "AVX512DQ": true,
+        "AVX512BW": true,
+        "AVX512VL": true
+      },
+      "NEON": false
+    }
+  },
+  "memory": {
+    "ram_load_percent": 82,
+    "ram_total_bytes": 16952647680,
+    "ram_total_gib": 15.788,
+    "ram_available_bytes": 2994151424,
+    "ram_available_gib": 2.789,
+    "ram_used_bytes": 13958496256,
+    "ram_used_gib": 13.0,
+    "swap_pagefile": {
+      "total_commit_limit_gib": 23.788,
+      "available_commit_gib": 9.88,
+      "used_commit_gib": 13.909,
+      "commit_usage_percent": 58.47,
+      "dedicated_pagefile_size_gib": 8.0
+    }
+  },
+  "storage": {
+    "benchmark_file_size_mib": 256,
+    "read_throughput_mbs": 1482.04,
+    "read_throughput_gbs": 1.45,
+    "test_mode": "Unbuffered Direct I/O (FILE_FLAG_NO_BUFFERING | FILE_FLAG_SEQUENTIAL_SCAN)"
+  }
+}

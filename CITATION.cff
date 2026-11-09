@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this benchmark, architecture, or codebase in your research, please cite it as below."
+title: "Polybee F3-Swarm: Heterogeneous Edge-Cloud LLM Architecture with Calibrated System-1 Invariance, Symbolic Anchoring, and Rashomon-Guided Tier-3 Residual Repair"
+abstract: "Polybee F3-Swarm is a 3-tier heterogeneous language model swarm orchestrating edge and local models (Qwen2.5-0.5B, 1.5B, and Coder-3B) with calibrated uncertainty, micro-chain-of-thought with deterministic suffix closure, and Rashomon leave-one-out code repair, achieving 96.7% SOTA accuracy across 30 Portuguese enterprise tasks under strict < 1.5 GiB active edge RAM."
+type: report
+authors:
+  - family-names: "Oliveira"
+    given-names: "Henrique"
+    affiliation: "Polybee AI Research"
+  - name: "Polybee AI Research Team"
+    affiliation: "Polybee AI Research"
+identifiers:
+  - type: report
+    value: "TR-2026-F3S-05"
+  - type: doi
+    value: "10.5281/zenodo.polybee.f3swarm"
+repository-code: "https://github.com/henrique-polybee/polybee-f3-swarm"
+url: "https://github.com/henrique-polybee/polybee-f3-swarm"
+version: "1.5.0"
+date-released: "2026-11-09"
+license: "MIT"
+keywords:
+  - "heterogeneous llm swarm"
+  - "edge computing"
+  - "system-1 reasoning"
+  - "micro-cot"
+  - "deterministic suffix closure"
+  - "rashomon verifier"
+  - "adaptive autonomous code repair"
+  - "green ai"
+  - "open source benchmark"
+preferred-citation:
+  type: report
+  title: "Polybee F3-Swarm: Heterogeneous Edge-Cloud LLM Architecture with Calibrated System-1 Invariance, Symbolic Anchoring, and Rashomon-Guided Tier-3 Residual Repair"
+  authors:
+    - family-names: "Oliveira"
+      given-names: "Henrique"
+      affiliation: "Polybee AI Research"
+    - name: "Polybee AI Research Team"
+      affiliation: "Polybee AI Research"
+  institution: "Polybee AI Research"
+  number: "TR-2026-F3S-05"
+  year: 2026
+  month: 11
+  url: "https://github.com/henrique-polybee/polybee-f3-swarm"

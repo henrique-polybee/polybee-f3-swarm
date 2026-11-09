@@ -1,0 +1,419 @@
+{
+  "metadata": {
+    "lab": "Polybee Lab 01 — Distributed RAM & System-1 Policy Benchmark",
+    "tasks_count": 200,
+    "fx_brl_per_usd": 5.8,
+    "antigravity_env": {
+      "antigravity_cli_detected": false,
+      "agy_binary_path": "not_in_path (use Antigravity IDE terminal)",
+      "recommended_local_command": "python3 f3_swarm_lab01_bench.py --fx-rate 5.80 --tasks 200"
+    }
+  },
+  "results_by_network": {
+    "LAN_Gigabit": {
+      "A_Local_SLM_8B": {
+        "accuracy_pct": 86.5,
+        "slo_compliance_pct": 87.5,
+        "valid_in_slo_pct": 74.5,
+        "tasks_correct_per_hour": 111.5,
+        "joules_per_correct_task": 1065.9,
+        "cost_brl_per_1000_correct": 0.27,
+        "p50_latency_sec": 17.94,
+        "p95_latency_sec": 49.55,
+        "p95_ttft_sec": 18.81,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 0.0
+      },
+      "B_Cloud_Frontier_API": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 100.0,
+        "valid_in_slo_pct": 96.5,
+        "tasks_correct_per_hour": 1301.0,
+        "joules_per_correct_task": 15.5,
+        "cost_brl_per_1000_correct": 56.73,
+        "p50_latency_sec": 2.31,
+        "p95_latency_sec": 5.0,
+        "p95_ttft_sec": 1.34,
+        "total_net_mb": 0.78,
+        "total_swap_gb": 0.0
+      },
+      "C_Local_14B_Swap_Offload": {
+        "accuracy_pct": 94.0,
+        "slo_compliance_pct": 0.0,
+        "valid_in_slo_pct": 0.0,
+        "tasks_correct_per_hour": 0.0,
+        "joules_per_correct_task": 1229542.3,
+        "cost_brl_per_1000_correct": 314.22,
+        "p50_latency_sec": 126.11,
+        "p95_latency_sec": 438.99,
+        "p95_ttft_sec": 35.83,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 51707.21
+      },
+      "D_Static_Pipeline_14B": {
+        "accuracy_pct": 93.0,
+        "slo_compliance_pct": 94.0,
+        "valid_in_slo_pct": 87.5,
+        "tasks_correct_per_hour": 146.3,
+        "joules_per_correct_task": 1694.6,
+        "cost_brl_per_1000_correct": 0.43,
+        "p50_latency_sec": 16.09,
+        "p95_latency_sec": 44.0,
+        "p95_ttft_sec": 17.49,
+        "total_net_mb": 2735.01,
+        "total_swap_gb": 0.0
+      },
+      "E_Static_Pipeline_32B": {
+        "accuracy_pct": 95.0,
+        "slo_compliance_pct": 59.5,
+        "valid_in_slo_pct": 55.0,
+        "tasks_correct_per_hour": 62.2,
+        "joules_per_correct_task": 6418.5,
+        "cost_brl_per_1000_correct": 1.64,
+        "p50_latency_sec": 23.77,
+        "p95_latency_sec": 64.98,
+        "p95_ttft_sec": 25.89,
+        "total_net_mb": 5767.04,
+        "total_swap_gb": 0.0
+      },
+      "F_Naive_Cascade": {
+        "accuracy_pct": 99.0,
+        "slo_compliance_pct": 77.0,
+        "valid_in_slo_pct": 76.5,
+        "tasks_correct_per_hour": 92.1,
+        "joules_per_correct_task": 1894.4,
+        "cost_brl_per_1000_correct": 0.48,
+        "p50_latency_sec": 20.15,
+        "p95_latency_sec": 77.66,
+        "p95_ttft_sec": 32.76,
+        "total_net_mb": 1004.45,
+        "total_swap_gb": 0.0
+      },
+      "G_Polybee_F3_Swarm": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 99.5,
+        "valid_in_slo_pct": 96.0,
+        "tasks_correct_per_hour": 307.2,
+        "joules_per_correct_task": 437.1,
+        "cost_brl_per_1000_correct": 0.11,
+        "p50_latency_sec": 0.72,
+        "p95_latency_sec": 37.81,
+        "p95_ttft_sec": 17.17,
+        "total_net_mb": 1457.28,
+        "total_swap_gb": 0.0
+      }
+    },
+    "WiFi_Home": {
+      "A_Local_SLM_8B": {
+        "accuracy_pct": 86.5,
+        "slo_compliance_pct": 87.5,
+        "valid_in_slo_pct": 74.5,
+        "tasks_correct_per_hour": 111.5,
+        "joules_per_correct_task": 1065.9,
+        "cost_brl_per_1000_correct": 0.27,
+        "p50_latency_sec": 17.94,
+        "p95_latency_sec": 49.55,
+        "p95_ttft_sec": 18.81,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 0.0
+      },
+      "B_Cloud_Frontier_API": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 100.0,
+        "valid_in_slo_pct": 96.5,
+        "tasks_correct_per_hour": 1301.0,
+        "joules_per_correct_task": 15.5,
+        "cost_brl_per_1000_correct": 56.73,
+        "p50_latency_sec": 2.31,
+        "p95_latency_sec": 5.0,
+        "p95_ttft_sec": 1.34,
+        "total_net_mb": 0.78,
+        "total_swap_gb": 0.0
+      },
+      "C_Local_14B_Swap_Offload": {
+        "accuracy_pct": 94.0,
+        "slo_compliance_pct": 0.0,
+        "valid_in_slo_pct": 0.0,
+        "tasks_correct_per_hour": 0.0,
+        "joules_per_correct_task": 1229542.3,
+        "cost_brl_per_1000_correct": 314.22,
+        "p50_latency_sec": 126.11,
+        "p95_latency_sec": 438.99,
+        "p95_ttft_sec": 35.83,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 51707.21
+      },
+      "D_Static_Pipeline_14B": {
+        "accuracy_pct": 93.0,
+        "slo_compliance_pct": 92.0,
+        "valid_in_slo_pct": 85.5,
+        "tasks_correct_per_hour": 135.5,
+        "joules_per_correct_task": 1841.1,
+        "cost_brl_per_1000_correct": 0.47,
+        "p50_latency_sec": 16.97,
+        "p95_latency_sec": 46.71,
+        "p95_ttft_sec": 17.98,
+        "total_net_mb": 2747.51,
+        "total_swap_gb": 0.0
+      },
+      "E_Static_Pipeline_32B": {
+        "accuracy_pct": 95.0,
+        "slo_compliance_pct": 56.0,
+        "valid_in_slo_pct": 51.5,
+        "tasks_correct_per_hour": 54.7,
+        "joules_per_correct_task": 7420.3,
+        "cost_brl_per_1000_correct": 1.9,
+        "p50_latency_sec": 25.32,
+        "p95_latency_sec": 69.65,
+        "p95_ttft_sec": 26.87,
+        "total_net_mb": 5841.51,
+        "total_swap_gb": 0.0
+      },
+      "F_Naive_Cascade": {
+        "accuracy_pct": 99.0,
+        "slo_compliance_pct": 76.5,
+        "valid_in_slo_pct": 76.0,
+        "tasks_correct_per_hour": 90.3,
+        "joules_per_correct_task": 1994.9,
+        "cost_brl_per_1000_correct": 0.51,
+        "p50_latency_sec": 20.15,
+        "p95_latency_sec": 80.2,
+        "p95_ttft_sec": 33.49,
+        "total_net_mb": 1031.56,
+        "total_swap_gb": 0.0
+      },
+      "G_Polybee_F3_Swarm": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 99.5,
+        "valid_in_slo_pct": 96.0,
+        "tasks_correct_per_hour": 299.9,
+        "joules_per_correct_task": 465.4,
+        "cost_brl_per_1000_correct": 0.12,
+        "p50_latency_sec": 0.72,
+        "p95_latency_sec": 38.68,
+        "p95_ttft_sec": 17.17,
+        "total_net_mb": 1457.28,
+        "total_swap_gb": 0.0
+      }
+    },
+    "WAN_Metro_BR": {
+      "A_Local_SLM_8B": {
+        "accuracy_pct": 86.5,
+        "slo_compliance_pct": 87.5,
+        "valid_in_slo_pct": 74.5,
+        "tasks_correct_per_hour": 111.5,
+        "joules_per_correct_task": 1065.9,
+        "cost_brl_per_1000_correct": 0.27,
+        "p50_latency_sec": 17.94,
+        "p95_latency_sec": 49.55,
+        "p95_ttft_sec": 18.81,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 0.0
+      },
+      "B_Cloud_Frontier_API": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 100.0,
+        "valid_in_slo_pct": 96.5,
+        "tasks_correct_per_hour": 1301.0,
+        "joules_per_correct_task": 15.5,
+        "cost_brl_per_1000_correct": 56.73,
+        "p50_latency_sec": 2.31,
+        "p95_latency_sec": 5.0,
+        "p95_ttft_sec": 1.34,
+        "total_net_mb": 0.78,
+        "total_swap_gb": 0.0
+      },
+      "C_Local_14B_Swap_Offload": {
+        "accuracy_pct": 94.0,
+        "slo_compliance_pct": 0.0,
+        "valid_in_slo_pct": 0.0,
+        "tasks_correct_per_hour": 0.0,
+        "joules_per_correct_task": 1229542.3,
+        "cost_brl_per_1000_correct": 314.22,
+        "p50_latency_sec": 126.11,
+        "p95_latency_sec": 438.99,
+        "p95_ttft_sec": 35.83,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 51707.21
+      },
+      "D_Static_Pipeline_14B": {
+        "accuracy_pct": 93.0,
+        "slo_compliance_pct": 77.5,
+        "valid_in_slo_pct": 71.5,
+        "tasks_correct_per_hour": 99.4,
+        "joules_per_correct_task": 2513.3,
+        "cost_brl_per_1000_correct": 0.64,
+        "p50_latency_sec": 19.21,
+        "p95_latency_sec": 54.18,
+        "p95_ttft_sec": 18.28,
+        "total_net_mb": 2750.4,
+        "total_swap_gb": 0.0
+      },
+      "E_Static_Pipeline_32B": {
+        "accuracy_pct": 95.0,
+        "slo_compliance_pct": 45.0,
+        "valid_in_slo_pct": 40.5,
+        "tasks_correct_per_hour": 37.2,
+        "joules_per_correct_task": 11000.5,
+        "cost_brl_per_1000_correct": 2.81,
+        "p50_latency_sec": 29.09,
+        "p95_latency_sec": 82.04,
+        "p95_ttft_sec": 27.47,
+        "total_net_mb": 5871.0,
+        "total_swap_gb": 0.0
+      },
+      "F_Naive_Cascade": {
+        "accuracy_pct": 99.0,
+        "slo_compliance_pct": 75.0,
+        "valid_in_slo_pct": 74.5,
+        "tasks_correct_per_hour": 85.7,
+        "joules_per_correct_task": 2193.5,
+        "cost_brl_per_1000_correct": 0.56,
+        "p50_latency_sec": 20.15,
+        "p95_latency_sec": 87.6,
+        "p95_ttft_sec": 33.94,
+        "total_net_mb": 1031.56,
+        "total_swap_gb": 0.0
+      },
+      "G_Polybee_F3_Swarm": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 99.5,
+        "valid_in_slo_pct": 96.0,
+        "tasks_correct_per_hour": 287.8,
+        "joules_per_correct_task": 515.6,
+        "cost_brl_per_1000_correct": 0.13,
+        "p50_latency_sec": 0.72,
+        "p95_latency_sec": 38.78,
+        "p95_ttft_sec": 17.17,
+        "total_net_mb": 1457.28,
+        "total_swap_gb": 0.0
+      }
+    },
+    "WAN_Interstate": {
+      "A_Local_SLM_8B": {
+        "accuracy_pct": 86.5,
+        "slo_compliance_pct": 87.5,
+        "valid_in_slo_pct": 74.5,
+        "tasks_correct_per_hour": 111.5,
+        "joules_per_correct_task": 1065.9,
+        "cost_brl_per_1000_correct": 0.27,
+        "p50_latency_sec": 17.94,
+        "p95_latency_sec": 49.55,
+        "p95_ttft_sec": 18.81,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 0.0
+      },
+      "B_Cloud_Frontier_API": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 100.0,
+        "valid_in_slo_pct": 96.5,
+        "tasks_correct_per_hour": 1301.0,
+        "joules_per_correct_task": 15.5,
+        "cost_brl_per_1000_correct": 56.73,
+        "p50_latency_sec": 2.31,
+        "p95_latency_sec": 5.0,
+        "p95_ttft_sec": 1.34,
+        "total_net_mb": 0.78,
+        "total_swap_gb": 0.0
+      },
+      "C_Local_14B_Swap_Offload": {
+        "accuracy_pct": 94.0,
+        "slo_compliance_pct": 0.0,
+        "valid_in_slo_pct": 0.0,
+        "tasks_correct_per_hour": 0.0,
+        "joules_per_correct_task": 1229542.3,
+        "cost_brl_per_1000_correct": 314.22,
+        "p50_latency_sec": 126.11,
+        "p95_latency_sec": 438.99,
+        "p95_ttft_sec": 35.83,
+        "total_net_mb": 0.0,
+        "total_swap_gb": 51707.21
+      },
+      "D_Static_Pipeline_14B": {
+        "accuracy_pct": 93.0,
+        "slo_compliance_pct": 53.0,
+        "valid_in_slo_pct": 48.0,
+        "tasks_correct_per_hour": 48.5,
+        "joules_per_correct_task": 5322.4,
+        "cost_brl_per_1000_correct": 1.36,
+        "p50_latency_sec": 26.12,
+        "p95_latency_sec": 74.4,
+        "p95_ttft_sec": 21.38,
+        "total_net_mb": 2814.94,
+        "total_swap_gb": 0.0
+      },
+      "E_Static_Pipeline_32B": {
+        "accuracy_pct": 95.0,
+        "slo_compliance_pct": 11.5,
+        "valid_in_slo_pct": 8.5,
+        "tasks_correct_per_hour": 5.5,
+        "joules_per_correct_task": 79252.0,
+        "cost_brl_per_1000_correct": 20.25,
+        "p50_latency_sec": 41.07,
+        "p95_latency_sec": 116.82,
+        "p95_ttft_sec": 33.67,
+        "total_net_mb": 6092.46,
+        "total_swap_gb": 0.0
+      },
+      "F_Naive_Cascade": {
+        "accuracy_pct": 99.0,
+        "slo_compliance_pct": 73.5,
+        "valid_in_slo_pct": 73.5,
+        "tasks_correct_per_hour": 76.8,
+        "joules_per_correct_task": 2824.8,
+        "cost_brl_per_1000_correct": 0.72,
+        "p50_latency_sec": 20.15,
+        "p95_latency_sec": 110.91,
+        "p95_ttft_sec": 38.51,
+        "total_net_mb": 1077.25,
+        "total_swap_gb": 0.0
+      },
+      "G_Polybee_F3_Swarm": {
+        "accuracy_pct": 96.5,
+        "slo_compliance_pct": 100.0,
+        "valid_in_slo_pct": 96.5,
+        "tasks_correct_per_hour": 241.4,
+        "joules_per_correct_task": 727.9,
+        "cost_brl_per_1000_correct": 0.19,
+        "p50_latency_sec": 0.72,
+        "p95_latency_sec": 41.24,
+        "p95_ttft_sec": 17.26,
+        "total_net_mb": 1152.19,
+        "total_swap_gb": 0.0
+      }
+    }
+  },
+  "nrem_nearmiss_pool_study": {
+    "total_nearmiss_tasks": 282,
+    "raw_network_traffic_mb": 127.37,
+    "f3_gated_network_traffic_mb": 9.75,
+    "bandwidth_saved_pct": 92.34,
+    "cluster_scaling": {
+      "1_nodes": {
+        "wall_time_sec": 332.76,
+        "speedup": 1.0,
+        "verification_overhead_ms_per_task": 1.05
+      },
+      "2_nodes": {
+        "wall_time_sec": 166.42,
+        "speedup": 2.0,
+        "verification_overhead_ms_per_task": 1.05
+      },
+      "4_nodes": {
+        "wall_time_sec": 83.28,
+        "speedup": 4.0,
+        "verification_overhead_ms_per_task": 1.05
+      },
+      "8_nodes": {
+        "wall_time_sec": 41.73,
+        "speedup": 7.97,
+        "verification_overhead_ms_per_task": 1.05
+      },
+      "16_nodes": {
+        "wall_time_sec": 20.98,
+        "speedup": 15.86,
+        "verification_overhead_ms_per_task": 1.05
+      }
+    }
+  }
+}

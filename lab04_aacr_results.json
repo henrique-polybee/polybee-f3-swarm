@@ -1,0 +1,2022 @@
+{
+  "metadata": {
+    "lab": "Lab 04 - Polybee F3-Swarm v1.0 AACR + Calibrated System-1",
+    "cpu": "Intel Core i7-11370H",
+    "threads": 4,
+    "models": {
+      "small": "Qwen2.5-0.5B-Instruct-GGUF (Q4_K_M)",
+      "large": "Qwen2.5-1.5B-Instruct-GGUF (Q4_K_M)"
+    },
+    "timestamp": "2026-11-09 11:47:07",
+    "num_tasks": 30
+  },
+  "policy1_small_always": {
+    "nome": "Small_Always_0.5B",
+    "acertos_classe1": "4/12",
+    "acertos_classe2": "5/10",
+    "acertos_classe3": "3/8",
+    "acertos_total": "12/30",
+    "acuracia_global": 0.4,
+    "tempo_total_segundos": 57.75619270004972,
+    "media_ms_por_tarefa": 1925.2064233349909,
+    "energia_estimada_joules": 1386.1486248011934,
+    "detalhes": [
+      {
+        "task_id": "T01",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Triagem de Suporte N1 vs N2 vs Financeiro",
+        "escolha": "B",
+        "gabarito": "C",
+        "correto": false,
+        "tokens_prompt": 184,
+        "tokens_gen": 68,
+        "latency_ms": 1530.785899987677,
+        "raw_output": "{\"justificativa\": \"O usuário apresenta uma situação de fatura que está cobrando mais do que o valor original e não tem contratação adicional. Isso pode ser considerado um problema de fatura, já que o "
+      },
+      {
+        "task_id": "T02",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Risco PIX",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 163,
+        "tokens_gen": 95,
+        "latency_ms": 1476.511800006847,
+        "raw_output": "{\"justificativa\": \"Transação PIX não é considerada como uma transação de risco ou risco de transação, pois não envolve transações de biometria prévia ou autenticação. Além disso, a transação não é rel"
+      },
+      {
+        "task_id": "T03",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Classificação de Urgência de Incidente TI",
+        "escolha": "C",
+        "gabarito": "D",
+        "correto": false,
+        "tokens_prompt": 156,
+        "tokens_gen": 46,
+        "latency_ms": 808.8902000017697,
+        "raw_output": "{\"justificativa\": \"O gateway principal de pagamentos em produção caiu e todas as transações de e-commerce estão retornando erro 500 no checkout nacional.\", \"escolha\": \"C\"}"
+      },
+      {
+        "task_id": "T04",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Análise de Sentimento SAC",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 155,
+        "tokens_gen": 34,
+        "latency_ms": 651.8164000008255,
+        "raw_output": "{\"justificativa\": \"Carlos demonstrou uma excelente educação e eficiência na prestação de suporte ao cliente.\", \"escolha\": \"A\"}"
+      },
+      {
+        "task_id": "T05",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Risco de Churn B2B",
+        "escolha": "B",
+        "gabarito": "B",
+        "correto": true,
+        "tokens_prompt": 164,
+        "tokens_gen": 118,
+        "latency_ms": 1905.2098000101978,
+        "raw_output": "{\"justificativa\": \"O caso apresentado indica que o cliente reduziu o número de licenças ativas em 80% nos últimos 60 dias e abriu 4 chamados de insatisfação sem renovar o contrato anual que vence em 1"
+      },
+      {
+        "task_id": "T06",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Elegibilidade de Crédito Rápido",
+        "escolha": "SIM",
+        "gabarito": "B",
+        "correto": false,
+        "tokens_prompt": 172,
+        "tokens_gen": 78,
+        "latency_ms": 1325.122599999304,
+        "raw_output": "{\"justificativa\": \"O solicitante possui restrição ativa no Serasa/SPC de R$ 15.000,00 e renda mensal comprovada inferior a 1 salário mínimo para um empréstimo de R$ 50.000,00.\", \"escolha\": \"SIM\"}"
+      },
+      {
+        "task_id": "T07",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Phishing / Golpe WhatsApp",
+        "escolha": "B",
+        "gabarito": "A",
+        "correto": false,
+        "tokens_prompt": 169,
+        "tokens_gen": 103,
+        "latency_ms": 1993.8115999975707,
+        "raw_output": "{\"justificativa\": \"O caso apresentado é um caso de trânsito, onde uma mensagem de número desconhecido com uma foto da filha da vítima está sendo tratada como um caso de trânsito. O caso não apresenta "
+      },
+      {
+        "task_id": "T08",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Roteamento de Chamado Empresarial",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 166,
+        "tokens_gen": 64,
+        "latency_ms": 1433.4407999995165,
+        "raw_output": "{\"justificativa\": \"O caso apresentado é uma solicitação de notificação extrajudicial do Procon, que se refere a descumprimento de cláusula contratual de garantia com prazo de resposta em 48 horas.\", \""
+      },
+      {
+        "task_id": "T09",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Score de Prioridade Atendimento VIP",
+        "escolha": "C",
+        "gabarito": "E",
+        "correto": false,
+        "tokens_prompt": 165,
+        "tokens_gen": 61,
+        "latency_ms": 1288.2485000009183,
+        "raw_output": "{\"justificativa\": \"O caso apresentado se refere a uma conta corporate de faturamento superior a R$ 10 milhões, que reporta instabilidade intermitente que impede o fechamento contábil mensal do grupo.\""
+      },
+      {
+        "task_id": "T10",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Intenção de Cancelamento de Assinatura",
+        "escolha": "A",
+        "gabarito": "B",
+        "correto": false,
+        "tokens_prompt": 152,
+        "tokens_gen": 77,
+        "latency_ms": 1896.9689999939874,
+        "raw_output": "{\"justificativa\": \"O caso apresentado não se enquadra em um triagem e risco específico. Ele trata apenas de uma alteração de data de vencimento de uma fatura, sem envolver riscos ou problemas de saúde"
+      },
+      {
+        "task_id": "T11",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Discrepância Fiscal",
+        "escolha": "A",
+        "gabarito": "B",
+        "correto": false,
+        "tokens_prompt": 163,
+        "tokens_gen": 143,
+        "latency_ms": 2311.6910999960965,
+        "raw_output": "{\"justificativa\": \"O caso apresentado envolve uma nota fiscal eletrônica de serviços que foi emitida com retenção de ISS de 15%, e o teto legal municipal máximo estabelecido pela LC 116/2003 é de 5%. "
+      },
+      {
+        "task_id": "T12",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Triagem Bug Crítico vs Melhoria Cosmética",
+        "escolha": "A",
+        "gabarito": "B",
+        "correto": false,
+        "tokens_prompt": 154,
+        "tokens_gen": 85,
+        "latency_ms": 1343.9769000106025,
+        "raw_output": "{\"justificativa\": \"O padding 2px menor que o padrão do design system na resolução mobile é um problema de design e não de triagem ou risco. O padding é um fator crucial para a visualização do design, "
+      },
+      {
+        "task_id": "T13",
+        "tipo": "Classe2_Extracao",
+        "nome": "Fatura Cloud Computing",
+        "aprovado": false,
+        "motivo": "JSON_DECODE_ERROR: Expecting ',' delimiter: line 3 column 22 (char 62",
+        "dados_extraidos": {},
+        "tokens_prompt": 252,
+        "tokens_gen": 84,
+        "latency_ms": 1908.9980999997351,
+        "verifier_latency_ms": 0.048000001697801054,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"33.000.111/0001-44\",\n  \"valor_brl\": 14.850.20,\n  \"categoria\": \"Serviços de Nuvem\",\n  \"trecho_evidencia\": \"R$ 14.850,20\"\n}"
+      },
+      {
+        "task_id": "T14",
+        "tipo": "Classe2_Extracao",
+        "nome": "Honorários Advocatícios",
+        "aprovado": false,
+        "motivo": "VALOR_INCORRETO (750000.0 != 7500.0)",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "123.456.789-00",
+          "valor_brl": "7500.00",
+          "categoria": "Honorários Advocatícios",
+          "trecho_evidencia": "Dr. Marcos Silveira, inscrito no CPF nº 123.456.789-00."
+        },
+        "tokens_prompt": 240,
+        "tokens_gen": 98,
+        "latency_ms": 1663.85780001292,
+        "verifier_latency_ms": 0.08450000314041972,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"123.456.789-00\",\n  \"valor_brl\": \"7500.00\",\n  \"categoria\": \"Honorários Advocatícios\",\n  \"trecho_evidencia\": \"Dr. Marcos Silveira, inscrito no CPF nº 123.456.789-00.\"\n}\n```"
+      },
+      {
+        "task_id": "T15",
+        "tipo": "Classe2_Extracao",
+        "nome": "Aquisição de Servidores e Hardware",
+        "aprovado": false,
+        "motivo": "VALOR_INCORRETO (3240000.0 != 32400.0)",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "45.678.910/0001-23",
+          "valor_brl": "32.400.00",
+          "categoria": "Fatura",
+          "trecho_evidencia": "Faturado o montante líquido de R$ 32.400,00 para fornecimento de Hardware e Servidores corporativos com entrega no datacenter."
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 109,
+        "latency_ms": 1820.4164000053424,
+        "verifier_latency_ms": 0.043199994252063334,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"45.678.910/0001-23\",\n  \"valor_brl\": \"32.400.00\",\n  \"categoria\": \"Fatura\",\n  \"trecho_evidencia\": \"Faturado o montante líquido de R$ 32.400,00 para fornecimento de Hardware e Servidores corporativos com entrega no datacenter.\"\n}\n```"
+      },
+      {
+        "task_id": "T16",
+        "tipo": "Classe2_Extracao",
+        "nome": "Reembolso de Despesas de Viagem",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "987.654.321-99",
+          "valor_brl": 1840.5,
+          "categoria": "Prestação de Contas Internacional e Nacional",
+          "trecho_evidencia": "O colaborador Rodrigo Costa, portador do CPF 987.654.321-99, submete comprovantes para liquidação de Despesas de Viagem no total consolidado de R$ 1.840,50."
+        },
+        "tokens_prompt": 229,
+        "tokens_gen": 130,
+        "latency_ms": 2169.432399998186,
+        "verifier_latency_ms": 0.02479999966453761,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"987.654.321-99\",\n  \"valor_brl\": 1840.5,\n  \"categoria\": \"Prestação de Contas Internacional e Nacional\",\n  \"trecho_evidencia\": \"O colaborador Rodrigo Costa, portador do CPF 987.654.321-99, submete comprovantes para liquidação de Despesas de Viagem no total consolidado de R$ 1.840,50.\"\n}\n```"
+      },
+      {
+        "task_id": "T17",
+        "tipo": "Classe2_Extracao",
+        "nome": "Licenciamento de Software Corporativo",
+        "aprovado": false,
+        "motivo": "VALOR_INCORRETO (5600000.0 != 56000.0)",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "11.222.333/0001-55",
+          "valor_brl": "56.000.00",
+          "categoria": "Licenciamento de Software de banco de dados",
+          "trecho_evidencia": "Ordem de Compra e Fornecimento nº 2026/09: Fornecedora Oracle Brasil Software, CNPJ 11.222.333/0001-55. Valor aprovado de R$ 56.000,00 para renovação anual da categoria Licenciamento de Software de banco de dados."
+        },
+        "tokens_prompt": 242,
+        "tokens_gen": 158,
+        "latency_ms": 2578.9667000062764,
+        "verifier_latency_ms": 0.02710000262595713,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"11.222.333/0001-55\",\n  \"valor_brl\": \"56.000.00\",\n  \"categoria\": \"Licenciamento de Software de banco de dados\",\n  \"trecho_evidencia\": \"Ordem de Compra e Fornecimento nº 2026/09: Fornecedora Oracle Brasil Software, CNPJ 11.222.333/0001-55. Valor aprovado de R$ 56.000,00 para renovação anual da categoria Licenciamento de Software de banco de dados.\"\n}"
+      },
+      {
+        "task_id": "T18",
+        "tipo": "Classe2_Extracao",
+        "nome": "Locação de Imóvel Comercial",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "22.333.444/0001-66",
+          "valor_brl": 18200.0,
+          "categoria": "Locação de Imóvel",
+          "trecho_evidencia": "sede administrativa"
+        },
+        "tokens_prompt": 241,
+        "tokens_gen": 78,
+        "latency_ms": 1351.7836000100942,
+        "verifier_latency_ms": 0.026299996534362435,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"22.333.444/0001-66\",\n  \"valor_brl\": 18200.00,\n  \"categoria\": \"Locação de Imóvel\",\n  \"trecho_evidencia\": \"sede administrativa\"\n}\n```"
+      },
+      {
+        "task_id": "T19",
+        "tipo": "Classe2_Extracao",
+        "nome": "Segurança Patrimonial e Eletrônica",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "01.999.888/0001-77",
+          "valor_brl": 4350.0,
+          "categoria": "vigilância privada",
+          "trecho_evidencia": "Contrato de Vigilância Privada: A empresa Alerta Monitoramento Integrado Ltda (CNPJ 01.999.888/0001-77) cobrou a taxa de operação de R$ 4.350,00 para prestação continuada de Segurança Patrimonial do galpão logístico."
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 151,
+        "latency_ms": 2615.362800002913,
+        "verifier_latency_ms": 0.025999994250014424,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"01.999.888/0001-77\",\n  \"valor_brl\": 4350.00,\n  \"categoria\": \"vigilância privada\",\n  \"trecho_evidencia\": \"Contrato de Vigilância Privada: A empresa Alerta Monitoramento Integrado Ltda (CNPJ 01.999.888/0001-77) cobrou a taxa de operação de R$ 4.350,00 para prestação continuada de Segurança Patrimonial do galpão logístico.\"\n}\n```"
+      },
+      {
+        "task_id": "T20",
+        "tipo": "Classe2_Extracao",
+        "nome": "Auditoria Contábil e Fiscal",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "77.888.999/0001-11",
+          "valor_brl": 45000.0,
+          "categoria": "Certificação Externa",
+          "trecho_evidencia": "A consultoria PriceAudit Auditores Independentes, CNPJ 77.888.999/0001-11, concluiu o relatório semestral de Auditoria Contábil com honorários faturados em R$ 45.000,00"
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 138,
+        "latency_ms": 2444.324299998698,
+        "verifier_latency_ms": 0.024600012693554163,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"77.888.999/0001-11\",\n  \"valor_brl\": 45000.0,\n  \"categoria\": \"Certificação Externa\",\n  \"trecho_evidencia\": \"A consultoria PriceAudit Auditores Independentes, CNPJ 77.888.999/0001-11, concluiu o relatório semestral de Auditoria Contábil com honorários faturados em R$ 45.000,00\"\n}\n```"
+      },
+      {
+        "task_id": "T21",
+        "tipo": "Classe2_Extracao",
+        "nome": "Treinamento Técnico In-Company",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "444.555.666-77",
+          "valor_brl": 6.2,
+          "categoria": "Treinamento e Capacitação",
+          "trecho_evidencia": "classificado na rubrica de Treinamento e Capacitação"
+        },
+        "tokens_prompt": 231,
+        "tokens_gen": 81,
+        "latency_ms": 1381.2381000025198,
+        "verifier_latency_ms": 0.025000001187436283,
+        "raw_output": "```json\n{\n  \"cnpj_ou_cpf\": \"444.555.666-77\",\n  \"valor_brl\": 6.200,\n  \"categoria\": \"Treinamento e Capacitação\",\n  \"trecho_evidencia\": \"classificado na rubrica de Treinamento e Capacitação\"\n}\n```"
+      },
+      {
+        "task_id": "T22",
+        "tipo": "Classe2_Extracao",
+        "nome": "Indenização Contratual / Rescisão",
+        "aprovado": false,
+        "motivo": "VALOR_INCORRETO (2890000.0 != 28900.0)",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "55.666.777/0001-88",
+          "valor_brl": "28.900.00",
+          "categoria": "Indenização Contratual amigável",
+          "trecho_evidencia": "Fica acordado entre as partes que a empresa VendaFlex Comercial, CNPJ 55.666.777/0001-88, pagará a soma líquida de R$ 28.900,00"
+        },
+        "tokens_prompt": 240,
+        "tokens_gen": 133,
+        "latency_ms": 2058.056800000486,
+        "verifier_latency_ms": 0.02849999873433262,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"55.666.777/0001-88\",\n  \"valor_brl\": \"28.900.00\",\n  \"categoria\": \"Indenização Contratual amigável\",\n  \"trecho_evidencia\": \"Fica acordado entre as partes que a empresa VendaFlex Comercial, CNPJ 55.666.777/0001-88, pagará a soma líquida de R$ 28.900,00\"\n}"
+      },
+      {
+        "task_id": "T23",
+        "tipo": "Classe3_Sintese",
+        "nome": "Formatar Telefone BR",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_1/4",
+        "meta_rashomon": {
+          "acertos": 1,
+          "total": 4,
+          "taxa_rashomon": 0.25,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "(11)9876-5432",
+              "esperado": "(11) 98765-4321"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "",
+              "esperado": "(21) 3456-7890"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "obtido": "(31)9998-8776",
+              "esperado": "(31) 99988-7766"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "",
+              "esperado": ""
+            }
+          ]
+        },
+        "tokens_prompt": 305,
+        "tokens_gen": 167,
+        "latency_ms": 3177.3274000006495,
+        "verifier_latency_ms": 0.5052000051364303,
+        "raw_output": "```python\ndef solucao(texto: str) -> str:\n    # Verifica se a entrada tem 11 dígitos\n    if len(texto) == 11:\n        # Formata como '(XX) 9XXXX-XXXX'\n        return f'({texto[0:2]}){texto[2:6]}-{texto[6:10]}'\n    # Verifica se a entrada tem 10 dígitos\n    elif len(texto) == 10:\n        # Formata como '(XX) XXXX-XXXX'\n        return f'({texto[0:2]}){texto[2:6]}-{texto[6:10]}'\n    # Caso contrário, retorna ''\n    else:\n        return ''\n```"
+      },
+      {
+        "task_id": "T24",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Alíquota ISS",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": 50.0,
+              "esperado": 50.0
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": 75.0,
+              "esperado": 75.0
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": 60.0,
+              "esperado": 60.0
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": 20.0,
+              "esperado": 20.0
+            }
+          ]
+        },
+        "tokens_prompt": 319,
+        "tokens_gen": 88,
+        "latency_ms": 2060.1281999988714,
+        "verifier_latency_ms": 0.23030000738799572,
+        "raw_output": "```python\ndef solucao(cidade: str, valor: float) -> float:\n    alíquota = 0.05 if cidade == 'Sao Paulo' else 0.03 if cidade == 'Curitiba' else 0.04 if cidade == 'Belo Horizonte' else 0.02\n    return round(valor * alíquota, 2)\n```"
+      },
+      {
+        "task_id": "T25",
+        "tipo": "Classe3_Sintese",
+        "nome": "Higienizar Chave PIX",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_2/4",
+        "meta_rashomon": {
+          "acertos": 2,
+          "total": 4,
+          "taxa_rashomon": 0.5,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "ContatoEmpresa.COM.BR",
+              "esperado": "contato@empresa.com.br"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "123.456.789-00",
+              "esperado": "12345678900"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "chave-aleatoria-12345",
+              "esperado": "chave-aleatoria-12345"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "99988877766",
+              "esperado": "99988877766"
+            }
+          ]
+        },
+        "tokens_prompt": 330,
+        "tokens_gen": 226,
+        "latency_ms": 3836.913800012553,
+        "verifier_latency_ms": 0.3434999962337315,
+        "raw_output": "```python\ndef solucao(chave: str) -> str:\n    # Verifica se a chave contém '@'\n    if '@' in chave:\n        # Remove '@' e espaços\n        chave = chave.replace('@', '').replace(' ', '')\n        # Verifica se a chave contém apenas dígitos e pontuações\n        if len(chave) == 11 and chave[0] == '1' and chave[1] == '2' and chave[2] == '3' and chave[3] == '4' and chave[4] == '5' and chave[5] == '6' and chave[6] == '7' and chave[7] == '8' and chave[8] == '9' and chave[9] == '0':\n            # Retor"
+      },
+      {
+        "task_id": "T26",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Dígito Verificador Módulo 11",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_0/4",
+        "meta_rashomon": {
+          "acertos": 0,
+          "total": 4,
+          "taxa_rashomon": 0.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "11",
+              "esperado": "9"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "0",
+              "esperado": "2"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "obtido": "11",
+              "esperado": "0"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "obtido": "10",
+              "esperado": "3"
+            }
+          ]
+        },
+        "tokens_prompt": 310,
+        "tokens_gen": 183,
+        "latency_ms": 3222.8433999989647,
+        "verifier_latency_ms": 0.37390000943560153,
+        "raw_output": "```python\ndef solucao(numero: str) -> str:\n    # Calcula o DV módulo 11\n    dv = 0\n    for i in range(len(numero) - 1, -1, -1):\n        dv += int(numero[i]) * (2 ** (len(numero) - 1 - i))\n    \n    # Soma os produtos\n    soma = 0\n    for i in range(len(numero) - 1):\n        soma += int(numero[i]) * (2 ** (len(numero) - 1 - i))\n    \n    # Resto = soma % 11\n    resto = soma % 11\n    \n    # Se resto < 2, retorna o dígito verificador\n    if resto < 2:\n        return str(11 - resto)\n    else:\n        "
+      },
+      {
+        "task_id": "T27",
+        "tipo": "Classe3_Sintese",
+        "nome": "Parsear Data Formato Brasileiro",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_0/4",
+        "meta_rashomon": {
+          "acertos": 0,
+          "total": 4,
+          "taxa_rashomon": 0.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "erro": "name 'datetime' is not defined",
+              "esperado": "2026-12-25"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "erro": "name 'datetime' is not defined",
+              "esperado": "2025-01-01"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "erro": "name 'datetime' is not defined",
+              "esperado": "2026-11-08"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "erro": "name 'datetime' is not defined",
+              "esperado": ""
+            }
+          ]
+        },
+        "tokens_prompt": 272,
+        "tokens_gen": 58,
+        "latency_ms": 1508.7573999917367,
+        "verifier_latency_ms": 0.2919999969890341,
+        "raw_output": "```python\nfrom datetime import datetime\n\ndef solucao(texto: str) -> str:\n    try:\n        data = datetime.strptime(texto, '%d/%m/%Y')\n        return data.strftime('%Y-%m-%d')\n    except ValueError:\n        return ''\n```"
+      },
+      {
+        "task_id": "T28",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Desconto Progressivo",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": 4000.0,
+              "esperado": 4000.0
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": 900.0,
+              "esperado": 900.0
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": 190.0,
+              "esperado": 190.0
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": 50.0,
+              "esperado": 50.0
+            }
+          ]
+        },
+        "tokens_prompt": 311,
+        "tokens_gen": 118,
+        "latency_ms": 2498.532800003886,
+        "verifier_latency_ms": 0.23969999165274203,
+        "raw_output": "```python\ndef solucao(qtd: int, unitario: float) -> float:\n    if qtd >= 50:\n        return round(qtd * unitario * 0.80, 2)\n    elif qtd >= 20:\n        return round(qtd * unitario * 0.90, 2)\n    elif qtd >= 10:\n        return round(qtd * unitario * 0.95, 2)\n    else:\n        return round(qtd * unitario, 2)\n```"
+      },
+      {
+        "task_id": "T29",
+        "tipo": "Classe3_Sintese",
+        "nome": "Extrair Domínio Corporativo",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_0/4",
+        "meta_rashomon": {
+          "acertos": 0,
+          "total": 4,
+          "taxa_rashomon": 0.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "carlos@polybee.ai",
+              "esperado": "polybee.ai"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "maria@gmail.com",
+              "esperado": "PUBLICO"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "obtido": "diretoria@EMPRESA.COM.BR",
+              "esperado": "empresa.com.br"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "obtido": "contato@HOTMAIL.COM",
+              "esperado": "PUBLICO"
+            }
+          ]
+        },
+        "tokens_prompt": 267,
+        "tokens_gen": 100,
+        "latency_ms": 1783.9050000038696,
+        "verifier_latency_ms": 0.22329999774228781,
+        "raw_output": "```python\ndef solucao(email: str) -> str:\n    # Verifica se o email começa com '@' e se o domínio for 'gmail.com', 'hotmail.com', 'outlook.com' ou 'yahoo.com'\n    if '@' in email and email.startswith('gmail.com') or email.startswith('hotmail.com') or email.startswith('outlook.com') or email.startswith('yahoo.com'):\n        return 'PUBLICO'\n    else:\n        return email\n```"
+      },
+      {
+        "task_id": "T30",
+        "tipo": "Classe3_Sintese",
+        "nome": "Classificar Faixa Etária ANS",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": "0-18",
+              "esperado": "0-18"
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": "19-28",
+              "esperado": "19-28"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "29-48",
+              "esperado": "29-48"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "49+",
+              "esperado": "49+"
+            }
+          ]
+        },
+        "tokens_prompt": 249,
+        "tokens_gen": 77,
+        "latency_ms": 1708.8730999967083,
+        "verifier_latency_ms": 0.18519999866839498,
+        "raw_output": "```python\ndef solucao(idade: int) -> str:\n    if idade <= 18:\n        return '0-18'\n    elif idade <= 28:\n        return '19-28'\n    elif idade <= 48:\n        return '29-48'\n    else:\n        return '49+'\n```"
+      }
+    ]
+  },
+  "policy2_large_always": {
+    "nome": "Large_Always_1.5B",
+    "acertos_classe1": "9/12",
+    "acertos_classe2": "10/10",
+    "acertos_classe3": "3/8",
+    "acertos_total": "22/30",
+    "acuracia_global": 0.7333333333333333,
+    "tempo_computacao_local_ms": 109829.56350001041,
+    "tempo_total_pipeline_segundos": 111.1795635000104,
+    "media_ms_por_tarefa": 3705.985450000347,
+    "energia_estimada_joules": 2635.90952400025,
+    "detalhes": [
+      {
+        "task_id": "T01",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Triagem de Suporte N1 vs N2 vs Financeiro",
+        "escolha": "C",
+        "gabarito": "C",
+        "correto": true,
+        "tokens_prompt": 184,
+        "tokens_gen": 87,
+        "latency_ms": 3121.3681000081124,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O usuário relata uma situação de cobrança indevida, indicando um excesso de valor na fatura sem nenhuma contratação adicional. Este é um caso de risco financeiro, pois po",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3166.3681000081124
+      },
+      {
+        "task_id": "T02",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Risco PIX",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 163,
+        "tokens_gen": 95,
+        "latency_ms": 2829.9743000097806,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O caso apresentado é de natureza fraudulenta. A transação PIX de R$ 9.850,00 para uma conta recém-aberta de pessoa física em outro estado, com dispositivo nunca antes aut",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2874.9743000097806
+      },
+      {
+        "task_id": "T03",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Classificação de Urgência de Incidente TI",
+        "escolha": "D",
+        "gabarito": "D",
+        "correto": true,
+        "tokens_prompt": 156,
+        "tokens_gen": 139,
+        "latency_ms": 4950.631100000464,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O incidente mencionado envolve um falha na 'gateway principal de pagamentos em produção', que está causando erros 500 em todas as transações de e-commerce, especialmente ",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4995.631100000464
+      },
+      {
+        "task_id": "T04",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Análise de Sentimento SAC",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 155,
+        "tokens_gen": 69,
+        "latency_ms": 2629.4113000039943,
+        "raw_output": "```json\n{\n  \"justificativa\": \"A mensagem é positiva porque o atendente Carlos demonstrou suporte exemplar, resolvido o problema em menos de cinco minutos e com extrema educação. Isso indica uma experi",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2674.4113000039943
+      },
+      {
+        "task_id": "T05",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Risco de Churn B2B",
+        "escolha": null,
+        "gabarito": "B",
+        "correto": false,
+        "tokens_prompt": 164,
+        "tokens_gen": 150,
+        "latency_ms": 4539.135500002885,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O cliente reduziu o número de licenças ativas em 80% nos últimos 60 dias, indicando uma diminuição significativa na utilização da solução. Além disso, abriu 4 chamados de",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4584.135500002885
+      },
+      {
+        "task_id": "T06",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Elegibilidade de Crédito Rápido",
+        "escolha": "B",
+        "gabarito": "B",
+        "correto": true,
+        "tokens_prompt": 172,
+        "tokens_gen": 127,
+        "latency_ms": 4263.724999997066,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O solicitante possui uma restrição ativa no Serasa/SPC de R$ 15.000,00, o que indica que há um impedimento financeiro significativo. Além disso, a renda mensal comprovada",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4308.724999997066
+      },
+      {
+        "task_id": "T07",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Phishing / Golpe WhatsApp",
+        "escolha": "A",
+        "gabarito": "A",
+        "correto": true,
+        "tokens_prompt": 169,
+        "tokens_gen": 110,
+        "latency_ms": 3586.1969999969006,
+        "raw_output": "```json\n{\n  \"justificativa\": \"A mensagem é de um número desconhecido e apresenta uma foto da filha da vítima. O texto sugere que a vítima foi bloqueada por um app do banco e pede que ela troque de núm",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3631.1969999969006
+      },
+      {
+        "task_id": "T08",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Roteamento de Chamado Empresarial",
+        "escolha": "C",
+        "gabarito": "A",
+        "correto": false,
+        "tokens_prompt": 166,
+        "tokens_gen": 145,
+        "latency_ms": 4614.027300005546,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O caso apresentado envolve uma notificação extrajudicial do Procon, que é uma entidade de caráter público e não jurídico. Portanto, a opção jurídica (A) não se aplica. O ",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4659.027300005546
+      },
+      {
+        "task_id": "T09",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Score de Prioridade Atendimento VIP",
+        "escolha": "A",
+        "gabarito": "E",
+        "correto": false,
+        "tokens_prompt": 165,
+        "tokens_gen": 150,
+        "latency_ms": 5390.662899997551,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O caso apresentado refere-se a uma conta corporativa de nível 1 com faturamento anual superior a R$ 10 milhões. A instabilidade intermitente que impede o fechamento contá",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 5435.662899997551
+      },
+      {
+        "task_id": "T10",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Intenção de Cancelamento de Assinatura",
+        "escolha": "B",
+        "gabarito": "B",
+        "correto": true,
+        "tokens_prompt": 152,
+        "tokens_gen": 96,
+        "latency_ms": 2983.6811999994097,
+        "raw_output": "{\"justificativa\": \"A mensagem é claramente uma solicitação de alteração de data de vencimento de uma fatura. Isso pode indicar um problema de cobrança ou um erro na configuração da fatura. A alteração",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3028.6811999994097
+      },
+      {
+        "task_id": "T11",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Detecção de Discrepância Fiscal",
+        "escolha": "B",
+        "gabarito": "B",
+        "correto": true,
+        "tokens_prompt": 163,
+        "tokens_gen": 111,
+        "latency_ms": 3561.753999994835,
+        "raw_output": "```json\n{\n  \"justificativa\": \"A nota fiscal eletrônica de serviços emitida com retenção de ISS de 15% é irregular. De acordo com a Lei Complementar 116/2003, o teto legal municipal máximo para ISS é d",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3606.753999994835
+      },
+      {
+        "task_id": "T12",
+        "tipo": "Classe1_Tradicional",
+        "nome": "Triagem Bug Crítico vs Melhoria Cosmética",
+        "escolha": "B",
+        "gabarito": "B",
+        "correto": true,
+        "tokens_prompt": 154,
+        "tokens_gen": 142,
+        "latency_ms": 4551.645400002599,
+        "raw_output": "```json\n{\n  \"justificativa\": \"O botão de exportar relatório em PDF na tela de configurações está com o padding menor que o padrão do design system na resolução mobile. Isso pode causar um deslocamento",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4596.645400002599
+      },
+      {
+        "task_id": "T13",
+        "tipo": "Classe2_Extracao",
+        "nome": "Fatura Cloud Computing",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "33.000.111/0001-44",
+          "valor_brl": 14850.2,
+          "categoria": "infraestrutura",
+          "trecho_evidencia": "referente a Serviços de Nuvem"
+        },
+        "tokens_prompt": 252,
+        "tokens_gen": 77,
+        "latency_ms": 3330.3648000000976,
+        "verifier_latency_ms": 0.031799994758330286,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"33.000.111/0001-44\",\n  \"valor_brl\": 14850.20,\n  \"categoria\": \"infraestrutura\",\n  \"trecho_evidencia\": \"referente a Serviços de Nuvem\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3375.3648000000976
+      },
+      {
+        "task_id": "T14",
+        "tipo": "Classe2_Extracao",
+        "nome": "Honorários Advocatícios",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "123.456.789-00",
+          "valor_brl": 7500,
+          "categoria": "Honorários Advocatícios",
+          "trecho_evidencia": "Declaro que recebi do cliente a quantia de R$ 7.500,00 a título de Honorários Advocatícios pela elaboração do parecer cível."
+        },
+        "tokens_prompt": 240,
+        "tokens_gen": 103,
+        "latency_ms": 3430.8127999975113,
+        "verifier_latency_ms": 0.02609999501146376,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"123.456.789-00\",\n  \"valor_brl\": 7500,\n  \"categoria\": \"Honorários Advocatícios\",\n  \"trecho_evidencia\": \"Declaro que recebi do cliente a quantia de R$ 7.500,00 a título de Honorários Advocatícios pela elaboração do parecer cível.\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3475.8127999975113
+      },
+      {
+        "task_id": "T15",
+        "tipo": "Classe2_Extracao",
+        "nome": "Aquisição de Servidores e Hardware",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "45.678.910/0001-23",
+          "valor_brl": 32400.0,
+          "categoria": "Faturamento",
+          "trecho_evidencia": "Faturado o montante líquido de R$ 32.400,00 para fornecimento de Hardware e Servidores corporativos com entrega no datacenter."
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 105,
+        "latency_ms": 3506.60130000324,
+        "verifier_latency_ms": 0.031799994758330286,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"45.678.910/0001-23\",\n  \"valor_brl\": 32400.00,\n  \"categoria\": \"Faturamento\",\n  \"trecho_evidencia\": \"Faturado o montante líquido de R$ 32.400,00 para fornecimento de Hardware e Servidores corporativos com entrega no datacenter.\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3551.60130000324
+      },
+      {
+        "task_id": "T16",
+        "tipo": "Classe2_Extracao",
+        "nome": "Reembolso de Despesas de Viagem",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "987.654.321-99",
+          "valor_brl": 1840.5,
+          "categoria": "Despesas de Viagem",
+          "trecho_evidencia": "R$ 1.840,50"
+        },
+        "tokens_prompt": 229,
+        "tokens_gen": 75,
+        "latency_ms": 2607.288900006097,
+        "verifier_latency_ms": 0.024599998141638935,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"987.654.321-99\",\n  \"valor_brl\": 1840.5,\n  \"categoria\": \"Despesas de Viagem\",\n  \"trecho_evidencia\": \"R$ 1.840,50\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2652.288900006097
+      },
+      {
+        "task_id": "T17",
+        "tipo": "Classe2_Extracao",
+        "nome": "Licenciamento de Software Corporativo",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "11.222.333/0001-55",
+          "valor_brl": 56000.0,
+          "categoria": "Licenciamento de Software de banco de dados",
+          "trecho_evidencia": "Valor aprovado de R$ 56.000,00 para renovação anual da categoria Licenciamento de Software de banco de dados."
+        },
+        "tokens_prompt": 242,
+        "tokens_gen": 107,
+        "latency_ms": 3686.895299993921,
+        "verifier_latency_ms": 0.02609999501146376,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"11.222.333/0001-55\",\n  \"valor_brl\": 56000.00,\n  \"categoria\": \"Licenciamento de Software de banco de dados\",\n  \"trecho_evidencia\": \"Valor aprovado de R$ 56.000,00 para renovação anual da categoria Licenciamento de Software de banco de dados.\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3731.895299993921
+      },
+      {
+        "task_id": "T18",
+        "tipo": "Classe2_Extracao",
+        "nome": "Locação de Imóvel Comercial",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "22.333.444/0001-66",
+          "valor_brl": 18200.0,
+          "categoria": "Locação de Imóvel",
+          "trecho_evidencia": "boleto de Locação de Imóvel da sede administrativa"
+        },
+        "tokens_prompt": 241,
+        "tokens_gen": 83,
+        "latency_ms": 2830.9780999989016,
+        "verifier_latency_ms": 0.03700000524986535,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"22.333.444/0001-66\",\n  \"valor_brl\": 18200.00,\n  \"categoria\": \"Locação de Imóvel\",\n  \"trecho_evidencia\": \"boleto de Locação de Imóvel da sede administrativa\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2875.9780999989016
+      },
+      {
+        "task_id": "T19",
+        "tipo": "Classe2_Extracao",
+        "nome": "Segurança Patrimonial e Eletrônica",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "01.999.888/0001-77",
+          "valor_brl": 4350.0,
+          "categoria": "Contrato de Vigilância Privada",
+          "trecho_evidencia": "cobrou a taxa de operação de R$ 4.350,00 para prestação continuada de Segurança Patrimonial do galpão logístico."
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 107,
+        "latency_ms": 3517.281299995375,
+        "verifier_latency_ms": 0.03599999763537198,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"01.999.888/0001-77\",\n  \"valor_brl\": 4350.00,\n  \"categoria\": \"Contrato de Vigilância Privada\",\n  \"trecho_evidencia\": \"cobrou a taxa de operação de R$ 4.350,00 para prestação continuada de Segurança Patrimonial do galpão logístico.\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3562.281299995375
+      },
+      {
+        "task_id": "T20",
+        "tipo": "Classe2_Extracao",
+        "nome": "Auditoria Contábil e Fiscal",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "77.888.999/0001-11",
+          "valor_brl": 45000.0,
+          "categoria": "Prestação de Contas e Certificação Externa",
+          "trecho_evidencia": "relatório semestral de Auditoria Contábil"
+        },
+        "tokens_prompt": 237,
+        "tokens_gen": 87,
+        "latency_ms": 2961.8632000056095,
+        "verifier_latency_ms": 0.02479999966453761,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"77.888.999/0001-11\",\n  \"valor_brl\": 45000.00,\n  \"categoria\": \"Prestação de Contas e Certificação Externa\",\n  \"trecho_evidencia\": \"relatório semestral de Auditoria Contábil\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3006.8632000056095
+      },
+      {
+        "task_id": "T21",
+        "tipo": "Classe2_Extracao",
+        "nome": "Treinamento Técnico In-Company",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "444.555.666-77",
+          "valor_brl": 6200.0,
+          "categoria": "Treinamento e Capacitação",
+          "trecho_evidencia": "R$ 6.200,00 pelo workshop avançado de microsserviços"
+        },
+        "tokens_prompt": 231,
+        "tokens_gen": 89,
+        "latency_ms": 3035.4223999893293,
+        "verifier_latency_ms": 0.024299995857290924,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"444.555.666-77\",\n  \"valor_brl\": 6200.00,\n  \"categoria\": \"Treinamento e Capacitação\",\n  \"trecho_evidencia\": \"R$ 6.200,00 pelo workshop avançado de microsserviços\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3080.4223999893293
+      },
+      {
+        "task_id": "T22",
+        "tipo": "Classe2_Extracao",
+        "nome": "Indenização Contratual / Rescisão",
+        "aprovado": true,
+        "motivo": "APROVADO_VERIFICADOR_ESTRUTURAL",
+        "dados_extraidos": {
+          "cnpj_ou_cpf": "55.666.777/0001-88",
+          "valor_brl": 28900.0,
+          "categoria": "Indenização Contratual amigável",
+          "trecho_evidencia": "pagará a soma líquida de R$ 28.900,00 sob a categoria de Indenização Contratual amigável."
+        },
+        "tokens_prompt": 240,
+        "tokens_gen": 106,
+        "latency_ms": 3661.371900001541,
+        "verifier_latency_ms": 0.03229999856557697,
+        "raw_output": "{\n  \"cnpj_ou_cpf\": \"55.666.777/0001-88\",\n  \"valor_brl\": 28900.00,\n  \"categoria\": \"Indenização Contratual amigável\",\n  \"trecho_evidencia\": \"pagará a soma líquida de R$ 28.900,00 sob a categoria de Indenização Contratual amigável.\"\n}",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3706.371900001541
+      },
+      {
+        "task_id": "T23",
+        "tipo": "Classe3_Sintese",
+        "nome": "Formatar Telefone BR",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_1/4",
+        "meta_rashomon": {
+          "acertos": 1,
+          "total": 4,
+          "taxa_rashomon": 0.25,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "(11) 987-654321",
+              "esperado": "(11) 98765-4321"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "",
+              "esperado": "(21) 3456-7890"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "obtido": "(31) 999-887766",
+              "esperado": "(31) 99988-7766"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "",
+              "esperado": ""
+            }
+          ]
+        },
+        "tokens_prompt": 305,
+        "tokens_gen": 92,
+        "latency_ms": 3997.271299987915,
+        "verifier_latency_ms": 0.26449999131727964,
+        "raw_output": "```python\ndef solucao(texto: str) -> str:\n    if len(texto) == 11:\n        return f'({texto[:2]}) {texto[2:5]}-{texto[5:]}'\n    elif len(texto) == 10:\n        return f'({texto[:2]}) {texto[2:]}-{texto[3:]}'\n    else:\n        return ''\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4042.271299987915
+      },
+      {
+        "task_id": "T24",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Alíquota ISS",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": 50.0,
+              "esperado": 50.0
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": 75.0,
+              "esperado": 75.0
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": 60.0,
+              "esperado": 60.0
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": 20.0,
+              "esperado": 20.0
+            }
+          ]
+        },
+        "tokens_prompt": 319,
+        "tokens_gen": 125,
+        "latency_ms": 4846.673799998825,
+        "verifier_latency_ms": 0.26760000037029386,
+        "raw_output": "```python\ndef solucao(cidade: str, valor: float) -> float:\n    alíquota = 0.0\n    if cidade == 'Sao Paulo':\n        alíquota = 0.05 * valor\n    elif cidade == 'Curitiba':\n        alíquota = 0.03 * valor\n    elif cidade == 'Belo Horizonte':\n        alíquota = 0.04 * valor\n    else:\n        alíquota = 0.02 * valor\n    return round(alíquota, 2)\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4891.673799998825
+      },
+      {
+        "task_id": "T25",
+        "tipo": "Classe3_Sintese",
+        "nome": "Higienizar Chave PIX",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_3/4",
+        "meta_rashomon": {
+          "acertos": 3,
+          "total": 4,
+          "taxa_rashomon": 0.75,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": "contato@empresa.com.br",
+              "esperado": "contato@empresa.com.br"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "obtido": "123.456.789-00",
+              "esperado": "12345678900"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "chave-aleatoria-12345",
+              "esperado": "chave-aleatoria-12345"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "99988877766",
+              "esperado": "99988877766"
+            }
+          ]
+        },
+        "tokens_prompt": 330,
+        "tokens_gen": 58,
+        "latency_ms": 2843.1448000046657,
+        "verifier_latency_ms": 0.21389999892562628,
+        "raw_output": "```python\ndef solucao(chave: str) -> str:\n    if '@' in chave:\n        return chave.lower().replace(' ', '')\n    elif chave.isdigit():\n        return chave[:11]\n    else:\n        return chave.strip()\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2888.1448000046657
+      },
+      {
+        "task_id": "T26",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Dígito Verificador Módulo 11",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_2/4",
+        "meta_rashomon": {
+          "acertos": 2,
+          "total": 4,
+          "taxa_rashomon": 0.5,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "obtido": "2",
+              "esperado": "9"
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": "2",
+              "esperado": "2"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "0",
+              "esperado": "0"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "obtido": "0",
+              "esperado": "3"
+            }
+          ]
+        },
+        "tokens_prompt": 310,
+        "tokens_gen": 130,
+        "latency_ms": 4772.895400004927,
+        "verifier_latency_ms": 0.34329999471083283,
+        "raw_output": "```python\ndef solucao(numero: str) -> str:\n    def calculate_dv(number):\n        weights = [2, 3, 4, 5, 6, 7, 8, 9, 1, 0]\n        total = 0\n        for i in range(len(number)):\n            digit = int(number[i])\n            weight = weights[i]\n            total += digit * weight\n        return total % 11\n\n    dv = calculate_dv(numero)\n    if dv < 2:\n        return '0'\n    else:\n        return str(11 - dv)\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 4817.895400004927
+      },
+      {
+        "task_id": "T27",
+        "tipo": "Classe3_Sintese",
+        "nome": "Parsear Data Formato Brasileiro",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_0/4",
+        "meta_rashomon": {
+          "acertos": 0,
+          "total": 4,
+          "taxa_rashomon": 0.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": false,
+              "erro": "name 're' is not defined",
+              "esperado": "2026-12-25"
+            },
+            {
+              "caso": 1,
+              "ok": false,
+              "erro": "name 're' is not defined",
+              "esperado": "2025-01-01"
+            },
+            {
+              "caso": 2,
+              "ok": false,
+              "erro": "name 're' is not defined",
+              "esperado": "2026-11-08"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "erro": "name 're' is not defined",
+              "esperado": ""
+            }
+          ]
+        },
+        "tokens_prompt": 272,
+        "tokens_gen": 80,
+        "latency_ms": 3655.3934999974445,
+        "verifier_latency_ms": 0.30250000418163836,
+        "raw_output": "```python\nimport re\n\ndef solucao(texto: str) -> str:\n    pattern = r'^(\\d{2})\\/(\\d{2})\\/(\\d{4})$'\n    match = re.match(pattern, texto)\n    if match:\n        day, month, year = match.groups()\n        return f'{year}-{month}-{day}'\n    return ''\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3700.3934999974445
+      },
+      {
+        "task_id": "T28",
+        "tipo": "Classe3_Sintese",
+        "nome": "Calcular Desconto Progressivo",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": 4000.0,
+              "esperado": 4000.0
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": 900.0,
+              "esperado": 900.0
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": 190.0,
+              "esperado": 190.0
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": 50.0,
+              "esperado": 50.0
+            }
+          ]
+        },
+        "tokens_prompt": 311,
+        "tokens_gen": 102,
+        "latency_ms": 3742.95310000889,
+        "verifier_latency_ms": 0.2108000044245273,
+        "raw_output": "```python\ndef solucao(qtd: int, unitario: float) -> float:\n    if qtd >= 50:\n        return qtd * unitario * 0.80\n    elif qtd >= 20:\n        return qtd * unitario * 0.90\n    elif qtd >= 10:\n        return qtd * unitario * 0.95\n    else:\n        return qtd * unitario\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3787.95310000889
+      },
+      {
+        "task_id": "T29",
+        "tipo": "Classe3_Sintese",
+        "nome": "Extrair Domínio Corporativo",
+        "aprovado": false,
+        "motivo": "REPROVADO_RASHOMON_3/4",
+        "meta_rashomon": {
+          "acertos": 3,
+          "total": 4,
+          "taxa_rashomon": 0.75,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": "polybee.ai",
+              "esperado": "polybee.ai"
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": "PUBLICO",
+              "esperado": "PUBLICO"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "empresa.com.br",
+              "esperado": "empresa.com.br"
+            },
+            {
+              "caso": 3,
+              "ok": false,
+              "obtido": "hotmail.com",
+              "esperado": "PUBLICO"
+            }
+          ]
+        },
+        "tokens_prompt": 267,
+        "tokens_gen": 57,
+        "latency_ms": 2653.394399996614,
+        "verifier_latency_ms": 0.20510000467766076,
+        "raw_output": "```python\ndef solucao(email: str) -> str:\n    domain = email.split('@')[1]\n    if domain in ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com']:\n        return 'PUBLICO'\n    return domain.lower()\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 2698.394399996614
+      },
+      {
+        "task_id": "T30",
+        "tipo": "Classe3_Sintese",
+        "nome": "Classificar Faixa Etária ANS",
+        "aprovado": true,
+        "motivo": "APROVADO_RASHOMON_100_PCT",
+        "meta_rashomon": {
+          "acertos": 4,
+          "total": 4,
+          "taxa_rashomon": 1.0,
+          "detalhes": [
+            {
+              "caso": 0,
+              "ok": true,
+              "obtido": "0-18",
+              "esperado": "0-18"
+            },
+            {
+              "caso": 1,
+              "ok": true,
+              "obtido": "19-28",
+              "esperado": "19-28"
+            },
+            {
+              "caso": 2,
+              "ok": true,
+              "obtido": "29-48",
+              "esperado": "29-48"
+            },
+            {
+              "caso": 3,
+              "ok": true,
+              "obtido": "49+",
+              "esperado": "49+"
+            }
+          ]
+        },
+        "tokens_prompt": 249,
+        "tokens_gen": 80,
+        "latency_ms": 3726.74410000036,
+        "verifier_latency_ms": 0.25019999884534627,
+        "raw_output": "```python\ndef solucao(idade: int) -> str:\n    if idade <= 18:\n        return '0-18'\n    elif idade <= 28:\n        return '19-28'\n    elif idade <= 48:\n        return '29-48'\n    else:\n        return '49+'\n```",
+        "remote_network_latency_ms": 45.0,
+        "total_pipeline_ms": 3771.74410000036
+      }
+    ]
+  },
+  "policy3_cascaded_v0": {
+    "nome": "Polybee_F3_Cascaded_Swarm",
+    "acertos_classe1": "6/12",
+    "acertos_classe2": "10/10",
+    "acertos_classe3": "3/8",
+    "acertos_total": "19/30",
+    "acuracia_global": 0.6333333333333333,
+    "tempo_total_pipeline_segundos": 96.20644220002112,
+    "media_ms_por_tarefa": 3206.881406667371,
+    "energia_estimada_joules": 2293.7685864003142,
+    "tarefas_escaladas": 14,
+    "taxa_escalada_evitada": 0.5333333333333333,
+    "detalhes": [
+      {
+        "task_id": "T01",
+        "classe": 1,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Baixa confiança System-1 (73.6% < 75%)",
+        "correto": true,
+        "latency_ms": 3671.7233999969903,
+        "sys1_confidence": 0.7360909821053805
+      },
+      {
+        "task_id": "T02",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 313.9755000011064,
+        "confidence": 0.9982120562686435,
+        "calibrated_probs": {
+          "A": 0.9982120562686435,
+          "B": 0.0017879437313564576
+        }
+      },
+      {
+        "task_id": "T03",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": false,
+        "latency_ms": 234.64599999715574,
+        "confidence": 0.853509373823215,
+        "calibrated_probs": {
+          "A": 0.013518903280237946,
+          "B": 0.13148516321219833,
+          "C": 0.853509373823215,
+          "D": 0.0014865596843487638
+        }
+      },
+      {
+        "task_id": "T04",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 270.00269999552984,
+        "confidence": 0.9941148785957318,
+        "calibrated_probs": {
+          "A": 0.9941148785957318,
+          "B": 0.005555325117095238,
+          "C": 0.00032979628717296877
+        }
+      },
+      {
+        "task_id": "T05",
+        "classe": 1,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Baixa confiança System-1 (62.1% < 75%)",
+        "correto": false,
+        "latency_ms": 4830.495300006005,
+        "sys1_confidence": 0.6206440909747655
+      },
+      {
+        "task_id": "T06",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": false,
+        "latency_ms": 258.2317999913357,
+        "confidence": 0.9176247429689955,
+        "calibrated_probs": {
+          "A": 0.9176247429689955,
+          "B": 0.08237525703100446
+        }
+      },
+      {
+        "task_id": "T07",
+        "classe": 1,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Baixa confiança System-1 (59.4% < 75%)",
+        "correto": true,
+        "latency_ms": 3953.260299998801,
+        "sys1_confidence": 0.5938899214951731
+      },
+      {
+        "task_id": "T08",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 336.25449999817647,
+        "confidence": 0.7876020173673498,
+        "calibrated_probs": {
+          "A": 0.7876020173673498,
+          "B": 0.03272214908678264,
+          "C": 0.17967583354586755
+        }
+      },
+      {
+        "task_id": "T09",
+        "classe": 1,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Baixa confiança System-1 (60.2% < 75%)",
+        "correto": false,
+        "latency_ms": 5751.4737000036985,
+        "sys1_confidence": 0.6021327219045982
+      },
+      {
+        "task_id": "T10",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": false,
+        "latency_ms": 289.31619999639224,
+        "confidence": 0.9881517546078363,
+        "calibrated_probs": {
+          "A": 0.9881517546078363,
+          "B": 0.011848245392163772
+        }
+      },
+      {
+        "task_id": "T11",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": false,
+        "latency_ms": 259.36290000390727,
+        "confidence": 0.9935120020184862,
+        "calibrated_probs": {
+          "A": 0.9935120020184862,
+          "B": 0.0064879979815136634
+        }
+      },
+      {
+        "task_id": "T12",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 257.08519999170676,
+        "confidence": 0.9998234397846103,
+        "calibrated_probs": {
+          "A": 0.00017656021538970984,
+          "B": 0.9998234397846103
+        }
+      },
+      {
+        "task_id": "T13",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (JSON_DECODE_ERROR: Expecting ',' delimiter: line 3 column 22 (char 62)",
+        "correto": true,
+        "latency_ms": 5284.4109000015305
+      },
+      {
+        "task_id": "T14",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (VALOR_INCORRETO (750000.0 != 7500.0))",
+        "correto": true,
+        "latency_ms": 5139.755100013572
+      },
+      {
+        "task_id": "T15",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (VALOR_INCORRETO (3240000.0 != 32400.0))",
+        "correto": true,
+        "latency_ms": 5372.060900002834
+      },
+      {
+        "task_id": "T16",
+        "classe": 2,
+        "resolvido_em": "0.5B_VerificadorAprovou",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2169.4571999978507
+      },
+      {
+        "task_id": "T17",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (VALOR_INCORRETO (5600000.0 != 56000.0))",
+        "correto": true,
+        "latency_ms": 6310.889100002823
+      },
+      {
+        "task_id": "T18",
+        "classe": 2,
+        "resolvido_em": "0.5B_VerificadorAprovou",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1351.8099000066286
+      },
+      {
+        "task_id": "T19",
+        "classe": 2,
+        "resolvido_em": "0.5B_VerificadorAprovou",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2615.388799997163
+      },
+      {
+        "task_id": "T20",
+        "classe": 2,
+        "resolvido_em": "0.5B_VerificadorAprovou",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2444.3489000113914
+      },
+      {
+        "task_id": "T21",
+        "classe": 2,
+        "resolvido_em": "0.5B_VerificadorAprovou",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1381.2631000037072
+      },
+      {
+        "task_id": "T22",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (VALOR_INCORRETO (2890000.0 != 28900.0))",
+        "correto": true,
+        "latency_ms": 5764.457200000761
+      },
+      {
+        "task_id": "T23",
+        "classe": 3,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado no Rashomon LOO-CV (REPROVADO_RASHOMON_1/4)",
+        "correto": false,
+        "latency_ms": 7220.103899993701
+      },
+      {
+        "task_id": "T24",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2060.3585000062594
+      },
+      {
+        "task_id": "T25",
+        "classe": 3,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado no Rashomon LOO-CV (REPROVADO_RASHOMON_2/4)",
+        "correto": false,
+        "latency_ms": 6725.402100013453
+      },
+      {
+        "task_id": "T26",
+        "classe": 3,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado no Rashomon LOO-CV (REPROVADO_RASHOMON_0/4)",
+        "correto": false,
+        "latency_ms": 8041.112700013327
+      },
+      {
+        "task_id": "T27",
+        "classe": 3,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado no Rashomon LOO-CV (REPROVADO_RASHOMON_0/4)",
+        "correto": false,
+        "latency_ms": 5209.44289998617
+      },
+      {
+        "task_id": "T28",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2498.772499995539
+      },
+      {
+        "task_id": "T29",
+        "classe": 3,
+        "resolvido_em": "1.5B_Escalada",
+        "escalado": true,
+        "motivo_escalada": "Reprovado no Rashomon LOO-CV (REPROVADO_RASHOMON_0/4)",
+        "correto": false,
+        "latency_ms": 4482.522699998226
+      },
+      {
+        "task_id": "T30",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1709.0582999953767
+      }
+    ]
+  },
+  "policy4_swarm_v1_aacr": {
+    "nome": "Polybee_F3_Swarm_v1_AACR",
+    "acertos_classe1": "8/12",
+    "acertos_classe2": "10/10",
+    "acertos_classe3": "5/8",
+    "acertos_total": "23/30",
+    "acuracia_global": 0.7666666666666667,
+    "tempo_total_pipeline_segundos": 84.6963426000846,
+    "media_ms_por_tarefa": 2823.2114200028204,
+    "energia_estimada_joules": 2019.447763200626,
+    "tarefas_escaladas": 15,
+    "taxa_escalada_evitada": 0.5,
+    "detalhes": [
+      {
+        "task_id": "T01",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=85.9%, Inv=False)",
+        "correto": false,
+        "latency_ms": 1676.4838000107557
+      },
+      {
+        "task_id": "T02",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=91.1%, Inv=False)",
+        "correto": true,
+        "latency_ms": 1099.8340000095777
+      },
+      {
+        "task_id": "T03",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=74.7%, Inv=False)",
+        "correto": false,
+        "latency_ms": 1070.4452000081073
+      },
+      {
+        "task_id": "T04",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=80.6%, Inv=True)",
+        "correto": true,
+        "latency_ms": 1065.901399984723
+      },
+      {
+        "task_id": "T05",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=86.9%, Inv=False)",
+        "correto": true,
+        "latency_ms": 1124.882500023814
+      },
+      {
+        "task_id": "T06",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=50.1%, Inv=False)",
+        "correto": true,
+        "latency_ms": 1182.3946000239812
+      },
+      {
+        "task_id": "T07",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=82.5%, Inv=True)",
+        "correto": true,
+        "latency_ms": 1167.704600013094
+      },
+      {
+        "task_id": "T08",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=50.5%, Inv=True)",
+        "correto": false,
+        "latency_ms": 1141.793999982765
+      },
+      {
+        "task_id": "T09",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=51.8%, Inv=False)",
+        "correto": false,
+        "latency_ms": 1064.242900016252
+      },
+      {
+        "task_id": "T10",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=71.3%, Inv=True)",
+        "correto": true,
+        "latency_ms": 786.0299999755807
+      },
+      {
+        "task_id": "T11",
+        "classe": 1,
+        "resolvido_em": "1.5B_System1_1Token",
+        "escalado": true,
+        "motivo_escalada": "Incerteza/Viés System-1 (p_max=84.3%, Inv=True)",
+        "correto": true,
+        "latency_ms": 1130.629900015192
+      },
+      {
+        "task_id": "T12",
+        "classe": 1,
+        "resolvido_em": "0.5B_System1_Calibrado",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 213.1779000046663,
+        "p_max": 0.9988083384563652
+      },
+      {
+        "task_id": "T13",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1991.5401999896858
+      },
+      {
+        "task_id": "T14",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1745.0967000040691
+      },
+      {
+        "task_id": "T15",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1787.1164999960456
+      },
+      {
+        "task_id": "T16",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1998.8330000196584
+      },
+      {
+        "task_id": "T17",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2349.5545999903698
+      },
+      {
+        "task_id": "T18",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1531.1857000051532
+      },
+      {
+        "task_id": "T19",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2616.682399995625
+      },
+      {
+        "task_id": "T20",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2179.64389998815
+      },
+      {
+        "task_id": "T21",
+        "classe": 2,
+        "resolvido_em": "1.5B_Escalada_Extracao",
+        "escalado": true,
+        "motivo_escalada": "Reprovado pelo Verificador (VALOR_INCORRETO (6.2 != 6200.0))",
+        "correto": true,
+        "latency_ms": 4851.947600009153
+      },
+      {
+        "task_id": "T22",
+        "classe": 2,
+        "resolvido_em": "0.5B_SymbolicNormalizer_EvidenciaAprovada",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2245.722099993145
+      },
+      {
+        "task_id": "T23",
+        "classe": 3,
+        "resolvido_em": "1.5B_Ciclo_AACR_Passos_1",
+        "escalado": true,
+        "motivo_escalada": "Falha no 0.5B (REPROVADO_RASHOMON_1/4) -> Reparo Residual Rashomon",
+        "correto": false,
+        "latency_ms": 13506.678099964047,
+        "passos_aacr": 1
+      },
+      {
+        "task_id": "T24",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct_SandboxCorrigido",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2983.5671999899205
+      },
+      {
+        "task_id": "T25",
+        "classe": 3,
+        "resolvido_em": "1.5B_Ciclo_AACR_Passos_1",
+        "escalado": true,
+        "motivo_escalada": "Falha no 0.5B (REPROVADO_RASHOMON_2/4) -> Reparo Residual Rashomon",
+        "correto": false,
+        "latency_ms": 12145.636299990583,
+        "passos_aacr": 1
+      },
+      {
+        "task_id": "T26",
+        "classe": 3,
+        "resolvido_em": "1.5B_Ciclo_AACR_Passos_1",
+        "escalado": true,
+        "motivo_escalada": "Falha no 0.5B (REPROVADO_RASHOMON_0/4) -> Reparo Residual Rashomon",
+        "correto": false,
+        "latency_ms": 12675.230100039626,
+        "passos_aacr": 1
+      },
+      {
+        "task_id": "T27",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct_SandboxCorrigido",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1593.642899999395
+      },
+      {
+        "task_id": "T28",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct_SandboxCorrigido",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 2304.1528000321705
+      },
+      {
+        "task_id": "T29",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct_SandboxCorrigido",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1893.4259999950882
+      },
+      {
+        "task_id": "T30",
+        "classe": 3,
+        "resolvido_em": "0.5B_Rashomon100Pct_SandboxCorrigido",
+        "escalado": false,
+        "correto": true,
+        "latency_ms": 1573.165700014215
+      }
+    ]
+  }
+}

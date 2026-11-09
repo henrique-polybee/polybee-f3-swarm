@@ -1,0 +1,42 @@
+[
+  {
+    "task_id": "T01",
+    "gabarito": "C",
+    "escolha": "C",
+    "correto": true,
+    "suffix_triggered": false,
+    "raciocinio": "O usuário está relatando um problema financeiro, onde há um excesso de fatura sem nenhuma contratação adicional. Precisa de um estorno urgente.",
+    "raw_output": "O usuário está relatando um problema financeiro, onde há um excesso de fatura sem nenhuma contratação adicional. Precisa de um estorno urgente.\n\nResposta final: C",
+    "lat_ms": 2089.935299998615
+  },
+  {
+    "task_id": "T03",
+    "gabarito": "D",
+    "escolha": "C",
+    "correto": false,
+    "suffix_triggered": true,
+    "raciocinio": "O gateway principal de pagamentos em produção caiu e todas as transações de e-commerce estão retornando erro 500 no checkout nacional. Este é um caso de alto risco, pois afetará diretamente a operação de transações financeiras e pode comprometer a confiabilidade do sistema.",
+    "raw_output": "O gateway principal de pagamentos em produção caiu e todas as transações de e-commerce estão retornando erro 500 no checkout nacional. Este é um caso de alto risco, pois afetará diretamente a operação de transações financeiras e pode comprometer a confiabilidade do sistema.\nResposta final: C",
+    "lat_ms": 2372.955000028014
+  },
+  {
+    "task_id": "T08",
+    "gabarito": "A",
+    "escolha": "A",
+    "correto": true,
+    "suffix_triggered": false,
+    "raciocinio": "O caso é jurídico, pois envolve notificações extrajudiciais e cláusulas contratuais.",
+    "raw_output": "O caso é jurídico, pois envolve notificações extrajudiciais e cláusulas contratuais.\n\nResposta final: A",
+    "lat_ms": 1355.1422999880742
+  },
+  {
+    "task_id": "T09",
+    "gabarito": "E",
+    "escolha": "5",
+    "correto": false,
+    "suffix_triggered": true,
+    "raciocinio": "O problema de risco é causado pela instabilidade intermitente que impede o fechamento contábil mensal do grupo, o que pode comprometer a precisão e a confiabilidade das contas. A instabilidade pode ser uma indicação de problemas internos ou externos que podem afet",
+    "raw_output": "O problema de risco é causado pela instabilidade intermitente que impede o fechamento contábil mensal do grupo, o que pode comprometer a precisão e a confiabilidade das contas. A instabilidade pode ser uma indicação de problemas internos ou externos que podem afet\nResposta final: 5",
+    "lat_ms": 2397.5353999994695
+  }
+]

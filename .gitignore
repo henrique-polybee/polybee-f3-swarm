@@ -1,0 +1,61 @@
+# ==============================================================================
+# Polybee AI Research - .gitignore Científico
+# Projeto: Polybee F3-Swarm (TR-2026-F3S-05)
+# Prevenção de Bloqueio de 100 MB do GitHub & Higienização de Ambiente
+# ==============================================================================
+
+# Python Bytecode & Ambientes Virtuais
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Pesos Binários Grandes & Modelos (Prevenção de limite de 100 MB do GitHub)
+*.gguf
+**/models/*.gguf
+**/models/
+*.bin
+*.pt
+*.safetensors
+*.onnx
+
+# Executáveis Locais e Binários de Inferência (llama.cpp)
+**/llama_bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.tmp
+
+# Logs de Execução e Servidores de Teste
+task-*.log
+server_test.log
+server_*.log
+*.log
+
+# Caches de Download e Metadados do Sistema
+.cache/
+CACHEDIR.TAG
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================================================================
+# Preservação Explícita de Artefatos de Pesquisa e Código Científico
+# ==============================================================================
+!*.py
+!*.md
+!*.tex
+!*.json
+!*.cff
+!*.cmd
+!*.sh
+!LICENSE
+!.gitignore
+!.zenodo.json
