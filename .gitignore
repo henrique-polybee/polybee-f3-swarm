@@ -1,6 +1,6 @@
 # ==============================================================================
 # Polybee AI Research - .gitignore Científico
-# Projeto: Polybee F3-Swarm (TR-2026-F3S-05)
+# Projeto: Polybee F3-Swarm (TR-2026-F3S-05 / arXiv)
 # Prevenção de Bloqueio de 100 MB do GitHub & Higienização de Ambiente
 # ==============================================================================
 
@@ -47,11 +47,13 @@ Thumbs.db
 desktop.ini
 
 # ==============================================================================
-# Preservação Explícita de Artefatos de Pesquisa e Código Científico
+# Preservação Explícita de Artefatos de Pesquisa, Artigo arXiv e Telemetria
 # ==============================================================================
 !*.py
 !*.md
 !*.tex
+!*.pdf
+!*.zip
 !*.json
 !*.cff
 !*.cmd
@@ -59,3 +61,4 @@ desktop.ini
 !LICENSE
 !.gitignore
 !.zenodo.json
+!paper/

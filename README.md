@@ -2,13 +2,19 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-brightgreen.svg)](https://www.python.org/)
+[![Preprint: arXiv](https://img.shields.io/badge/arXiv-Preprint%20[cs.AI,%20cs.DC]-red.svg)](paper/Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf)
+[![Paper: PDF](https://img.shields.io/badge/Paper-PDF%20Download-informational.svg)](paper/Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf)
+[![Source: LaTeX](https://img.shields.io/badge/LaTeX-Source%20Code-success.svg)](paper/polybee_f3_swarm_v1_5_arxiv.tex)
+[![Accuracy: 96.7%](https://img.shields.io/badge/Benchmark%20Accuracy-96.7%25%20(29%2F30)-success.svg)]()
 [![Hardware: Edge CPU](https://img.shields.io/badge/Hardware-Edge%20CPU%20(Intel%20i7--11370H)-orange.svg)]()
 [![RAM: <1.5 GiB](https://img.shields.io/badge/RAM%20Active-%3C%201.5%20GiB-blueviolet.svg)]()
-[![Accuracy: 96.7%](https://img.shields.io/badge/Benchmark%20Accuracy-96.7%25%20(29%2F30)-success.svg)]()
-[![Preprint: Zenodo](https://img.shields.io/badge/Zenodo-10.5281%2Fzenodo.polybee.f3swarm-yellow.svg)](PAPER_POLYBEE_F3_SWARM_2026.md)
+[![DOI: Zenodo](https://img.shields.io/badge/Zenodo-10.5281%2Fzenodo.polybee.f3swarm-yellow.svg)](paper/Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf)
 
-> **Polybee AI Research Technical Report TR-2026-F3S-05**  
-> *Official repository for reproducing all benchmarks and experiments from Labs 01 to 05.*
+> **Polybee AI Research Laboratory — Official Preprint & Benchmark Suite**  
+> **Title:** *F3-Swarm v1.5: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence*  
+> **Author:** Henrique Oliveira (Polybee AI Research Laboratory, São Paulo, SP, Brazil — [https://polybee.ai/](https://polybee.ai/))  
+> 
+> 📄 **[Download Official arXiv Preprint (PDF)](paper/Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf)** | 📝 **[LaTeX Source (`.tex`)](paper/polybee_f3_swarm_v1_5_arxiv.tex)** | 📦 **[Complete LaTeX Bundle (`.zip`)](paper/Polybee_F3_Swarm_v1_5_arXiv_Source.zip)** | 🔬 **[Technical Markdown](paper/PAPER_POLYBEE_F3_SWARM_2026.md)**
 
 ---
 
@@ -115,12 +121,20 @@ Evaluated across **30 real-world operational administrative, financial, and code
 
 ```
 polybee-f3-swarm/
+├── paper/                                     <- Official arXiv preprint bundle (mirroring f3-agi-v4)
+│   ├── Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf  <- Compiled research paper PDF
+│   ├── polybee_f3_swarm_v1_5_arxiv.tex           <- Full LaTeX source code
+│   ├── Polybee_F3_Swarm_v1_5_arXiv_Source.zip    <- Complete arXiv submission zip
+│   ├── PAPER_POLYBEE_F3_SWARM_2026.md            <- Full technical markdown report
+│   ├── fig1_f3_swarm_architecture_rashomon.pdf   <- Fig 1: Architecture & Rashomon Collapse
+│   ├── fig2_lab02_physical_ram_pipeline.pdf      <- Fig 2: RAM Pooling vs NVMe Swap Thrashing
+│   ├── fig3_labs03_05_policy_progression.pdf     <- Fig 3: End-to-End Policy Progression
+│   └── fig4_forensic_case_studies_aacr.pdf       <- Fig 4: Neuro-Symbolic & AACR Ablations
 ├── README.md                                  <- Executive open-source documentation
-├── PAPER_POLYBEE_F3_SWARM_2026.md             <- Full technical research paper (Zenodo/arXiv)
 ├── CITATION.cff                               <- Academic citation metadata (GitHub standard)
-├── LICENSE                                    <- MIT License (Polybee AI Research / Henrique Oliveira)
+├── LICENSE                                    <- MIT License (Henrique Oliveira / Polybee AI Research)
 ├── .zenodo.json                               <- Zenodo DOI automatic archiving metadata
-├── reproduce_all_results.py                   <- 1-Click benchmark reproducer & telemetry inspector
+├── reproduce_all_results.py                   <- 1-Click benchmark reproducer (<1s execution)
 ├── hardware_inventory_lab01.json             <- Audited Lab 01 hardware environment
 ├── f3_swarm_lab01_results.json                 <- Audited Lab 01 simulated benchmark
 ├── lab02_physical_results.json                <- Audited Lab 02 physical swap vs pipeline
@@ -193,13 +207,13 @@ The script will:
 If you use **Polybee F3-Swarm**, our benchmark dataset, or our algorithmic calibration techniques in your research or production systems, please cite our technical paper:
 
 ```bibtex
-@techreport{polybee_f3_swarm_2026,
-  title       = {Polybee F3-Swarm: Heterogeneous Edge-Cloud LLM Architecture with Calibrated System-1 Invariance, Symbolic Anchoring, and Rashomon-Guided Tier-3 Residual Repair},
-  author      = {Oliveira, Henrique and {Polybee AI Research Team}},
-  institution = {Polybee AI Research Lab},
-  number      = {TR-2026-F3S-05},
+@article{oliveira2026f3swarm,
+  title       = {F3-Swarm v1.5: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence},
+  author      = {Oliveira, Henrique},
+  journal     = {arXiv preprint},
   year        = {2026},
   month       = {November},
+  institution = {Polybee AI Research Laboratory},
   url         = {https://github.com/henrique-polybee/polybee-f3-swarm},
   doi         = {10.5281/zenodo.polybee.f3swarm}
 }
