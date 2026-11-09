@@ -1,6 +1,6 @@
 {
-  "title": "F3-Swarm v1.5.1: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence",
-  "description": "Technical preprint manuscript (v1.5.1 — Prepared for arXiv [cs.DC, cs.AI]), official open-source benchmark, reproduction suite, and technical report (TR-2026-F3S-05) for Polybee F3-Swarm v1.5.1. A 3-tier heterogeneous LLM swarm (Qwen2.5-0.5B, 1.5B, and Coder-3B) achieving 96.7% in-sample accuracy and 93.3% out-of-sample held-out generalization across 30 Portuguese administrative, financial, and programmatic edge operations under strict active RAM limits (< 1.5 GiB in edge). Includes full LaTeX source, vector figures, preprint PDF, physical telemetry, and audited results for Labs 01 to 05.",
+  "title": "Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware",
+  "description": "Technical preprint manuscript (v1.5.2 — Submission Candidate [cs.AI]), official open-source benchmark, reproduction suite, and technical report (TR-2026-F3S-05) for Polybee F3-Swarm v1.5.2. A 3-tier heterogeneous LLM swarm (Qwen2.5-0.5B, 1.5B, and Coder-3B) achieving 96.7% in-sample accuracy and 93.3% held-out-adjusted 30-task aggregate accuracy (the best observed accuracy among evaluated policies on the proposed 30-task benchmark) across 30 Portuguese administrative, financial, and programmatic edge operations under strict active RAM limits (< 1.5 GiB in edge). Includes full LaTeX source, vector figures, preprint PDF, physical telemetry, and audited results for Labs 01 to 05.",
   "creators": [
     {
       "name": "Oliveira, Henrique",
@@ -9,6 +9,7 @@
   ],
   "access_right": "open",
   "license": "MIT",
+  "version": "1.5.2",
   "keywords": [
     "heterogeneous llm swarm",
     "edge computing",
@@ -24,5 +25,5 @@
   ],
   "upload_type": "publication",
   "publication_type": "preprint",
-  "notes": "Polybee AI Research Laboratory Technical Preprint Manuscript (TR-2026-F3S-05, v1.5.1). Audited telemetry, LaTeX source, figures, and reproduction scripts covering Labs 01 to 05. Zenodo DOI will be assigned upon v1.5.1 release."
+  "notes": "Polybee AI Research Laboratory Technical Preprint Manuscript (TR-2026-F3S-05, v1.5.2 — Submission Candidate [cs.AI]). Audited telemetry, LaTeX source, figures, and reproduction scripts covering Labs 01 to 05. Zenodo DOI will be assigned upon v1.5.2 release."
 }

@@ -1,0 +1,152 @@
+[
+  {
+    "task_id": "T23",
+    "passou": true,
+    "motivo": "APROVADO_RASHOMON_100_PCT",
+    "meta": {
+      "acertos": 4,
+      "total": 4,
+      "taxa_rashomon": 1.0,
+      "detalhes": [
+        {
+          "caso": 0,
+          "input": [
+            "11987654321"
+          ],
+          "ok": true,
+          "obtido": "(11) 98765-4321",
+          "esperado": "(11) 98765-4321"
+        },
+        {
+          "caso": 1,
+          "input": [
+            "(21) 3456-7890"
+          ],
+          "ok": true,
+          "obtido": "(21) 3456-7890",
+          "esperado": "(21) 3456-7890"
+        },
+        {
+          "caso": 2,
+          "input": [
+            "31999887766"
+          ],
+          "ok": true,
+          "obtido": "(31) 99988-7766",
+          "esperado": "(31) 99988-7766"
+        },
+        {
+          "caso": 3,
+          "input": [
+            "12345"
+          ],
+          "ok": true,
+          "obtido": "",
+          "esperado": ""
+        }
+      ]
+    },
+    "code": "def solucao(texto: str) -> str:\n    # Remover caracteres não numéricos\n    d = ''.join(filter(str.isdigit, texto))\n    \n    # Verificar tamanho do número\n    if len(d) == 11:\n        return f'({d[:2]}) {d[2:7]}-{d[7:]}'\n    elif len(d) == 10:\n        return f'({d[:2]}) {d[2:6]}-{d[6:]}'\n    else:\n        return ''",
+    "lat_ms": 10968.103099992732
+  },
+  {
+    "task_id": "T25",
+    "passou": true,
+    "motivo": "APROVADO_RASHOMON_100_PCT",
+    "meta": {
+      "acertos": 4,
+      "total": 4,
+      "taxa_rashomon": 1.0,
+      "detalhes": [
+        {
+          "caso": 0,
+          "input": [
+            "  Contato@Empresa.COM.BR  "
+          ],
+          "ok": true,
+          "obtido": "contato@empresa.com.br",
+          "esperado": "contato@empresa.com.br"
+        },
+        {
+          "caso": 1,
+          "input": [
+            "123.456.789-00"
+          ],
+          "ok": true,
+          "obtido": "12345678900",
+          "esperado": "12345678900"
+        },
+        {
+          "caso": 2,
+          "input": [
+            "  chave-aleatoria-12345  "
+          ],
+          "ok": true,
+          "obtido": "chave-aleatoria-12345",
+          "esperado": "chave-aleatoria-12345"
+        },
+        {
+          "caso": 3,
+          "input": [
+            "99988877766"
+          ],
+          "ok": true,
+          "obtido": "99988877766",
+          "esperado": "99988877766"
+        }
+      ]
+    },
+    "code": "import re\n\ndef solucao(chave: str) -> str:\n    # Verificar se a chave contém '@'\n    if '@' in chave:\n        # Retornar o email em minúsculas e sem espaços\n        return chave.strip().lower()\n    \n    # Verificar se a chave é um CPF válido (11 dígitos numéricos)\n    digitos = re.sub(r'\\D', '', chave)\n    if len(digitos) == 11:\n        # Retornar apenas os 11 dígitos limpos\n        return digitos\n    \n    # Em todos os outros casos, retornar a string sem espaços nas pontas\n    return chave.strip()",
+    "lat_ms": 12478.451400005724
+  },
+  {
+    "task_id": "T26",
+    "passou": false,
+    "motivo": "REPROVADO_RASHOMON_2/4",
+    "meta": {
+      "acertos": 2,
+      "total": 4,
+      "taxa_rashomon": 0.5,
+      "detalhes": [
+        {
+          "caso": 0,
+          "input": [
+            "00000001"
+          ],
+          "ok": true,
+          "obtido": "9",
+          "esperado": "9"
+        },
+        {
+          "caso": 1,
+          "input": [
+            "12345678"
+          ],
+          "ok": false,
+          "obtido": "9",
+          "esperado": "2"
+        },
+        {
+          "caso": 2,
+          "input": [
+            "00000000"
+          ],
+          "ok": true,
+          "obtido": "0",
+          "esperado": "0"
+        },
+        {
+          "caso": 3,
+          "input": [
+            "11111111"
+          ],
+          "ok": false,
+          "obtido": "0",
+          "esperado": "3"
+        }
+      ]
+    },
+    "code": "def solucao(numero: str) -> str:\n    soma = 0\n    for i, c in enumerate(reversed(numero)):\n        peso = 2 + (i % 8)  # gera pesos 2, 3, 4, 5, 6, 7, 8, 9, 2...\n        soma += int(c) * peso\n    resto = soma % 11\n    return '0' if resto < 2 else str(11 - resto)",
+    "lat_ms": 9738.730699988082
+  }
+]

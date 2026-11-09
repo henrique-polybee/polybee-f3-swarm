@@ -1,0 +1,58 @@
+[
+  {
+    "task_id": "T01",
+    "nome": "Triagem de Suporte N1 vs N2 vs Financeiro",
+    "gabarito": "C",
+    "raw_output": "O usuário está relatando um problema financeiro, onde há um excesso de fatura sem nenhuma contratação adicional. Precisa de um estorno urgente.\n\nResposta final: C",
+    "raciocinio_curto": "O usuário está relatando um problema financeiro, onde há um excesso de fatura sem nenhuma contratação adicional. Precisa de um estorno urgente.",
+    "palavras_raciocinio": 22,
+    "escolha_micro_cot": "C",
+    "correto_micro_cot": true,
+    "latencia_micro_cot_ms": 2268.164400011301,
+    "lab04_1token_correto": false,
+    "lab04_1token_latencia_ms": 1676.4838000107557,
+    "delta_latencia_ms": 591.6806000005454
+  },
+  {
+    "task_id": "T03",
+    "nome": "Classificação de Urgência de Incidente TI",
+    "gabarito": "D",
+    "raw_output": "O gateway principal de pagamentos em produção caiu e todas as transações de e-commerce estão retornando erro 500 no checkout nacional. Este é um caso de alto risco, pois afetará diret",
+    "raciocinio_curto": "O gateway principal de pagamentos em produção caiu e todas as transações de e-commerce estão retornando erro 500 no checkout nacional. Este é um caso de alto risco, pois afetará diret",
+    "palavras_raciocinio": 31,
+    "escolha_micro_cot": "N/A",
+    "correto_micro_cot": false,
+    "latencia_micro_cot_ms": 1727.3289000149816,
+    "lab04_1token_correto": false,
+    "lab04_1token_latencia_ms": 1070.4452000081073,
+    "delta_latencia_ms": 656.8837000068743
+  },
+  {
+    "task_id": "T08",
+    "nome": "Roteamento de Chamado Empresarial",
+    "gabarito": "A",
+    "raw_output": "O caso é jurídico, pois envolve notificações extrajudiciais e cláusulas contratuais.\n\nResposta final: A",
+    "raciocinio_curto": "O caso é jurídico, pois envolve notificações extrajudiciais e cláusulas contratuais.",
+    "palavras_raciocinio": 11,
+    "escolha_micro_cot": "A",
+    "correto_micro_cot": true,
+    "latencia_micro_cot_ms": 1341.674499999499,
+    "lab04_1token_correto": false,
+    "lab04_1token_latencia_ms": 1141.793999982765,
+    "delta_latencia_ms": 199.880500016734
+  },
+  {
+    "task_id": "T09",
+    "nome": "Score de Prioridade Atendimento VIP",
+    "gabarito": "E",
+    "raw_output": "O problema apresenta uma instabilidade intermitente que impede o fechamento contábil mensal do grupo, o que é considerado uma falha significativa. Esta situação indica risco elevado e requer",
+    "raciocinio_curto": "O problema apresenta uma instabilidade intermitente que impede o fechamento contábil mensal do grupo, o que é considerado uma falha significativa. Esta situação indica risco elevado e requer",
+    "palavras_raciocinio": 28,
+    "escolha_micro_cot": "N/A",
+    "correto_micro_cot": false,
+    "latencia_micro_cot_ms": 1710.4552000237163,
+    "lab04_1token_correto": false,
+    "lab04_1token_latencia_ms": 1064.242900016252,
+    "delta_latencia_ms": 646.2123000074644
+  }
+]

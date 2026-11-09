@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this benchmark, architecture, or codebase in your research, please cite it as below."
-title: "F3-Swarm v1.5.1: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence"
-abstract: "Polybee F3-Swarm is an enterprise-grade 3-tier heterogeneous language model swarm orchestrating edge and local models (Qwen2.5-0.5B, 1.5B, and Coder-3B) with calibrated uncertainty, micro-chain-of-thought with deterministic suffix closure, distributed RAM pooling, and Four-Case Functional Testing (K=4) + Unseen Held-Out Suite code repair, achieving 96.7% in-sample and 93.3% held-out SOTA accuracy across 30 Brazilian Portuguese enterprise tasks under strict < 1.5 GiB active edge RAM."
+title: "Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware"
+abstract: "Polybee F3-Swarm is an enterprise-grade 3-tier heterogeneous language model swarm orchestrating edge and local models (Qwen2.5-0.5B, 1.5B, and Coder-3B) with calibrated uncertainty, micro-chain-of-thought with deterministic suffix closure, distributed RAM pooling, and Four-Case Functional Testing (K=4) + Unseen Held-Out Suite code repair, achieving 96.7% in-sample and 93.3% held-out-adjusted aggregate accuracy (the best observed accuracy among evaluated policies on the proposed 30-task benchmark) across 30 Brazilian Portuguese enterprise tasks under strict < 1.5 GiB active edge RAM."
 type: article
 authors:
   - family-names: "Oliveira"
@@ -12,10 +12,10 @@ identifiers:
   - type: report
     value: "TR-2026-F3S-05"
   - type: other
-    value: "Zenodo DOI will be assigned upon v1.5.1 release"
+    value: "Zenodo DOI will be assigned upon v1.5.2 release"
 repository-code: "https://github.com/henrique-polybee/polybee-f3-swarm"
 url: "https://github.com/henrique-polybee/polybee-f3-swarm"
-version: "1.5.1"
+version: "1.5.2"
 date-released: "2026-11-09"
 license: "MIT"
 keywords:
@@ -30,13 +30,13 @@ keywords:
   - "frugal agentic intelligence"
 preferred-citation:
   type: article
-  title: "F3-Swarm v1.5.1: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence"
+  title: "Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware"
   authors:
     - family-names: "Oliveira"
       given-names: "Henrique"
       affiliation: "Polybee AI Research Laboratory, São Paulo, SP, Brazil"
   institution: "Polybee AI Research Laboratory"
-  journal: "Technical Preprint Manuscript (v1.5.1 — Prepared for arXiv [cs.DC, cs.AI])"
+  journal: "arXiv Preprint [cs.AI] (Submission Candidate v1.5.2)"
   year: 2026
   month: 11
   url: "https://github.com/henrique-polybee/polybee-f3-swarm"
