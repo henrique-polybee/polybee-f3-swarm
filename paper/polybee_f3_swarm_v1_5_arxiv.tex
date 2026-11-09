@@ -18,7 +18,7 @@
 \usepackage{hyperref}
 
 \sloppy
-\setlength{\parskip}{5.5pt plus 1.5pt minus 1pt}
+\setlength{\parskip}{5.2pt plus 1.5pt minus 1pt}
 \setlength{\parindent}{0pt}
 
 \definecolor{primary}{RGB}{18, 78, 150}
@@ -32,28 +32,28 @@
     linkcolor=primary,
     citecolor=primary,
     urlcolor=primary,
-    pdftitle={F3-Swarm v1.5: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence},
+    pdftitle={Polybee F3-Swarm v1.5.1: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware},
     pdfauthor={Henrique Oliveira (Polybee AI Research)}
 }
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\footnotesize\textcolor{slate}{\textbf{Polybee AI Research} $\cdot$ F3-Swarm v1.5 Preprint}}
-\fancyhead[R]{\footnotesize\textcolor{slate}{\texttt{Preprint [cs.AI, cs.DC, cs.LG]} $\cdot$ November 2026}}
+\fancyhead[L]{\footnotesize\textcolor{slate}{\textbf{Polybee AI Research} $\cdot$ F3-Swarm v1.5.1 Technical Manuscript}}
+\fancyhead[R]{\footnotesize\textcolor{slate}{\texttt{Manuscript [cs.DC, cs.AI, cs.CL]} $\cdot$ November 2026}}
 \fancyfoot[C]{\footnotesize\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-\newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
+\newtheorem{observation}{Empirical Observation}
 \newtheorem{remark}{Remark}
 
 \newcommand{\takeaway}[2]{%
-  \vspace{5pt}\noindent\colorbox{primary!6}{%
+  \vspace{4pt}\noindent\colorbox{primary!6}{%
     \parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
-      \vspace{4pt}\textbf{\color{primary}#1:}\hspace{0.5em}#2\vspace{4pt}%
+      \vspace{3.5pt}\textbf{\color{primary}#1:}\hspace{0.5em}#2\vspace{3.5pt}%
     }%
-  }\vspace{5pt}%
+  }\vspace{4pt}%
 }
 
 \newcommand{\cmark}{\textcolor{accent}{\textbf{\checkmark}}}
@@ -69,323 +69,243 @@
 \begin{document}
 
 % ============================================================================
-% MODERN ARXIV / RESEARCH LAB HEADER BLOCK (ALIGNED WITH F3-AGI v4.0)
+% HEADER BLOCK (ALIGNED WITH POLYBEE F3-AGI v4.0 STANDARD)
 % ============================================================================
 \thispagestyle{fancy}
 \noindent
-{\large\textbf{\textcolor{primary}{Polybee AI Research}}} \hfill {\small\textcolor{slate}{2026-11-09}}
+{\large\textbf{\textcolor{primary}{Polybee AI Research}}} \hfill {\small\textcolor{slate}{2026-11-09 $\cdot$ Version 1.5.1 (Audited Release)}}
 \vspace{2pt}
 \hrule height 1.2pt
-\vspace{12pt}
+\vspace{11pt}
 
-{\LARGE\textbf{F3-Swarm v1.5: Verifier-Guided Heterogeneous Edge-Swarm Inference, Distributed RAM Pooling, and Residual Code Repair for Frugal Agentic Intelligence}}
+{\LARGE\textbf{Polybee F3-Swarm v1.5.1: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware}}
 
-\vspace{10pt}
+\vspace{9pt}
 \noindent
-{\normalsize \textbf{Henrique Oliveira}$^{1,*}$} \\[4pt]
+{\normalsize \textbf{Henrique Oliveira}$^{1,*}$} \\[3pt]
 {\small $^1$Polybee AI Research Laboratory, S\~ao Paulo, SP, Brazil \quad $^*$Corresponding author (\texttt{\href{https://polybee.ai/}{https://polybee.ai/}})} \\[2pt]
-{\small \textbf{Open-Source Code \& Reproducibility Repository:} \texttt{\href{https://github.com/henrique-polybee/polybee-f3-swarm}{https://github.com/henrique-polybee/polybee-f3-swarm}}}
+{\small \textbf{Open-Source Code \& Telemetry Repository:} \texttt{\href{https://github.com/henrique-polybee/polybee-f3-swarm}{https://github.com/henrique-polybee/polybee-f3-swarm}}}
 
-\vspace{8pt}
+\vspace{7pt}
 \hrule height 0.5pt
-\vspace{6pt}
+\vspace{5pt}
 
 \begin{abstract}
-\noindent Scaling autonomous agentic workflows across enterprise and scientific domains faces a dual physical and economic wall: invoking frontier cloud APIs priced in US Dollars (USD) creates prohibitive compounding token costs in emerging-market currencies, while executing capable $7\text{B}\text{--}32\text{B}$ open-weights models locally on consumer notebooks ($16\,\text{GiB}$ RAM at $>80\%$ operating system load) triggers catastrophic NVMe SSD pagefile thrashing. Conversely, restricting agents to sub-billion parameter Small Language Models (SLMs, e.g., $0.5\text{B}$) that fit within $<500\,\text{MiB}$ of edge RAM induces severe structural pathologies: positional logit bias toward the first enumerated option, decimal/thousands separator fragility in localized structured extraction, and algorithmic regression in code synthesis. We introduce \textbf{Polybee F3-Swarm v1.5}, a CPU-native, verifier-governed three-tier neuro-symbolic and distributed memory architecture that extends the theoretical foundations of \textbf{F3-AGI v4.0} \cite{oliveira2026f3agi} across five empirical laboratories (Labs 01--05): (1) \textbf{Physical Distributed RAM Ring-Pipeline Pooling (Labs 01--02)}, proving on Intel Core i7-11370H AVX-512 hardware under hard Win32 $600\,\text{MiB}$ Working-Set quotas (\texttt{SetProcessWorkingSetSizeEx}) and unbuffered NVMe I/O (\texttt{FILE\_FLAG\_NO\_BUFFERING}) that partitioning a 24-layer Transformer ($1.50\,\text{GiB}$) across three isolated TCP worker processes in physical RAM eliminates $33.00\,\text{GiB}$ of disk swap per sequence and achieves a \textbf{13.70$\times$ throughput speedup on LAN} ($19.79\,\text{tok/s}$ vs.\ $1.44\,\text{tok/s}$ swap), \textbf{10.82$\times$ on Wi-Fi}, and \textbf{3.35$\times$ over $60\,\text{ms}$ WAN} with bit-exact floating-point parity ($\max|\Delta|=0.0$); (2) \textbf{Calibrated System-1 Invariance and Controlled Micro-CoT with Deterministic Suffix Closure}, combining temperature scaling ($T=1.6$), prior logit debiasing ($\beta_A=2.5$), and order-inversion checks on Tier-1 (\texttt{Qwen2.5-0.5B}, $491\,\text{MB}$) with a 1-sentence Micro-CoT and 1-token KV-cache suffix gate on Tier-2 (\texttt{Qwen2.5-1.5B}, $1.11\,\text{GB}$); and (3) \textbf{Fast Symbolic Evidence Normalization (Motor B) and Rashomon LOO-CV Guided Tier-3 Residual Code Repair (AACR)}, routing only formally rejected Python syntheses to an on-demand Tier-3 specialist (\texttt{Qwen2.5-Coder-3B}, $2.10\,\text{GB}$). Evaluated across 30 real-world Brazilian Portuguese (PT-BR) operational tasks, F3-Swarm v1.5 achieves \textbf{96.7\% global accuracy (29/30)}, outperforming standalone $0.5\text{B}$ (\textbf{40.0\%}), standalone $1.5\text{B}$ (\textbf{73.3\%}), and naive cascading (\textbf{63.3\%}), achieving \textbf{91.7\% (11/12)} on Class 1, \textbf{100.0\% (10/10)} on Class 2, and \textbf{100.0\% (8/8)} on Class 3 while resolving \textbf{50.0\% of all requests entirely at Tier-1 edge ($<480\,\text{MiB}$ RAM)} and activating Tier-3 on only \textbf{10.0\%} of tasks.
-
-\vspace{5pt}
-\noindent\textbf{\color{primary}Keywords:} Heterogeneous LLM Swarm, Distributed RAM Inference, Rashomon Effect, System-1 Calibration, Micro-Chain-of-Thought, Neuro-Symbolic Verification, Autonomous Code Repair (AACR), Frugal AGI.
-\end{abstract}
+\noindent Deploying autonomous agentic workflows on commodity consumer hardware ($16\,\text{GiB}$ RAM at $>80\%$ operating system occupancy, leaving $<2.8\,\text{GiB}$ of free physical RAM) exposes a sharp trade-off between memory capacity, latency, and reliability. Executing medium-to-large models ($7\text{B}\text{--}14\text{B}$) locally triggers severe NVMe SSD paging, whereas restricting execution to sub-billion Small Language Models (SLMs, e.g., $0.5\text{B}$ parameters) introduces systematic failure modes: positional logit bias toward the first enumerated option, numeric/monetary formatting errors in localized Brazilian Portuguese (PT-BR) extraction, and fragile code synthesis. We present \textbf{Polybee F3-Swarm v1.5.1}, an experimental study and prototype systems framework organized into two complementary tracks across five laboratories (Labs 01--05) on an Intel Core i7-11370H CPU ($4\text{C}/8\text{T}$, AVX-512):
+(1) \textbf{Track A — Controlled Memory-Pipeline Benchmark (Labs 01--02):} Under hard Win32 per-process working-set quotas (\texttt{SetProcessWorkingSetSizeEx} at $600\,\text{MiB}$) and unbuffered NVMe SSD I/O (\texttt{FILE\_FLAG\_NO\_BUFFERING}), we compare streaming a 24-layer dense matrix transformation pipeline ($4096 \times 4096$, $1.50\,\text{GiB}$ \texttt{float32}) from disk against partitioning the same matrices across three resident-weight worker processes communicating via local TCP loopback (\texttt{127.0.0.1}) with software-emulated network RTTs. Resident-weight TCP pipelining eliminates $33.00\,\text{GiB}$ ($33,792\,\text{MiB}$) of SSD reads across $32$ steps and achieves a \textbf{13.70$\times$ throughput speedup at $0.4\,\text{ms}$ emulated LAN RTT} ($19.79\,\text{tok/s}$, TTFT $95.33\,\text{ms}$, TPOT $50.54\,\text{ms}$ vs.\ $1.44\,\text{tok/s}$ local SSD streaming), \textbf{10.82$\times$ at $4.5\,\text{ms}$ Wi-Fi RTT} ($15.62\,\text{tok/s}$), and \textbf{3.35$\times$ at $60.0\,\text{ms}$ WAN RTT} ($4.84\,\text{tok/s}$) with exact IEEE-754 parity ($\max|\Delta|=0.0$).
+(2) \textbf{Track B — Sequential-Lifecycle Heterogeneous SLM Cascade (Labs 03--05):} Using real quantized GGUF models via \texttt{llama-server} under a single-active-server RAM budget ($<1.5\,\text{GiB}$ for Tiers 1--2), we orchestrate \texttt{Qwen2.5-0.5B-Instruct} (Tier-1), \texttt{Qwen2.5-1.5B-Instruct} (Tier-2), and \texttt{Qwen2.5-Coder-3B-Instruct} (Tier-3) across $N=30$ PT-BR operational tasks. Combining positional logit debiasing ($T=1.6, \beta_A=2.5$), option-order inversion checks, Controlled Micro-CoT with 1-token suffix closure, deterministic substring-anchored monetary normalization (\textbf{Motor B}), and four-case functional unit testing ($K=4$) with counterexample-guided repair (\textbf{AACR}), \textbf{Policy 4 (Swarm v1.0)} achieves \textbf{76.7\% accuracy} ($23/30$, $95\%$ Wilson CI $[59.1\%, 88.2\%]$) in \textbf{84.70\,s} ($2,019.4\,\text{J}$ estimated at $24\,\text{W}$), outperforming standalone $1.5\text{B}$ (\textbf{73.3\%}, $111.18\,\text{s}$, $2,635.9\,\text{J}$) in both accuracy and speed ($-23.8\%$ latency). Adding Tier-3 repair in \textbf{Policy 5} trades $+7.1\%\text{--}9.0\%$ higher latency ($119.07\text{--}121.19\,\text{s}$) for higher task completion: \textbf{90.0\%} ($27/30$, CI $[74.4\%, 96.5\%]$) in the unpatched diagnostic run (\textbf{P5a}) and \textbf{96.7\%} ($29/30$, CI $[83.3\%, 99.4\%]$) in-sample after correcting a benchmark oracle typo in \texttt{T26} and applying suffix closure (\textbf{P5b}). To audit out-of-sample generalization, we evaluate all synthesized Class 3 functions on an unseen 32-case Held-Out Adversarial Suite, where F3-Swarm achieves \textbf{87.5\% (7/8) strict task generalization} (\textbf{93.3\% [28/30]} global accuracy, CI $[78.7\%, 98.2\%]$), empirically quantifying the finite-test false-acceptance rate ($\hat{\epsilon}_{\text{FA}} = 12.5\%$).
 
 \vspace{4pt}
+\noindent\textbf{\color{primary}Keywords:} Heterogeneous SLM Cascades, Edge Inference, Uncertainty Calibration, Micro-Chain-of-Thought, Rashomon Set Multiplicity, Counterexample-Guided Code Repair, Neuro-Symbolic Verification, Memory-Bounded Systems.
+\end{abstract}
+
+\vspace{3pt}
 \hrule height 0.5pt
-\vspace{8pt}
+\vspace{6pt}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig1_f3_swarm_architecture_rashomon.pdf}
-\caption{\textbf{Overview of Polybee F3-Swarm v1.5 and Verifier-Guided Rashomon Collapse.} (a) The five-level cognitive and memory hierarchy integrates a Tier-1 Edge SLM (\texttt{Qwen2.5-0.5B-Q4\_K\_M}, $<480\,\text{MiB}$ RAM) governed by System-1 positional debiasing and order-inversion invariance, Motor B deterministic symbolic normalization (\texttt{FastSymbolicNormalizer}), Tier-2 local escalation (\texttt{Qwen2.5-1.5B-Q4\_K\_M}) with Controlled Micro-CoT and Deterministic Suffix Closure, a unified-namespace Rashomon Leave-One-Out Cross-Validation (LOO-CV) sandbox, and an on-demand Tier-3 specialist (\texttt{Qwen2.5-Coder-3B}) backed by a 3-node TCP Ring-Pipeline RAM pool. (b) In small-model operational inference ($N=30$ tasks), uncalibrated raw softmax confidence suffers from a pronounced positional Rashomon trap \cite{breiman2001statistical,mlodozeniec2026rashomon}: the $0.5\text{B}$ model assigns $>90\%$ probability to erroneous first-position choices (red crosses, $40.0\%$ accuracy). Enforcing F3-Swarm's formal invariance, substring evidence, and LOO-CV gates collapses false-positive overconfidence and elevates verified accuracy to $29/30$ ($96.7\%$).}
+\caption{\textbf{Overview of Polybee F3-Swarm v1.5.1 and Explicit Two-Track Experimental Design.} \textbf{Track B (Labs 03--05, right)} orchestrates three real quantized GGUF language models sequentially on local CPU (\texttt{Qwen2.5-0.5B}, \texttt{Qwen2.5-1.5B}, and \texttt{Qwen2.5-Coder-3B}) using calibrated System-1 routing, substring-anchored symbolic normalization (Motor B), and a four-case functional execution harness ($K=4$) with counterexample-guided AACR escalation. \textbf{Track A (Labs 01--02, bottom-left)} independently evaluates OS-level memory-hierarchy trade-offs on the same host by comparing unbuffered NVMe SSD weight streaming against a 3-process resident-weight TCP loopback pipeline under hard $600\,\text{MiB}$ Win32 working-set quotas and software-emulated RTTs.}
 \label{fig:teaser}
 \end{figure}
 
 % ============================================================================
-\section{Introduction}
+\section{Introduction and Scope of Claims}
 % ============================================================================
 
-The transition from static, single-turn language model prompts to autonomous, multi-step agentic workflows has exposed a fundamental tension between cognitive capability, hardware memory capacity, and economic sustainability. In production agentic systems—where a single user goal decomposes into dozens of triage decisions, structured document extractions, and programmatic tool syntheses—relying exclusively on commercial frontier APIs (e.g., GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro) incurs compounding token expenditures. For research laboratories, startups, and enterprises operating in emerging-market currencies such as the Brazilian Real (BRL, where $1\,\text{USD} \approx 5.8\,\text{BRL}$), USD-denominated API billing rapidly renders high-frequency agentic automation economically unviable.
+Deploying language model agents in cost-sensitive operational environments confronts both economic and hardware constraints. For organizations operating in emerging-market currencies (such as the Brazilian Real, BRL), routing high-volume administrative triage, financial extraction, and data-cleaning workflows exclusively to commercial cloud APIs incurs substantial recurring costs. However, migrating these workloads onto existing commodity office laptops ($16\,\text{GiB}$ total DDR4 RAM running Windows 11 and standard corporate software) encounters a strict physical memory ceiling: background operating system and application processes routinely occupy $>80\%$ of physical memory ($\sim 13.0\,\text{GiB}$), leaving fewer than \textbf{$2.8\,\text{GiB}$ of free physical RAM} (Section \ref{sec:exp_lab01}).
 
-At the same time, attempting to repatriate agentic workloads onto local consumer hardware—or attempting to naively replicate blockchain-style voluntary compute networks across domestic internet connections—confronts four fundamental physical and algorithmic barriers that we formalize and resolve in this work:
-
+When a practitioner attempts to run a monolithic $7\text{B}\text{--}14\text{B}$ model ($4.5\text{--}8.5\,\text{GiB}$) inside this $<2.8\,\text{GiB}$ envelope, the operating system pages weight tensors to NVMe SSD storage, collapsing autoregressive throughput. Conversely, restricting inference to sub-billion parameter Small Language Models (SLMs, such as \texttt{Qwen2.5-0.5B-Instruct} \cite{qwen2024qwen25}, occupying $\sim 480\,\text{MiB}$ of RAM) avoids paging but exposes three domain-level failure modes observed in our experiments:
 \begin{enumerate}
-    \item \textbf{The Consumer Physical RAM Wall and NVMe Pagefile Thrashing:} While modern consumer CPUs possess powerful vector instruction sets (such as Intel AVX2 and AVX-512) capable of executing quantized matrix-vector multiplications at interactive speeds, transformer inference is strictly \emph{memory-bandwidth bound}. On a standard $16\,\text{GiB}$ developer notebook running Windows 11 and modern IDE toolchains, background operating system services and active applications consume over $80\%$ of physical memory ($\sim 13.0\,\text{GiB}$), leaving fewer than \textbf{$2.8\,\text{GiB}$ of free physical RAM} (Section \ref{sec:exp_lab01}). When an $8\text{B}\text{--}14\text{B}$ quantized model ($4.85\text{--}8.50\,\text{GiB}$) is loaded into this envelope, the OS virtual memory manager pages active weight tensors to NVMe SSD storage. Because every generated token in autoregressive decoding requires sweeping all model weights sequentially, spilling even $1.0\,\text{GiB}$ of weights to disk forces tens of gigabytes of SSD reads per sequence, collapsing throughput by $>92\%$ (Section \ref{sec:exp_lab02}).
-    \item \textbf{The WAN Latency Fallacy in Naive Decentralized Inference:} Inspired by peer-to-peer blockchain networks and early collaborative inference systems such as Petals \cite{borzunov2023petals}, a common intuition is to shard a single monolithic $70\text{B}$ model across dozens of domestic computers over the public internet. However, unlike embarrassingly parallel proof-of-work hashing, autoregressive transformer decoding is sequentially dependent across layers: each pipeline stage must await the activation vector of the preceding stage at every single token step. Routing every trivial operational prompt through a multi-hop wide-area network ($30\text{--}60\,\text{ms}$ RTT per hop) imposes an irreducible latency floor of hundreds of milliseconds per token, wasting network bandwidth on requests that did not require a large model in the first place.
-    \item \textbf{Positional Logit Bias and Predictive Multiplicity in Sub-Billion Edge SLMs:} To avoid both cloud API costs and local RAM overflow, an attractive alternative is to deploy sub-billion parameter Small Language Models (SLMs, such as \texttt{Qwen2.5-0.5B-Instruct} \cite{qwen2024qwen25}, occupying only $\sim 480\,\text{MiB}$ of RAM) directly at the edge. Yet, as recently analyzed in the context of scaling laws and predictive multiplicity by Mlodozeniec and Frei \cite{mlodozeniec2026rashomon} and Breiman \cite{breiman2001statistical}, unconstrained empirical loss minimization admits a broad \emph{Rashomon sublevel set} of poorly calibrated solutions. In sub-billion SLMs, we prove empirically that raw softmax probabilities suffer from severe \textbf{Positional First-Option Bias}: the $0.5\text{B}$ model assigns $>91\%$ softmax probability to option \texttt{'A'} even when factual evidence in the prompt unambiguously mandates option \texttt{'B'}, causing naive confidence-threshold routers to fail silently (Figure \ref{fig:teaser}b).
-    \item \textbf{The Verbosity--Truncation Dilemma and Zero-Shot Code Fragility:} When uncertain tasks are escalated to a medium-scale local model (e.g., $1.5\text{B}$ parameters), prompting for free-form Chain-of-Thought (CoT) \cite{wei2022cot} inside a JSON schema causes the model to expend $3,500\text{--}5,000\,\text{ms}$ generating verbose prose that frequently truncates at the token budget before closing the JSON object. Conversely, forcing a pure 1-token response strips away the intermediate deduction step required for multi-rule conditional triage. Similarly, in programmatic rule synthesis, single-pass generation on $0.5\text{B}\text{--}1.5\text{B}$ models frequently produces near-miss functions that fail on edge cases (such as Brazilian formatting rules or Modulo-11 check digits) unless guided by formal verification and residual error feedback.
+    \item \textbf{Positional First-Option Bias in System-1 Triage:} In multiple-choice operational classification (Class 1), the uncalibrated $0.5\text{B}$ model assigns $>91\%$ softmax probability to option \texttt{'A'} on tasks where factual evidence mandates option \texttt{'B'} (\texttt{T06}, \texttt{T10}, \texttt{T11}), defeating naive confidence-threshold cascades.
+    \item \textbf{Localized Monetary Formatting Fragility:} In Brazilian Portuguese (PT-BR) financial extraction (Class 2), $0.5\text{B}$ models frequently emit ambiguous thousand/decimal strings (e.g., \texttt{"32.400.00"} or unquoted \texttt{14.850.20}) that break standard JSON parsers despite extracting the exact literal evidence span from the source text.
+    \item \textbf{Verbosity Truncation and Finite-Test Multiplicity in Code Synthesis:} In Tier-2 ($1.5\text{B}$) escalations, unconstrained JSON Chain-of-Thought (CoT) \cite{wei2022cot} truncates before closing the JSON object (\texttt{T05}), whereas pure 1-token decoding suppresses needed intermediate deduction (\texttt{T01}, \texttt{T08}). In Python function synthesis (Class 3), both $0.5\text{B}$ and $1.5\text{B}$ models fail on multi-branch formatting and check-digit rules (\texttt{T23}, \texttt{T25}, \texttt{T26}), and functions that pass a small finite set of unit tests ($K=4$) may still fail on unseen boundary inputs—a practical manifestation of the \emph{Rashomon Effect} \cite{breiman2001statistical,fisher2019rashomon,mlodozeniec2026rashomon}.
 \end{enumerate}
 
-To overcome these four barriers within a strict consumer hardware envelope ($<1.5\,\text{GiB}$ active edge RAM, single active model server lifecycle, zero mandatory GPU dependencies), \textbf{Polybee AI Research} introduces \textbf{Polybee F3-Swarm v1.5}. Building directly upon the neuro-symbolic principles of our foundational architecture \textbf{F3-AGI v4.0/v4.1} \cite{oliveira2026f3agi}—specifically \emph{Fluid Monism}, the \emph{Rashomon Leave-One-Out Verifier}, \emph{Motor B Symbolic Grounding}, and \emph{Adaptive Autonomous Code Repair (AACR)}—and incorporating calibrated fast-routing insights from TypeSafe AI's \emph{System One (Jev)} paradigm \cite{typesafe2025jev}, F3-Swarm v1.5 replaces monolithic inference with a verifier-governed three-tier cognitive and memory hierarchy (Figure \ref{fig:teaser}a and Table \ref{tab:coverage}).
+\textbf{Explicit Delineation of Experimental Scope.} To maintain strict scientific precision and avoid conflating systems simulations with end-to-end distributed deployments, we explicitly separate our investigation into two distinct experimental tracks (Table \ref{tab:coverage}):
+\begin{itemize}
+    \item \textbf{Track A (Memory-Hierarchy and Weight-Movement Benchmark — Labs 01 \& 02):} Evaluates the OS-level mechanics of memory overflow on a single Intel Core i7-11370H host. Lab 02 compares unbuffered NVMe SSD weight streaming (\texttt{FILE\_FLAG\_NO\_BUFFERING}) against a three-process resident-weight pipeline connected via local TCP loopback (\texttt{127.0.0.1}) under hard $600\,\text{MiB}$ Win32 working-set quotas (\texttt{SetProcessWorkingSetSizeEx}) and software-injected RTT delays (\texttt{time.sleep}) over a 24-layer dense matrix transformation workload ($4096 \times 4096$, $1.50\,\text{GiB}$ \texttt{float32}). \emph{Scope boundary:} Lab 02 is a controlled single-host benchmark of resident-weight TCP pipelining versus disk weight streaming; it does not implement a full autoregressive LLM (with multi-head attention, KV-cache, or token embeddings) across separate physical computers.
+    \item \textbf{Track B (Verifier-Guided Heterogeneous SLM Cascade — Labs 03, 04 \& 05):} Evaluates real quantized GGUF models (\texttt{Qwen2.5-0.5B-Instruct}, \texttt{Qwen2.5-1.5B-Instruct}, and \texttt{Qwen2.5-Coder-3B-Instruct}) via \texttt{llama-server.exe} (\texttt{llama.cpp} \cite{gerganov2023llamacpp}) on $N=30$ PT-BR operational tasks. \emph{Scope boundary:} Track B enforces memory limits via sequential single-server process lifecycle management ($\le 1$ model loaded in local RAM at any instant), rather than executing \texttt{Qwen2.5-Coder-3B} across the Track A TCP matrix pipeline. Integrating multi-host \texttt{llama.cpp} RPC sharding with the Track B agentic cascade is designated as future work.
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Architectural and functional coverage across distributed LLM inference and small-model orchestration paradigms.} \cmark / \xmark\ indicates whether a capability is natively supported and empirically validated in the respective framework.}
+\caption{\textbf{Positioning of Polybee F3-Swarm v1.5.1 relative to recent distributed inference and SLM routing frameworks.} \cmark\ denotes a capability implemented and empirically evaluated in this study; \emph{Sim/Loop} denotes controlled single-host loopback/emulated evaluation.}
 \label{tab:coverage}
 \resizebox{\textwidth}{!}{
 \begin{tabular}{lcccccc}
 \toprule
-\textbf{Paradigm / Framework} & \textbf{Edge RAM ($<1.5\,\text{GiB}$)} & \textbf{RAM Pool vs.\ Swap Proof} & \textbf{Positional Debiasing} & \textbf{Micro-CoT + Suffix Gate} & \textbf{Symbolic Substring Proof} & \textbf{Rashomon AACR Repair} \\
+\textbf{System / Study} & \textbf{Multi-Host Network} & \textbf{OS Quota Swap Benchmark} & \textbf{SLM Uncertainty Routing} & \textbf{Positional Debiasing + Flip} & \textbf{Deterministic PT-BR Normalizer} & \textbf{Code Repair + Held-Out Audit} \\
 \midrule
-Commercial Cloud APIs (\texttt{GPT-4o} / \texttt{Claude}) & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-Naive Monolithic Local (\texttt{Ollama} 8B--14B on 16GB) & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-WAN Collaborative Swarms (\texttt{Petals} \cite{borzunov2023petals}) & \cmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
-Homogeneous Local Sharding (\texttt{Exo} / \texttt{dllama} \cite{gerganov2023llamacpp}) & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark \\
-Uncalibrated Confidence Cascade (Naive Router) & \cmark & \xmark & \xmark & \xmark & \xmark & \xmark \\
-System-1 Calibrated Classifier (\texttt{Jev} \cite{typesafe2025jev}) & \cmark & \xmark & \cmark & \xmark & \xmark & \xmark \\
+\textbf{Petals} (Borzunov et al., 2023 \cite{borzunov2023petals}) & \cmark\ (WAN P2P) & \cmark & \xmark & \xmark & \xmark & \xmark \\
+\textbf{Faster / Speculative Cascades} (Narasimhan et al., 2024 \cite{narasimhan2024cascades}) & \xmark & \xmark & \cmark\ (Deferral Rule) & \xmark & \xmark & \xmark \\
+\textbf{FlowSpec} (Liu et al., 2025/2026 \cite{liu2025flowspec}) & \cmark\ (Edge Testbed) & \xmark & \cmark\ (Tree Speculative) & \xmark & \xmark & \xmark \\
+\textbf{SWARM-LLM} (Dahshan et al., Apr 2026 \cite{dahshan2026swarmllm}) & \cmark\ (Edge + Cloud FM) & \xmark & \cmark\ (Uncertainty/Safety) & \xmark & \xmark & \xmark \\
+\textbf{System One / Jev} (TypeSafe AI, Sep 2026 \cite{typesafe2026jev}) & \xmark & \xmark & \cmark\ (Typed System-1) & \cmark & \xmark & \xmark \\
+\textbf{F3-AGI v4.0} (Oliveira, Oct 2026 \cite{oliveira2026f3agi}) & \xmark & \xmark & \xmark & \xmark & \cmark\ (Motor B) & \cmark\ (ARC DSL) \\
 \midrule
-\textbf{Polybee F3-Swarm v1.5 (Polybee AI Research — Ours)} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+\textbf{Polybee F3-Swarm v1.5.1 (This Work)} & \emph{Sim/Loop} (Track A) & \cmark\ (Win32 $600\,\text{MiB}$) & \cmark\ (Track B 3-Tier) & \cmark\ ($T=1.6, \beta_A=2.5$) & \cmark\ (Substring-Anchored) & \cmark\ ($K=4$ Dev + $K=4$ HO) \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-\textbf{Summary of Contributions.} Our main theoretical, physical-systems, and empirical contributions across Laboratories 01 to 05 are:
-\begin{itemize}
-    \item \textbf{Physical Proof of Distributed RAM Ring-Pipeline vs.\ Local NVMe Swap (Labs 01--02):} Using real Win32 OS kernel telemetry and hard working-set quotas (\texttt{SetProcessWorkingSetSizeEx} at $600\,\text{MiB}$) with unbuffered NVMe disk I/O (\texttt{FILE\_FLAG\_NO\_BUFFERING}) on an Intel Core i7-11370H (AVX-512), we prove that when a 24-layer Transformer ($1.50\,\text{GiB}$) exceeds free physical RAM, local SSD swapping reads $33.00\,\text{GiB}$ per 32-token sequence and spends $92.2\%$ of wall-clock time in I/O wait ($692.58\,\text{ms/token}$, $1.44\,\text{tok/s}$). Partitioning the exact same layers across three isolated TCP worker processes in physical RAM eliminates $100\%$ of disk reads ($0.0\,\text{GiB}$) and achieves a \textbf{13.70$\times$ speedup on Gigabit LAN ($19.79\,\text{tok/s}$)}, \textbf{10.82$\times$ on Wi-Fi ($15.62\,\text{tok/s}$)}, and \textbf{3.35$\times$ over $60\,\text{ms}$ WAN ($4.84\,\text{tok/s}$)}, with \textbf{bit-exact numerical parity ($\max|\Delta| = 0.0$)}.
-    \item \textbf{Calibrated System-1 Invariance and Controlled Micro-CoT with Deterministic Suffix Closure:} We formulate an analytical logit calibration and order-inversion invariance gate (Section \ref{sec:math_system1}) that neutralizes first-option bias ($T=1.6, \beta_A=2.5$) on \texttt{Qwen2.5-0.5B}, paired with a Tier-2 execution protocol on \texttt{Qwen2.5-1.5B} that bounds reasoning to a single sentence ($N_{\text{predict}} \le 65$) and guarantees label extraction via a 1-token KV-cache suffix closure ($\mathcal{P}_{\text{suffix}}$). Across 12 operational triage tasks (Class 1), this mechanism elevates accuracy from $33.3\%$ (raw $0.5\text{B}$) and $50.0\%$ (naive cascade) to \textbf{91.7\% (11/12)}.
-    \item \textbf{Fast Symbolic Evidence Normalization (Motor B) and Rashomon-Guided Tier-3 AACR Closure:} We couple the $0.5\text{B}$ edge model to a deterministic PT-BR monetary normalizer anchored by an exact literal substring proof (Equation \ref{eq:symbolic_proof}), certifying \textbf{90.0\% (9/10) of financial extractions directly on the $0.5\text{B}$ model} and achieving \textbf{100.0\% (10/10)} Class 2 accuracy. For Python rule synthesis (Class 3), we introduce a unified-namespace Rashomon LOO-CV sandbox (\texttt{exec(code, env, env)}) and route residual failure vectors ($\Delta_{\text{AACR}}$) to an on-demand Tier-3 specialist (\texttt{Qwen2.5-Coder-3B}), achieving \textbf{100.0\% (8/8) formal LOO-CV verification} and \textbf{96.7\% (29/30) global accuracy}.
-\end{itemize}
-
 % ============================================================================
-\section{Related Work and Theoretical Context (2024--2026)}
+\section{Related Work (2022--2026)}
 % ============================================================================
 
-\textbf{Collaborative and Distributed LLM Inference.}
-The challenge of executing large neural networks across memory-limited nodes has motivated two distinct research streams. In wide-area volunteer computing, \textbf{Petals} \cite{borzunov2023petals} introduced pipeline-parallel inference over the internet, allowing users to hold subsets of transformer blocks and route hidden-state activations via peer-to-peer RPC. In local-area consumer clusters, frameworks such as \textbf{Exo} and \textbf{Distributed Llama (\texttt{dllama})} \cite{gerganov2023llamacpp} shard model weights across heterogeneous home devices via TCP or RDMA. However, these architectures are \emph{cognitively homogeneous}: every incoming prompt, regardless of whether it is a simple binary classification or a complex algorithmic synthesis, traverses the entire distributed chain of layers. As our physical measurements in Section \ref{sec:exp_lab02} demonstrate, while distributed RAM pooling is vastly superior to local SSD swap ($13.70\times$ faster on LAN and $3.35\times$ faster on $60\,\text{ms}$ WAN), paying a multi-hop network penalty on $100\%$ of agentic sub-tasks is suboptimal when $50\%\text{--}90\%$ of requests can be solved and formally verified locally by a sub-billion model in $<500\,\text{MiB}$ of RAM. Complementarily, multi-adapter serving architectures such as \textbf{Punica} \cite{chen2024punica} and \textbf{S-LoRA} \cite{sheng2023slora} demonstrate that dozens of specialized Low-Rank Adaptation (LoRA) weights ($\sim 10\text{--}50\,\text{MB}$) can be hot-swapped over a frozen base backbone in RAM, providing a natural mechanism for future Wake-Sleep skill specialization across F3-Swarm nodes.
+\textbf{Collaborative and Pipelined Distributed Inference.}
+The observation that pooling memory across multiple nodes can outperform local disk offloading was established at scale by \textbf{Petals} \cite{borzunov2023petals}, which demonstrated pipeline-parallel inference and fine-tuning of $176\text{B}$-parameter models (\texttt{BLOOM-176B}) over the Internet, outperforming local RAM/SSD offloading on consumer GPUs. More recently, \textbf{FlowSpec} \cite{liu2025flowspec} introduced continuous pipelined tree-based speculative decoding for distributed edge LLM inference, combining score-based step-wise verification with dynamic draft expansion to achieve $1.37\times\text{--}1.73\times$ speedups on distributed testbeds. In Track A (Labs 01--02), we do not claim to invent distributed weight hosting; rather, we provide a reproducible, OS-instrumented micro-benchmark on Windows 11 (\texttt{SetProcessWorkingSetSizeEx} and \texttt{FILE\_FLAG\_NO\_BUFFERING}) quantifying the exact crossover point between unbuffered NVMe SSD streaming and resident-weight TCP pipelining on an AVX-512 laptop CPU.
 
-\textbf{Uncertainty Calibration, Positional Bias, and System-1 Routing.}
-A central prerequisite for heterogeneous model cascading is reliable epistemic uncertainty estimation \cite{guo2017calibration}. When a small edge model processes a multiple-choice operational decision, naive routing policies rely on the maximum softmax probability $\max_k p_\theta(y_k \mid x) \ge \tau$. However, small autoregressive transformers trained with causal attention masks exhibit a strong structural prior favoring tokens that appear first in the enumeration template (Option \texttt{'A'}). Recently, TypeSafe AI introduced the \textbf{System One / Jev} paradigm \cite{typesafe2025jev}, demonstrating that rapid operational decisions should be framed as calibrated single-token probability evaluations rather than unconstrained text generation, escalating to deeper System-2 deliberation \cite{wei2022cot} only when calibrated confidence falls below a strict threshold. F3-Swarm v1.5 extends this principle mathematically by proving that temperature scaling alone preserves rank order ($\arg\max_k z_k/T = \arg\max_k z_k$) and therefore cannot correct a biased argmax choice; instead, we combine temperature scaling with an additive positional prior penalty $\beta_A$ and a bidirectional order-inversion invariance gate.
+\textbf{Small Language Model Swarms and Speculative Cascades.}
+Routing queries across models of increasing capacity has been studied extensively through model cascades and deferral rules. \textbf{Faster Cascades via Speculative Decoding (Speculative Cascades)} \cite{narasimhan2024cascades} characterized optimal deferral rules that interleave small draft models and larger target models, outperforming standalone cascades and standard speculative decoding on Gemma and T5 benchmarks. Closest in spirit to our Track B architecture is \textbf{SWARM-LLM: Collaborative Inference for Edge-based Small Language Models} (Dahshan et al., April 2026 \cite{dahshan2026swarmllm}), which coordinates three heterogeneous edge-hosted SLMs with an optional $70\text{B}$ cloud foundation model using lightweight uncertainty estimates, safety/policy gating, and uncertainty-weighted peer consensus, limiting cloud invocations to roughly $25\%$ of queries. Similarly, on September 15, 2026, TypeSafe AI introduced \textbf{Jev} \cite{typesafe2026jev}, a non-autoregressive \emph{System One model} trained to emit typed, calibrated software decisions orders of magnitude faster than conversational text generation.
 
-\textbf{The Rashomon Effect, Neuro-Symbolic Verification, and F3-AGI v4.0.}
-First conceptualized by Breiman \cite{breiman2001statistical} and rigorously analyzed by Fisher, Rudin, and Dominici \cite{fisher2019rashomon} and Rudin et al.\ \cite{rudin2024amazing}, the \emph{Rashomon Effect} describes the existence of a large set of distinct models or programs that achieve nearly identical empirical loss on a small training sample while making sharply diverging predictions out of sample. Recently, Mlodozeniec and Frei \cite{mlodozeniec2026rashomon} proved that neural scaling law estimation itself suffers from a pronounced Rashomon effect where $\epsilon$-sublevel sets diverge by $14\times\text{--}146\times$ under extrapolation. In our prior work, \textbf{Polybee F3-AGI v4.0} \cite{oliveira2026f3agi}, we showed that few-shot program synthesis suffers from an analogous Rashomon pathology, and resolved it by pairing a fast candidate generator (\textbf{Motor A}) with a deterministic symbolic verifier (\textbf{Motor B}) and an \textbf{Adaptive Autonomous Code Repair (AACR)} loop that achieved $83.3\%$ repair accuracy on near-miss programs. In F3-Swarm v1.5, we generalize the F3-AGI v4.0 neuro-symbolic architecture to distributed language model swarms: Motor B acts as a zero-hallucination symbolic normalizer for structured extraction, while the Rashomon Leave-One-Out Cross-Validation (LOO-CV) verifier acts as a formal mathematical gate that governs escalation from Tier-1 ($0.5\text{B}$) and Tier-2 ($1.5\text{B}$) to Tier-3 ($3\text{B}$ Coder).
+\textbf{How F3-Swarm v1.5.1 Complements Existing Literature.}
+While SWARM-LLM \cite{dahshan2026swarmllm} and Speculative Cascades \cite{narasimhan2024cascades} route primarily on intrinsic uncertainty or token-level speculative acceptance, operational workflows in enterprise administration require \emph{extrinsic domain verification}. Extending our neuro-symbolic \textbf{F3-AGI v4.0} architecture \cite{oliveira2026f3agi} and addressing the predictive multiplicity (Rashomon effect) analyzed by Breiman \cite{breiman2001statistical}, Fisher et al.\ \cite{fisher2019rashomon}, and Mlodozeniec and Frei \cite{mlodozeniec2026rashomon}, F3-Swarm v1.5.1 couples an ultra-lightweight edge SLM ($0.5\text{B}$) to: (i) explicit first-option logit debiasing with option-order inversion checks, (ii) a deterministic PT-BR monetary normalizer anchored by literal substring containment, and (iii) counterexample-guided Python code repair (\textbf{AACR}) audited against both in-sample ($K=4$) and unseen held-out ($K_{\text{HO}}=4$) functional test suites under a single-active-process memory ceiling.
 
 % ============================================================================
-\section{Mathematical Formulation and Theoretical Guarantees}
+\section{Analytical Models and Conditional Formulations}
 \label{sec:theory}
 % ============================================================================
 
-To provide a didactic and self-contained foundation, we formalize the four mathematical mechanisms that govern F3-Swarm v1.5: (i) the physical latency model of distributed RAM pooling versus local NVMe pagefile swapping, (ii) System-1 positional logit debiasing and order-inversion invariance, (iii) Controlled Micro-CoT with Deterministic Suffix Closure, and (iv) Rashomon LOO-CV verification with AACR residual repair.
+To ensure that our theoretical claims match the exact scope of our experimental evidence, we state all analytical relationships with explicit conditional hypotheses and error terms.
 
-\subsection{Thermodynamics of Memory Hierarchy: Distributed RAM Ring vs.\ Local NVMe Swap}
+\subsection{Memory-Hierarchy Latency Model for Resident-Weight Pipelining (Track A)}
 \label{sec:math_memory}
 
-Consider an $L$-layer autoregressive Transformer whose total active weight memory is $M_{\text{model}} = \sum_{l=1}^L m_l$ bytes (where $m_l = M_{\text{model}}/L$ for uniform layers), executing on a host node whose available free physical RAM quota is $Q_{\text{RAM}} < M_{\text{model}}$. During token-by-token decoding (batch size $B=1$), generating a single token requires reading every weight tensor $W_l$ ($l=1,\dots,L$) once from memory into the CPU vector registers.
-
-\textbf{Why Local Swap Collapses Autoregressive Throughput:} When $M_{\text{model}} > Q_{\text{RAM}}$, at most $L_{\text{RAM}} = \lfloor Q_{\text{RAM}} / m_l \rfloor$ layers can reside permanently in physical DRAM (bandwidth $B_{\text{DRAM}} \approx 25\text{--}50\,\text{GB/s}$), while the remaining $L_{\text{swap}} = L - L_{\text{RAM}}$ layers occupying $\Delta M_{\text{swap}} = M_{\text{model}} - Q_{\text{RAM}}$ bytes must be paged in from secondary NVMe SSD storage (unbuffered sequential bandwidth $B_{\text{SSD}} \approx 1.45\text{--}1.57\,\text{GB/s}$) on \emph{every single token step}. Consequently, the Time Per Output Token ($\text{TPOT}_{\text{swap}}$) under local swapping is:
+Consider an $L$-stage sequential matrix transformation pipeline with total weight footprint $M_{\text{model}} = \sum_{l=1}^L m_l$ bytes executing under a per-process physical RAM working-set quota $Q_{\text{RAM}} < M_{\text{model}}$. In single-process streaming (Arm 1), at most $L_{\text{RAM}} = \lfloor Q_{\text{RAM}} / m_l \rfloor$ stages remain resident in DRAM (bandwidth $B_{\text{DRAM}}$), while the remaining $\Delta M_{\text{swap}} = M_{\text{model}} - L_{\text{RAM}} m_l$ bytes are read from unbuffered NVMe storage (bandwidth $B_{\text{SSD}}$) at each step $t$:
 \begin{equation}
 \label{eq:tpot_swap}
-\text{TPOT}_{\text{swap}}(M_{\text{model}}, Q_{\text{RAM}}) = \underbrace{T_{\text{compute}}(L)}_{\text{AVX-512 MatMul}} + \underbrace{\frac{M_{\text{model}}}{B_{\text{DRAM}}}}_{\text{RAM Read}} + \underbrace{\frac{\max(0,\; M_{\text{model}} - Q_{\text{RAM}})}{B_{\text{SSD}}} + L_{\text{swap}}\,\tau_{\text{fault}}}_{\text{Catastrophic NVMe Pagefile I/O Penalty } T_{\text{I/O}}},
+\text{TPOT}_{\text{stream}}(M_{\text{model}}, Q_{\text{RAM}}) = T_{\text{compute}}(L) + \frac{L_{\text{RAM}} m_l}{B_{\text{DRAM}}} + \frac{\Delta M_{\text{swap}}}{B_{\text{SSD}}} + L_{\text{swap}}\,\tau_{\text{io}},
 \end{equation}
-where $\tau_{\text{fault}}$ is the OS kernel page-fault and DMA setup overhead. By contrast, suppose the $L$ layers are partitioned across $K$ cooperative worker processes ($L/K$ layers per node) such that each node's shard $M_{\text{model}}/K \le Q_{\text{RAM}}$ fits $100\%$ inside physical DRAM ($\Delta M_{\text{swap}} = 0$). At each token step, node $k$ computes its $L/K$ layers in RAM and transmits only the compact hidden-state activation vector $\mathbf{h}_t^{(k)} \in \mathbb{R}^{d_{\text{model}}}$ (size $S_{\text{act}} = 4\,d_{\text{model}}$ bytes in \texttt{float32}, e.g., $16\,\text{KiB}$ for $d_{\text{model}}=4096$) over a TCP ring socket with one-way hop latency $\tau_{\text{net}} = \text{RTT}/2$ and network bandwidth $B_{\text{net}}$:
+where $\tau_{\text{io}}$ is the per-layer OS seek/read syscall overhead. Conversely, when the $L$ stages are partitioned across $K = \lceil M_{\text{model}} / Q_{\text{RAM}} \rceil$ processes (Arm 2) such that each shard $M_{\text{model}}/K \le Q_{\text{RAM}}$ remains resident in DRAM ($\Delta M_{\text{swap}} = 0$), step $t$ incurs zero disk I/O and transmits $K$ intermediate activation vectors of size $S_{\text{act}} = 4\,d_{\text{model}}$ bytes over TCP with per-hop latency $\tau_{\text{hop}}$ and bandwidth $B_{\text{net}}$:
 \begin{equation}
 \label{eq:tpot_ring}
-\text{TPOT}_{\text{ring}}(M_{\text{model}}, K) = \underbrace{T_{\text{compute}}(L)}_{\text{Distributed AVX-512}} + \underbrace{\frac{M_{\text{model}}}{B_{\text{DRAM}}}}_{\text{Zero Disk Swap}} + \underbrace{K \left(\tau_{\text{net}} + \frac{S_{\text{act}}}{B_{\text{net}}}\right)}_{\text{Compact Activation Transfer } T_{\text{net}}}.
+\text{TPOT}_{\text{pipe}}(M_{\text{model}}, K) = T_{\text{compute}}(L) + \frac{M_{\text{model}}}{B_{\text{DRAM}}} + K \left(\tau_{\text{hop}} + \frac{S_{\text{act}}}{B_{\text{net}}}\right).
 \end{equation}
 
-\begin{proposition}[Strict Dominance Condition of Distributed RAM Pooling over Local NVMe Swap]
+\begin{proposition}[Analytical Crossover Condition for Resident-Weight Pipelining vs.\ Disk Streaming]
 \label{prop:ram_dominance}
-Let $\Delta M_{\text{swap}} = M_{\text{model}} - Q_{\text{RAM}} > 0$ be the memory overflow on a single node, and let $K = \lceil M_{\text{model}} / Q_{\text{RAM}} \rceil$ be the minimal number of cooperative RAM nodes required to eliminate disk swapping. Because the activation payload $S_{\text{act}} = 4\,d_{\text{model}} \sim 10^4$ bytes is five orders of magnitude smaller than the swapped weight volume $\Delta M_{\text{swap}} \sim 10^9$ bytes ($S_{\text{act}} / \Delta M_{\text{swap}} \approx 1.5 \times 10^{-5}$), the $K$-node distributed RAM ring pipeline strictly outperforms local NVMe swapping ($\text{TPOT}_{\text{ring}} < \text{TPOT}_{\text{swap}}$) whenever the network one-way hop latency $\tau_{\text{net}}$ satisfies the threshold:
+Under the additive latency model of Equations (\ref{eq:tpot_swap})--(\ref{eq:tpot_ring}) with identical CPU compute time $T_{\text{compute}}(L)$, resident-weight $K$-stage pipelining achieves lower per-step latency than single-process disk streaming ($\text{TPOT}_{\text{pipe}} < \text{TPOT}_{\text{stream}}$) if and only if the per-hop communication delay satisfies:
 \begin{equation}
 \label{eq:net_bound}
-\tau_{\text{net}} \;<\; \tau_{\text{crit}} \;:=\; \frac{\Delta M_{\text{swap}}}{K \cdot B_{\text{SSD}}} + \frac{L_{\text{swap}}}{K}\,\tau_{\text{fault}} - \frac{S_{\text{act}}}{B_{\text{net}}}.
+\tau_{\text{hop}} \;<\; \tau_{\text{crit}} \;:=\; \frac{\Delta M_{\text{swap}}}{K}\!\left(\frac{1}{B_{\text{SSD}}} - \frac{1}{B_{\text{DRAM}}}\right) + \frac{L_{\text{swap}}}{K}\,\tau_{\text{io}} - \frac{S_{\text{act}}}{B_{\text{net}}}.
 \end{equation}
-In particular, for the physical Lab 02 setup ($\Delta M_{\text{swap}} = 1.00\,\text{GiB}$, $K=3$, $B_{\text{SSD}} = 1.57\,\text{GB/s}$, $S_{\text{act}} = 16\,\text{KiB}$), the critical network threshold is $\tau_{\text{crit}} \approx 212.9\,\text{ms}$ per hop ($\text{RTT}_{\text{crit}} \approx 425.8\,\text{ms}$), guaranteeing speedup factors of $>13\times$ on LAN ($\tau_{\text{net}} \approx 0.5\,\text{ms}$), $>10\times$ on Wi-Fi ($\tau_{\text{net}} \approx 5\,\text{ms}$), and $>3.3\times$ even over intercontinental WAN ($\tau_{\text{net}} \approx 60\,\text{ms}$), while preserving bit-exact associative forward-pass parity $\mathbf{h}_L^{\text{ring}}(x) \equiv \mathbf{h}_L^{\text{mono}}(x)$.
+For the Lab 02 parameters ($L=24$, $m_l = 64\,\text{MiB}$, $L_{\text{RAM}}=8$, $\Delta M_{\text{swap}} = 1,024\,\text{MiB}$, $K=3$, $B_{\text{SSD}} = 1,603.1\,\text{MB/s}$, $S_{\text{act}} = 16\,\text{KiB}$), the disk streaming penalty is $\Delta M_{\text{swap}}/B_{\text{SSD}} \approx 638.8\,\text{ms/step}$, yielding $\tau_{\text{crit}} \approx 212\,\text{ms}$ per hop. Furthermore, because IEEE-754 floating-point matrix operations are executed in identical deterministic order on lossless TCP byte streams, $\max_j |\mathbf{h}_{L,j}^{\text{pipe}} - \mathbf{h}_{L,j}^{\text{stream}}| = 0.0$.
 \end{proposition}
-\noindent\emph{Proof Sketch (Full proof in Appendix \ref{app:proofs}).} Subtracting Equation (\ref{eq:tpot_ring}) from Equation (\ref{eq:tpot_swap}) cancels the identical layer-wise matrix multiplication work $T_{\text{compute}}(L)$ and DRAM read time $M_{\text{model}}/B_{\text{DRAM}}$. Setting $\text{TPOT}_{\text{swap}} - \text{TPOT}_{\text{ring}} > 0$ and solving for $\tau_{\text{net}}$ yields Equation (\ref{eq:net_bound}). Bit-exact parity follows from the deterministic IEEE-754 identity of sequential layer composition $f_L \circ \dots \circ f_1(x)$ when activation buffers are transmitted lossless over TCP sockets. $\blacksquare$
 
-\subsection{Calibrated System-1 Invariance and Positional Bias Neutralization (Motor A)}
+\subsection{Positional Logit Calibration and Conditional Order-Inversion Detection (Motor A)}
 \label{sec:math_system1}
 
-While Proposition \ref{prop:ram_dominance} establishes how to execute larger models when needed, invoking a multi-gigabyte model on every request wastes energy and latency. In Tier-1, we deploy a sub-billion edge model (\texttt{Qwen2.5-0.5B-Instruct}, $491\,\text{MB}$) to act as an ultra-fast System-1 filter \cite{typesafe2025jev}. However, a critical didactic insight from our Lab 03 audit is why standard temperature scaling fails on sub-billion models.
-
-Suppose a classification task presents $K$ options $\mathcal{O} = (o_1, \dots, o_K)$ labeled by tokens $\{A, B, C, \dots\}$, and the edge model produces raw pre-softmax logits $\mathbf{z}(\mathcal{O}) = (z_A, z_B, \dots, z_K) \in \mathbb{R}^K$. Because causal attention layers attend asymmetrically to the initial enumeration slot, the raw logit $z_A$ decomposes as $z_A = s(o_1) + b_{\text{pos}}$, where $s(o_1)$ is the true semantic score of option $o_1$ and $b_{\text{pos}} > 0$ is a systematic positional bias. If a practitioner applies standard temperature scaling $\tilde{z}_k = z_k / T$ ($T > 1$), the softmax confidence is flattened, \emph{but the argmax decision remains invariant} ($\arg\max_k (z_k/T) = \arg\max_k z_k$). Worse, when $b_{\text{pos}}$ is large (as observed in tasks \texttt{T06}, \texttt{T10}, and \texttt{T11}, where raw $p_A \in [91.8\%, 99.4\%]$), the false option $A$ still exceeds naive confidence thresholds.
-
-To neutralize both overconfidence and argmax distortion, F3-Swarm v1.5 applies \textbf{Positional Prior-Penalized Temperature Calibration}:
+In Class 1 multiple-choice triage over options $\mathcal{O} = (o_1, \dots, o_K)$ indexed by tokens $\{A, B, \dots\}$, Tier-1 (\texttt{Qwen2.5-0.5B}) produces raw logits $\mathbf{z}(\mathcal{O})$. Standard temperature scaling $\tilde{z}_k = z_k / T$ preserves the argmax ordering ($\arg\max_k z_k/T = \arg\max_k z_k$) and therefore cannot alter a positionally biased top-1 choice. We apply \textbf{Prior-Penalized Temperature Calibration}:
 \begin{equation}
 \label{eq:system1_cal}
-\tilde{z}_k(\mathcal{O}) = \frac{z_k(\mathcal{O}) - \beta_k}{T}, \qquad p_k(\mathcal{O}) = \frac{\exp\big(\tilde{z}_k(\mathcal{O})\big)}{\sum_{j=1}^K \exp\big(\tilde{z}_j(\mathcal{O})\big)}, \qquad \text{where } \beta_A = 2.5,\;\; \beta_{k \neq A} = 0,\;\; T = 1.6.
+\tilde{z}_k(\mathcal{O}) = \frac{z_k(\mathcal{O}) - \beta_k}{T}, \qquad p_k(\mathcal{O}) = \frac{\exp\big(\tilde{z}_k(\mathcal{O})\big)}{\sum_{j=1}^K \exp\big(\tilde{z}_j(\mathcal{O})\big)}, \qquad (\beta_A = 2.5,\;\; \beta_{k \neq A} = 0,\;\; T = 1.6),
 \end{equation}
-Furthermore, let $\pi(\mathcal{O}) = (o_K, \dots, o_1)$ denote the reversed option ordering, and let $\Phi(\mathcal{O}) \in \{o_1, \dots, o_K\}$ denote the semantic option selected under ordering $\mathcal{O}$. We define the \textbf{Certified System-1 Acceptance Gate} $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) \in \{0, 1\}$:
+coupled with an \textbf{Order-Inversion Sanity Gate} comparing the semantic option $\Phi(\mathcal{O})$ selected under forward ordering $\mathcal{O}$ against $\Phi(\pi(\mathcal{O}))$ under reversed ordering $\pi(\mathcal{O}) = (o_K, \dots, o_1)$:
 \begin{equation}
 \label{eq:gate_sys1}
-\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = \underbrace{\mathbb{I}\!\left(\max_{k} p_k(\mathcal{O}) \ge \tau_{\text{conf}}\right)}_{\text{Calibrated Confidence } (\tau_{\text{conf}} = 0.85)} \;\land\; \underbrace{\mathbb{I}\!\left(\Phi(\mathcal{O}) = \Phi\big(\pi(\mathcal{O})\big)\right)}_{\text{Order-Inversion Symmetry Certificate}},
+\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = \mathbb{I}\!\left(\max_{k} p_k(\mathcal{O}) \ge \tau_{\text{conf}}\right) \;\land\; \mathbb{I}\!\left(\Phi(\mathcal{O}) = \Phi\big(\pi(\mathcal{O})\big)\right), \qquad (\tau_{\text{conf}} = 0.85).
 \end{equation}
-where the inversion check is executed whenever $\max_k p_k(\mathcal{O}) < 0.88$ or $\arg\max_k p_k(\mathcal{O}) = A$.
 
-\begin{lemma}[Elimination of Unilateral Positional False Positives via Order-Inversion Symmetry]
+\begin{lemma}[Conditional Detection of Additive First-Slot Bias under Option Inversion]
 \label{lemma:inversion}
-Consider a binary decision task with options $\mathcal{O} = (o_1, o_2)$ where $o_2$ is the true semantic answer ($s(o_2) - s(o_1) = \Delta s > 0$), but the uncalibrated model suffers from a positional bias $b_{\text{pos}} > \Delta s + \beta_A$ toward whichever option is placed in slot $A$. Under forward ordering $\mathcal{O} = (o_1, o_2)$, slot $A$ holds $o_1$, so the model selects $\Phi(\mathcal{O}) = o_1$. Under inverted ordering $\pi(\mathcal{O}) = (o_2, o_1)$, slot $A$ holds $o_2$, so the logit difference in favor of $o_2$ is $\Delta s + b_{\text{pos}} - \beta_A > 2\,\Delta s > 0$, forcing $\Phi(\pi(\mathcal{O})) = o_2 \neq \Phi(\mathcal{O})$. Consequently, $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = 0$, guaranteeing $100\%$ detection and escalation of positionally biased false positives.
+Assume an additive decomposition $z_k(\mathcal{O}) = s(o_k) + b_k$, where $s(o_k)$ is the order-invariant semantic score returned by the model and $b_A = b_{\text{pos}} > 0$ ($b_{k \neq A} = 0$) is a first-slot positional bias. In a binary choice $\mathcal{O} = (o_1, o_2)$ where $s(o_2) - s(o_1) = \Delta s > 0$:
+\begin{enumerate}
+    \item If residual slot bias dominates the semantic margin ($b_{\text{pos}} - \beta_A > \Delta s > 0$), then $\Phi(\mathcal{O}) = o_1$ under forward ordering but $\Phi(\pi(\mathcal{O})) = o_2$ under reversed ordering, so $\Phi(\mathcal{O}) \neq \Phi(\pi(\mathcal{O}))$ and $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = 0$ (positionally induced false positives are detected and escalated).
+    \item \textbf{Limitation (Semantic Error Floor $\epsilon_{\text{sem}} > 0$):} If the model holds an order-invariant semantic misconception such that $s(o_{\text{wrong}}) - s(o_{\text{true}}) > |b_{\text{pos}} - \beta_A|$, then $\Phi(\mathcal{O}) = \Phi(\pi(\mathcal{O})) = o_{\text{wrong}}$. Thus, order inversion detects positional slot bias but does \emph{not} guarantee detection of semantic errors (as observed empirically in task \texttt{T08} on Tier-2 1-token decoding, where $\Phi(\mathcal{O}) = \Phi(\pi(\mathcal{O})) = \texttt{C} \neq \texttt{A}$).
+\end{enumerate}
 \end{lemma}
 
-\subsection{Controlled Micro-CoT with Deterministic Suffix Closure and Motor B Grounding}
+\subsection{Controlled Micro-CoT, Suffix Closure, and Substring-Anchored Normalization}
 \label{sec:math_microcot}
 
-When $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = 0$, the request escalates to Tier-2 (\texttt{Qwen2.5-1.5B-Instruct}). Our empirical ablation across Labs 03, 04, and 05 revealed a fundamental trade-off in Tier-2 decoding:
-\begin{enumerate}
-    \item \emph{Unconstrained Verbose CoT ($N_{\text{predict}} = 150$, JSON mode):} In Lab 03, asking the $1.5\text{B}$ model to emit a full JSON justification (\texttt{\{"justificativa": "...", "escolha": "X"\}}) required $3,500\text{--}5,400\,\text{ms}$ per task and suffered from \textbf{autoregressive verbosity truncation}: on complex prompts such as \texttt{T05} (B2B Churn), the model generated $150$ tokens of analytical prose without closing the JSON string, yielding \texttt{escolha = None}.
-    \item \emph{Zero-Token Immediate Prefix ($N_{\text{predict}} = 1$):} In Lab 04, forcing the $1.5\text{B}$ model to predict the option letter immediately after \texttt{"A op\c{c}\~ao correta \'e a letra "} reduced latency by $\sim 10\times$ (to $\sim 420\,\text{ms}$) and rescued \texttt{T05}, \texttt{T06}, \texttt{T10}, and \texttt{T11}. However, on multi-constraint rules (\texttt{T01} Financial vs.\ N2 Support and \texttt{T08} Procon Legal Routing), suppressing all intermediate reasoning tokens degraded accuracy because the transformer could not compose two logical hops in a single forward pass.
-\end{enumerate}
-
-To achieve both compositional deduction and zero truncation, F3-Swarm v1.5 introduces \textbf{Controlled Micro-CoT with Deterministic Suffix Closure}. For multi-rule escalations, Tier-2 is prompted to generate at most one concise reasoning sentence ($N_{\text{predict}} = 65$ tokens, $T=0.0$) followed by \texttt{"Resposta final: <LETRA>"}. Let $r_{1:m}$ denote the generated token sequence ($m \le 65$). If the pattern \texttt{"Resposta final: <X>"} appears in $r_{1:m}$, the label is extracted immediately. If $m = 65$ (the token budget is reached before the label is emitted, as occurred in \texttt{T03} and \texttt{T09}), the orchestrator does \emph{not} discard the reasoning; instead, it appends the deterministic suffix string to the already-computed reasoning trace $r_{1:m}$ and executes a single forward pass ($N_{\text{predict}} = 1$, $T = 0.0$):
+When $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = 0$, Tier-2 (\texttt{Qwen2.5-1.5B}) executes a \textbf{Controlled Micro-CoT} prompt instructing the model to generate one concise justification sentence ($\le 20$ words) followed by \texttt{"Resposta final: <LETRA>"}. In our unpatched Lab 05 run (\textbf{Policy 5a}, $N_{\text{predict}} = 45$), this recovered \texttt{T01} ($22$ words) and \texttt{T08} ($11$ words), but truncated on \texttt{T03} ($31$ words) and \texttt{T09} ($28$ words) before emitting the final label. In \textbf{Policy 5b}, if a trace $r_{1:m}$ reaches the token budget ($N_{\text{predict}} = 65$) without emitting \texttt{"Resposta final:"}, a \textbf{Deterministic Suffix Closure} appends \texttt{"\textbackslash nResposta final: "} to $x \oplus r_{1:m}$ and queries 1 token ($T=0.0$):
 \begin{equation}
 \label{eq:suffix_closure}
-\hat{y}_{\text{Tier2}} = \Psi_{\text{sem}}\!\left(\arg\max_{v \in \mathcal{V}} P_{\theta_{\text{1.5B}}}\big(v \;\big|\; \underbrace{x \oplus r_{1:m}}_{\text{Cached Reasoning Trace}} \oplus \underbrace{\texttt{"\textbackslash nResposta final: "}}_{\text{Deterministic Suffix Closure}}\big)\right),
+\hat{y}_{\text{Tier2}} = \Psi_{\text{sem}}\!\left(\arg\max_{v \in \mathcal{V}} P_{\theta_{\text{1.5B}}}\big(v \;\big|\; x \oplus r_{1:m} \oplus \texttt{"\textbackslash nResposta final: "}\big)\right).
 \end{equation}
-where $\Psi_{\text{sem}}$ is a bijective semantic normalizer mapping either the option letter (\texttt{'A'}--\texttt{'E'}) or its literal option value (e.g., priority score \texttt{'5'} $\mapsto$ \texttt{'E'} in \texttt{T09}) to the canonical label.
 
-For Class 2 (Structured Financial Extraction from PT-BR documents $\mathcal{D}$), Tier-1 ($0.5\text{B}$) generates a candidate tuple $y = (\texttt{doc\_id}, \texttt{valor\_raw}, \texttt{cat}, \texttt{evidencia})$. Rather than trusting raw JSON float parsing—which fails when localized Brazilian numbers such as \texttt{"32.400.00"} or unquoted \texttt{14.850.20} are emitted—\textbf{Motor B} (\texttt{FastSymbolicNormalizer}) applies a deterministic regular-expression sanitizer $\mathcal{N}_{\text{BRL}}(\texttt{valor\_raw}) \in \mathbb{R}_{\ge 0}$ that resolves right-most decimal separators vs.\ thousands separators, and evaluates the \textbf{Zero-Hallucination Substring Certificate}:
+For Class 2 (PT-BR Financial Extraction from document $\mathcal{D}$), \textbf{Motor B} (\texttt{FastSymbolicNormalizer}) sanitizes multi-dot numeric strings $\mathcal{N}_{\text{BRL}}(\texttt{valor\_raw})$ and applies the \textbf{Substring-Anchored Extraction Check}:
 \begin{equation}
 \label{eq:symbolic_proof}
-\mathcal{V}_{\text{MotorB}}(y; \mathcal{D}) = \underbrace{\mathbb{I}(\texttt{evid} \subseteq_{\text{lit}} \mathcal{D})}_{\text{Substring Proof}} \land \underbrace{\mathbb{I}(|\texttt{evid}| \ge 5)}_{\text{Valid Span}} \land \underbrace{\mathbb{I}(\mathcal{N}_{\text{BRL}}(\texttt{val}) > 0)}_{\text{BRL Float Check}} \land \underbrace{\mathbb{I}(\mathcal{R}_{\text{doc}}(\texttt{id}) = 1)}_{\text{CPF/CNPJ Check}}.
+\mathcal{V}_{\text{MotorB}}(y; \mathcal{D}) = \mathbb{I}\big(\texttt{evidencia} \subseteq_{\text{literal}} \mathcal{D}\big) \land \mathbb{I}\big(|\texttt{evidencia}| \ge 5\big) \land \mathbb{I}\big(\mathcal{N}_{\text{BRL}}(\texttt{valor\_raw}) > 0\big) \land \mathbb{I}\big(\mathcal{R}_{\text{doc}}(\texttt{doc\_id}) = 1\big).
 \end{equation}
-Whenever $\mathcal{V}_{\text{MotorB}}(y; \mathcal{D}) = 1$, the extraction is certified at Tier-1 without escalating to Tier-2.
+\emph{Scope note:} $\mathcal{V}_{\text{MotorB}} = 1$ guarantees that the evidence span is a verbatim substring of $\mathcal{D}$ and that the monetary value and CPF/CNPJ syntax are well-formed; if a document contains multiple distinct monetary figures, $\mathcal{V}_{\text{MotorB}}$ verifies format and substring presence rather than semantic role disambiguation.
 
-\subsection{Unified Rashomon LOO-CV Verification and AACR Residual Code Repair}
+\subsection{Four-Case Functional Verification, Counterexample AACR, and Finite-Test Risk Bounds}
 \label{sec:math_rashomon}
 
-In Class 3 (Programmatic Rule Synthesis), each task specifies a natural-language specification $S$ and a verification suite of $M = 4$ input-output test tuples $\mathcal{T}_{\text{LOO}} = \{(x_i, y_i^*)\}_{i=1}^4$ covering boundary conditions (e.g., 10-digit landline vs.\ 11-digit mobile vs.\ invalid strings in \texttt{T23}; email vs.\ formatted CPF vs.\ random EVP PIX keys in \texttt{T25}).
-
-\textbf{Fixing the CPython Dual-Namespace Sandbox Pathology:} A critical systems discovery in Lab 04 was why valid Python functions synthesized by the $0.5\text{B}$ model in Lab 03 (such as \texttt{T27}, which began with \texttt{from datetime import datetime} followed by \texttt{def solucao(texto): ... return datetime.strptime(...)}) failed with \texttt{NameError: name 'datetime' is not defined}. When Python's built-in \texttt{exec(code, globals\_dict, locals\_dict)} is invoked with two distinct dictionaries, top-level \texttt{import} statements bind module symbols inside \texttt{locals\_dict}, whereas function bodies compiled at module level resolve free global names inside \texttt{globals\_dict}! Unifying the execution sandbox into a single shared dictionary $\mathcal{E}_{\text{sandbox}}$ pre-populated with safe standard modules (\texttt{re}, \texttt{datetime}, \texttt{math}):
+In Class 3 (Python Function Synthesis), each task provides a specification $S$ and a finite development test suite $\mathcal{T}_{\text{dev}} = \{(x_i, y_i^*)\}_{i=1}^K$ with $K = 4$ input-output test cases.\footnote{In earlier laboratory logs (\texttt{lab03}--\texttt{lab05}), this 4-case functional unit test check was labeled \texttt{Rashomon LOO-CV}; throughout this audited manuscript, we use the exact computer-science term \textbf{Four-Case Functional Unit Testing ($K=4$)} and reserve out-of-sample generalization claims strictly for our unseen Held-Out Test Suite $\mathcal{T}_{\text{HO}}$ (Section \ref{sec:heldout}).} Candidate code $h$ is parsed via \texttt{ast.parse} and executed in a \textbf{Unified-Namespace Execution Harness}:
 \begin{equation}
 \label{eq:unified_sandbox}
-\texttt{exec}\big(\text{AST\_Clean}(h),\; \mathcal{E}_{\text{sandbox}},\; \mathcal{E}_{\text{sandbox}}\big), \qquad \mathcal{A}_{\text{LOO}}(h; \mathcal{T}_{\text{LOO}}) = \frac{1}{M}\sum_{i=1}^M \mathbb{I}\big(h(x_i) = y_i^*\big),
+\texttt{exec}\big(\text{AST\_Clean}(h),\; \mathcal{E}_{\text{exec}},\; \mathcal{E}_{\text{exec}}\big), \qquad \mathcal{V}_K(h; \mathcal{T}_{\text{dev}}) = \mathbb{I}\!\left(\frac{1}{K}\sum_{i=1}^K \mathbb{I}\big(h(x_i) = y_i^*\big) = 1.0\right).
 \end{equation}
-immediately unlocked $100\%$ Rashomon LOO-CV pass rates ($\mathcal{A}_{\text{LOO}} = 1.0$) on $5/8$ Class 3 tasks directly on the $0.5\text{B}$ model!
+\textbf{Security Disclaimer (Non-Isolated Prototype Harness):} Passing a single dictionary $\mathcal{E}_{\text{exec}}$ as both \texttt{globals} and \texttt{locals} resolves CPython's module-import scoping quirk (allowing top-level \texttt{import re} and \texttt{from datetime import datetime} statements to remain visible inside \texttt{def solucao(...)}). However, because $\mathcal{E}_{\text{exec}}$ exposes Python's standard \texttt{\_\_builtins\_\_}, Equation (\ref{eq:unified_sandbox}) is \emph{not} a secure security sandbox against untrusted or adversarial code. Production deployments must isolate execution inside OS-level containers, \texttt{seccomp} filters, microVMs, or WebAssembly (WASI) runtimes.
 
-When a candidate program $h^{(k)}$ at Tier $k \in \{1, 2\}$ fails to achieve exact verification ($\mathcal{A}_{\text{LOO}}(h^{(k)}) < 1.0$), F3-Swarm does not escalate blindly. Instead, following the \textbf{AACR (Adaptive Autonomous Code Repair)} paradigm of F3-AGI v4.0 \cite{oliveira2026f3agi}, the verifier constructs the exact \textbf{Residual Failure Vector} $\Delta_{\text{AACR}}(h^{(k)})$:
-\begin{equation}
-\label{eq:aacr_diff}
-\Delta_{\text{AACR}}\big(h^{(k)}; \mathcal{T}_{\text{LOO}}\big) = \Big\{\big(i,\; x_i,\; y_i^*,\; \hat{y}_i = h^{(k)}(x_i),\; \mathcal{E}_{\text{err}}(h^{(k)}, x_i)\big) \;\Big|\; i \in \{1,\dots,M\},\; h^{(k)}(x_i) \neq y_i^*\Big\},
-\end{equation}
-and dispatches the tuple $\big(S,\; h^{(k)},\; \Delta_{\text{AACR}}(h^{(k)})\big)$ to the next tier (culminating in the Tier-3 specialist \texttt{Qwen2.5-Coder-3B-Instruct}), instructing it to repair the specific conditional branches that violated $\Delta_{\text{AACR}}$.
+When $\mathcal{V}_K(h^{(k)}; \mathcal{T}_{\text{dev}}) = 0$, the harness constructs the counterexample diff $\Delta_{\text{AACR}}(h^{(k)}) = \{(i, x_i, y_i^*, h^{(k)}(x_i)) \mid h^{(k)}(x_i) \neq y_i^*\}$ and escalates to the next tier.
 
-\begin{proposition}[Strict Monotonic Accuracy Dominance of Verifier-Gated Heterogeneous Swarms]
+\begin{proposition}[Conditional Cascade Accuracy Bound under Finite-Test Verification]
 \label{prop:swarm_dominance}
-Let $\mathcal{T}$ be a benchmark of operational tasks partitioned into verifiable synthesis/extraction tasks $\mathcal{T}_{\text{ver}}$ equipped with a sound verifier $\mathcal{V}(h) \in \{0, 1\}$ (such that $\mathcal{V}(h) = 1 \implies \text{Correct}(h) = 1$) and calibrated classification tasks $\mathcal{T}_{\text{cal}}$. Let $p_1 = \Pr(\mathcal{V}(h_{\text{T1}}) = 1)$ be the Tier-1 verification rate, $p_2 = \Pr(\mathcal{V}(h_{\text{T2}}) = 1 \mid \mathcal{V}(h_{\text{T1}}) = 0)$ the Tier-2 conditional repair rate, and $p_3 = \Pr(\mathcal{V}(h_{\text{T3}}) = 1 \mid \mathcal{V}(h_{\text{T1}})=0, \mathcal{V}(h_{\text{T2}})=0)$ the Tier-3 AACR closure rate. Then the composite swarm accuracy on $\mathcal{T}_{\text{ver}}$ satisfies:
-\begin{equation}
-\label{eq:swarm_acc}
-\text{Acc}(\mathcal{S}_{\text{F3}}; \mathcal{T}_{\text{ver}}) = 1 - (1 - p_1)(1 - p_2)(1 - p_3) \;\ge\; \max_{k \in \{1,2,3\}} \text{Acc}(\text{Tier-}k; \mathcal{T}_{\text{ver}}),
-\end{equation}
-with expected memory-time product $\mathbb{E}[M \cdot T] = M_1 T_1 + (1 - p_1) M_2 T_2 + (1 - p_1)(1 - p_2) M_3 T_3$. Whenever $p_1 \ge 0.50$ and $(1-p_1)(1-p_2) \le 0.15$, the swarm simultaneously achieves strictly higher accuracy than Tier-2 alone while invoking Tier-3 on at most $15\%$ of tasks.
+Let $\mathcal{V}_K(h) \in \{0, 1\}$ be a finite-test functional verifier over $K$ test cases, and let $p_1 = \Pr(\mathcal{V}_K(h_{\text{T1}})=1)$, $p_2 = \Pr(\mathcal{V}_K(h_{\text{T2}})=1 \mid \mathcal{V}_K(h_{\text{T1}})=0)$, and $p_3 = \Pr(\mathcal{V}_K(h_{\text{T3}})=1 \mid \mathcal{V}_K(h_{\text{T1}})=0, \mathcal{V}_K(h_{\text{T2}})=0)$.
+\begin{enumerate}
+    \item \textbf{In-Sample Acceptance Rate:} The probability that the 3-tier cascade produces a candidate passing all $K$ development tests is exactly:
+    \begin{equation}
+    \label{eq:swarm_acc_insample}
+    \text{Pass}_K(\mathcal{S}_{\text{F3}}) = 1 - (1 - p_1)(1 - p_2)(1 - p_3) \;\ge\; \max_{m \in \{1,2,3\}} \text{Pass}_K(\text{Tier-}m).
+    \end{equation}
+    \item \textbf{Out-of-Sample Generalization Bound with False-Acceptance Rate $\epsilon_{\text{FA}}(K)$:} Because $K < \infty$ tests cannot prove program correctness over an infinite input domain $\mathcal{X}$, let $\epsilon_{\text{FA}}(K) := \Pr_{x \sim \mathcal{D}_{\text{OOS}}}(h(x) \neq f^*(x) \mid \mathcal{V}_K(h) = 1)$ denote the \emph{Rashomon false-acceptance rate} of candidates that pass $\mathcal{T}_{\text{dev}}$ but fail on unseen inputs $\mathcal{D}_{\text{OOS}}$. Then expected out-of-sample accuracy satisfies:
+    \begin{equation}
+    \label{eq:swarm_acc_oos}
+    \text{Acc}_{\text{OOS}}(\mathcal{S}_{\text{F3}}) \;\ge\; \big(1 - (1 - p_1)(1 - p_2)(1 - p_3)\big)\big(1 - \epsilon_{\text{FA}}(K)\big).
+    \end{equation}
+    In particular, strict out-of-sample dominance over a higher tier holds only when $\epsilon_{\text{FA}}(K)$ is sufficiently small relative to the cascade's verification gain $(1-p_1)p_2 + (1-p_1)(1-p_2)p_3$.
+\end{enumerate}
 \end{proposition}
-\noindent\emph{Proof Sketch (Full proof in Appendix \ref{app:proofs}).} Because the verifier $\mathcal{V}$ only accepts candidates that satisfy all formal constraints ($\mathcal{A}_{\text{LOO}} = 1.0$ or $\mathcal{V}_{\text{MotorB}} = 1$), any candidate accepted at Tier-1 is guaranteed correct, and false negatives are routed sequentially to Tier-2 and Tier-3. Thus the failure probability is the product of conditional failure probabilities $(1-p_1)(1-p_2)(1-p_3)$, which is strictly smaller than any individual tier's failure rate whenever $p_k > 0$. $\blacksquare$
 
 % ============================================================================
-\section{Algorithmic Architecture of Polybee F3-Swarm v1.5}
+\section{Track A Experimental Results: Hardware Inventory and Controlled Memory-Pipeline Benchmark (Labs 01 \& 02)}
 % ============================================================================
 
-Algorithms 1 and 2 formalize our two core execution engines implemented across the repository modules (\texttt{f3\_swarm\_lab02\_physical\_test.py}, \texttt{f3\_swarm\_lab04\_aacr\_calibrated.py}, and \texttt{f3\_swarm\_lab05\_tier3\_closure.py}).
-
-\begin{table}[htbp]
-\centering
-\caption*{%
-\begin{tabularx}{\textwidth}{X}
-\toprule
-\textbf{Algorithm 1:} Polybee F3-Swarm v1.5 Verifier-Governed Three-Tier Cognitive Orchestrator (\texttt{Policy 5}) \\
-\midrule
-\textbf{Input:} Operational task $x \in \mathcal{T}$ of class $c \in \{1, 2, 3\}$, temperature $T=1.6$, positional penalty $\beta_A=2.5$, confidence gate $\tau_{\text{conf}}=0.85$, Micro-CoT token budget $N_{\text{cot}}=65$, LOO-CV test suite $\mathcal{T}_{\text{LOO}}$. \\
-\textbf{Output:} Certified prediction $\hat{y}$, resolving tier label $\text{Tier} \in \{1, 2, 3\}$, telemetry log $\mathcal{L}_{\text{tele}}$. \\[3pt]
-1: \textbf{Phase 1: Tier-1 Edge SLM Execution (\texttt{Qwen2.5-0.5B-Q4\_K\_M}, $<480\,\text{MiB}$ Active RAM)} \\
-2: \textbf{if} $c == 1$ (\emph{System-1 Rapid Triage}) \textbf{then} \\
-3: \hspace{1.2em} Query 1-token logits $\mathbf{z}(\mathcal{O})$ on $0.5\text{B}$;\quad Compute calibrated $p_k(\mathcal{O}) \propto \exp((z_k - \beta_k)/T)$ via Eq.~(\ref{eq:system1_cal}) \\
-4: \hspace{1.2em} \textbf{if} $p_{\max}(\mathcal{O}) < 0.88$ \textbf{or} $\arg\max_k p_k(\mathcal{O}) == \texttt{'A'}$ \textbf{then} Query inverted ordering $\pi(\mathcal{O})$ \hfill $\triangleright$ Lemma \ref{lemma:inversion} \\
-5: \hspace{1.2em} \textbf{if} $p_{\max}(\mathcal{O}) \ge \tau_{\text{conf}}$ \textbf{and} $\Phi(\mathcal{O}) == \Phi(\pi(\mathcal{O}))$ \textbf{then return} $\hat{y} \leftarrow \Phi(\mathcal{O}),\; \text{Tier} \leftarrow 1$ \hfill $\triangleright$ Certified at Edge \\
-6: \textbf{else if} $c == 2$ (\emph{Structured Financial Extraction}) \textbf{then} \\
-7: \hspace{1.2em} Generate raw extraction $y^{(1)}$ on $0.5\text{B}$;\quad Apply $\texttt{FastSymbolicNormalizer}$ $\mathcal{N}_{\text{BRL}}(y^{(1)})$ \\
-8: \hspace{1.2em} \textbf{if} $\mathcal{V}_{\text{MotorB}}(y^{(1)}; \mathcal{D}) == 1$ via Eq.~(\ref{eq:symbolic_proof}) \textbf{then return} $\hat{y} \leftarrow \mathcal{N}_{\text{BRL}}(y^{(1)}),\; \text{Tier} \leftarrow 1$ \hfill $\triangleright$ 90\% solved on $0.5\text{B}$ \\
-9: \textbf{else if} $c == 3$ (\emph{Programmatic Rule Synthesis}) \textbf{then} \\
-10: \hspace{1.2em} Synthesize Python function $h^{(1)}$ on $0.5\text{B}$;\quad Execute in unified sandbox $\texttt{exec}(h^{(1)}, \mathcal{E}_{\text{sandbox}}, \mathcal{E}_{\text{sandbox}})$ \\
-11: \hspace{1.2em} \textbf{if} $\mathcal{A}_{\text{LOO}}(h^{(1)}; \mathcal{T}_{\text{LOO}}) == 1.0$ ($4/4$ pass) \textbf{then return} $\hat{y} \leftarrow h^{(1)},\; \text{Tier} \leftarrow 1$ \hfill $\triangleright$ 62.5\% solved on $0.5\text{B}$ \\
-12: \hspace{1.2em} Extract residual failure vector $\Delta_{\text{AACR}}(h^{(1)})$ via Eq.~(\ref{eq:aacr_diff}) \\
-13: \textbf{end if} \\[2pt]
-14: \textbf{Phase 2: Single-Server RAM Handover ($0.5\text{B} \xrightarrow{\texttt{SIGTERM}} \text{Free RAM} \xrightarrow{\texttt{spawn}} 1.5\text{B}$ Tier-2, $\sim 1.11\,\text{GiB}$)} \\
-15: \textbf{if} $c == 1$ \textbf{then} \\
-16: \hspace{1.2em} Execute Controlled Micro-CoT ($N_{\text{predict}} = N_{\text{cot}}, T = 0.0$) yielding trace $r_{1:m}$ \\
-17: \hspace{1.2em} \textbf{if} \texttt{"Resposta final:"} $\notin r_{1:m}$ \textbf{then} Trigger 1-token Suffix Closure $\mathcal{P}_{\text{suffix}}$ via Eq.~(\ref{eq:suffix_closure}) \\
-18: \hspace{1.2em} \textbf{return} $\hat{y} \leftarrow \Psi_{\text{sem}}(r_{1:m}),\; \text{Tier} \leftarrow 2$ \\
-19: \textbf{else if} $c == 2$ \textbf{then} Execute Tier-2 extraction $y^{(2)}$ with Motor B normalization;\quad \textbf{return} $\hat{y} \leftarrow y^{(2)},\; \text{Tier} \leftarrow 2$ \\
-20: \textbf{else if} $c == 3$ \textbf{then} \\
-21: \hspace{1.2em} Synthesize repaired function $h^{(2)}$ on $1.5\text{B}$ conditioned on $\Delta_{\text{AACR}}(h^{(1)})$ \\
-22: \hspace{1.2em} \textbf{if} $\mathcal{A}_{\text{LOO}}(h^{(2)}; \mathcal{T}_{\text{LOO}}) == 1.0$ \textbf{then return} $\hat{y} \leftarrow h^{(2)},\; \text{Tier} \leftarrow 2$ \\
-23: \hspace{1.2em} Update residual failure vector $\Delta_{\text{AACR}}(h^{(2)})$ \\
-24: \textbf{end if} \\[2pt]
-25: \textbf{Phase 3: On-Demand Tier-3 Specialist Closure (\texttt{Qwen2.5-Coder-3B} / Distributed RAM Pool)} \\
-26: Terminate Tier-2 server;\quad Spawn Tier-3 specialist (\texttt{Qwen2.5-Coder-3B-Q4\_K\_M}, $2.10\,\text{GB}$) \\
-27: Synthesize $h^{(3)}$ conditioned on $(S, h^{(2)}, \Delta_{\text{AACR}}(h^{(2)}))$;\quad Verify $\mathcal{A}_{\text{LOO}}(h^{(3)}; \mathcal{T}_{\text{LOO}}) == 1.0$ \\
-28: \textbf{return} $\hat{y} \leftarrow h^{(3)},\; \text{Tier} \leftarrow 3$ \\
-\bottomrule
-\end{tabularx}%
-}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\caption*{%
-\begin{tabularx}{\textwidth}{X}
-\toprule
-\textbf{Algorithm 2:} Cooperative Distributed RAM Ring-Pipeline Worker (\texttt{Lab 02 Physical Engine}) \\
-\midrule
-\textbf{Input:} Node index $k \in \{1,\dots,K\}$, assigned layer slice $\mathcal{L}_k = \{l_{\text{start}},\dots,l_{\text{end}}\}$, hard OS Working-Set quota $Q_{\text{RAM}} = 600\,\text{MiB}$, upstream TCP socket $\mathcal{S}_{\text{in}}$, downstream TCP socket $\mathcal{S}_{\text{out}}$. \\
-\textbf{Output:} Bit-exact hidden-state tensor $\mathbf{h}_t^{(l_{\text{end}})} \in \mathbb{R}^{d_{\text{model}}}$ per token step $t = 1,\dots,T_{\text{gen}}$ with $0.0\,\text{MB/s}$ disk swap. \\[3pt]
-1: Enforce OS kernel RAM cap $\texttt{SetProcessWorkingSetSizeEx}(Q_{\text{RAM}}, \texttt{QUOTA\_LIMITS\_HARDWS\_MAX\_ENABLE})$ \\
-2: Allocate page-aligned physical RAM buffer via $\texttt{VirtualAlloc}$ and load layer weights $\{W_l\}_{l \in \mathcal{L}_k}$ into DRAM \\
-3: Bind TCP server $\mathcal{S}_{\text{in}}$ and connect persistent TCP stream $\mathcal{S}_{\text{out}}$ to node $(k \bmod K) + 1$ (\texttt{TCP\_NODELAY}) \\
-4: \textbf{for} token step $t = 1, 2, \dots, T_{\text{gen}}$ \textbf{do} \\
-5: \hspace{1.2em} Receive serialized activation vector $\mathbf{h}_t \in \mathbb{R}^{d_{\text{model}}}$ ($16\,\text{KiB}$) from $\mathcal{S}_{\text{in}}$ \\
-6: \hspace{1.2em} \textbf{for each} layer $l \in \mathcal{L}_k$ \textbf{do} $\mathbf{h}_t \leftarrow \text{LayerNorm}\big(\mathbf{h}_t + \text{AVX512\_MatMul}(W_l, \mathbf{h}_t)\big)$ \hfill $\triangleright$ Pure In-RAM compute \\
-7: \hspace{1.2em} Send updated activation vector $\mathbf{h}_t$ ($16\,\text{KiB}$) to $\mathcal{S}_{\text{out}}$ \hfill $\triangleright$ Proposition \ref{prop:ram_dominance}: $13.70\times$ faster than SSD swap \\
-8: \textbf{end for} \\
-\bottomrule
-\end{tabularx}%
-}
-\end{table}
-
-% ============================================================================
-\section{Experimental Results and Ablation Studies}
-% ============================================================================
-
-To ensure complete scientific rigor and prevent premature optimism, we designed a five-stage experimental progression (Labs 01 to 05). Every experiment was executed on real hardware with zero synthetic sleep timers and complete JSON telemetry audited at \url{https://github.com/henrique-polybee/polybee-f3-swarm}.
-
-\subsection{Study 1: Real Hardware Telemetry and the Single-Node Swap Wall (Lab 01)}
+\subsection{Lab 01: Hardware Telemetry and Parametric Analytical Projections}
 \label{sec:exp_lab01}
 
-In \textbf{Lab 01}, we developed an OS-level hardware introspection probe (\texttt{collect\_hardware\_inventory.py}) using Win32 APIs (\texttt{GlobalMemoryStatusEx}, \texttt{GetLogicalProcessorInformationEx}, and raw CPUID Leaf 7 inspection) alongside unbuffered disk benchmarks on our baseline testbed: an \textbf{Intel Core i7-11370H} notebook ($4$ physical cores / $8$ threads @ $3.30\,\text{GHz}$, Tiger Lake H35, $35\,\text{W}$ nominal TDP / $24.0\,\text{W}$ dynamic load) running Windows 11 Build 26200 (25H2).
+In \textbf{Lab 01} (\texttt{collect\_hardware\_inventory.py}, \texttt{hardware\_inventory\_lab01.json}), Win32 kernel inspection (\texttt{GlobalMemoryStatusEx}, \texttt{GetLogicalProcessorInformationEx}, and CPUID Leaf 7) on our test host established:
+\begin{itemize}
+    \item \textbf{CPU \& Vector ISA:} Intel Core i7-11370H ($4$ physical cores / $8$ logical threads @ $3.30\,\text{GHz}$, Tiger Lake H35, $35\,\text{W}$ nominal TDP) with verified hardware support for \texttt{AVX2}, \texttt{AVX-512F}, \texttt{AVX-512DQ}, \texttt{AVX-512BW}, and \texttt{AVX-512VL}.
+    \item \textbf{Physical RAM Envelope:} Out of $15.788\,\text{GiB}$ total physical RAM, baseline OS and developer processes occupied $12.999\,\text{GiB}$ ($82.0\%$ load), leaving \textbf{$2.789\,\text{GiB}$ of free physical RAM}.
+    \item \textbf{Unbuffered NVMe SSD Throughput:} Sequential reads measured $1,452.95\,\text{MB/s}$ ($1.42\,\text{GB/s}$) in Lab 01 and $1,603.13\,\text{MB/s}$ ($1.57\,\text{GB/s}$) in Lab 02 under \texttt{FILE\_FLAG\_NO\_BUFFERING}.
+\end{itemize}
+Using these hardware constants, Lab 01 (\texttt{f3\_swarm\_lab01\_results.json}) first computed \emph{analytical parametric projections} across five hypothetical network profiles (LAN $0.5\,\text{ms}$, Wi-Fi $5.0\,\text{ms}$, Fiber $12.0\,\text{ms}$, Regional WAN $25.0\,\text{ms}$, Intercontinental WAN $60.0\,\text{ms}$), motivating the controlled OS-level experiment in Lab 02.
 
-\textbf{Key Empirical Findings from Lab 01 (\texttt{hardware\_inventory\_lab01.json}):}
-\begin{enumerate}
-    \item \emph{Active Vector Instruction Sets:} Raw CPUID Leaf 7 confirmed native hardware support for \textbf{AVX2}, \textbf{AVX-512F} (Foundation), \textbf{AVX-512DQ}, \textbf{AVX-512BW} (Byte and Word), and \textbf{AVX-512VL} (Vector Length), enabling high-throughput quantized integer dot products on CPU.
-    \item \emph{The 82\% Real-World RAM Occupancy Bottleneck:} Out of $15.788\,\text{GiB}$ of installed physical DDR4 RAM, normal developer operation (Windows 11 kernel, IDE, browser, and background agents) consumed $12.999\,\text{GiB}$ ($82.0\%$ memory load), leaving \textbf{only $2.789\,\text{GiB}$ of free physical RAM} ($13.909\,\text{GiB}$ committed out of a $26.788\,\text{GiB}$ commit limit).
-    \item \emph{NVMe Bandwidth vs.\ DRAM Bandwidth:} Direct sequential SSD read speed measured $1,452.95\text{--}1,572.66\,\text{MB/s}$ ($\sim 1.5\,\text{GB/s}$)—more than $20\times$ slower than dual-channel DDR4-3200 DRAM ($\sim 35\text{--}45\,\text{GB/s}$). Consequently, in our Lab 01 SLO simulation (\texttt{f3\_swarm\_lab01\_results.json}), any monolithic model whose weights plus KV-cache exceeded $2.79\,\text{GiB}$ (such as an $8\text{B}$ Q4\_K\_M model requiring $4.85\,\text{GiB}$) suffered $100\%$ SLO failure ($0\%$ of runs achieving $\ge 8\,\text{tok/s}$), whereas models in the $0.5\text{B}\text{--}1.5\text{B}$ range ($0.48\text{--}1.12\,\text{GiB}$) fitted entirely within free physical RAM (Figure \ref{fig:lab02}a).
-\end{enumerate}
-
-\subsection{Study 2: Physical Validation of Distributed RAM Ring Pipeline vs.\ NVMe Swap (Lab 02)}
+\subsection{Lab 02: Controlled OS Working-Set Quota and Loopback TCP Pipeline Benchmark}
 \label{sec:exp_lab02}
 
-To test Proposition \ref{prop:ram_dominance} under strict physical OS enforcement, \textbf{Lab 02} (\texttt{f3\_swarm\_lab02\_physical\_test.py}) instantiated a real 24-layer Transformer ($d_{\text{model}} = 4096$, $64\,\text{MiB}$ per layer, $1.50\,\text{GiB}$ total in \texttt{float32}) generating $32$ autoregressive tokens. Using the Win32 kernel call \texttt{SetProcessWorkingSetSizeEx} with flag \texttt{QUOTA\_LIMITS\_HARDWS\_MAX\_ENABLE = 0x4}, we imposed a hard physical RAM ceiling of \textbf{$600\,\text{MiB}$ per process} and forced all disk reads in Arm 1 to bypass the OS RAM cache via \texttt{FILE\_FLAG\_NO\_BUFFERING = 0x20000000}.
+In \textbf{Lab 02} (\texttt{f3\_swarm\_lab02\_physical\_test.py}, \texttt{lab02\_physical\_results.json}), we instantiated a 24-layer dense matrix transformation pipeline ($d_{\text{model}} = 4096$, $64\,\text{MiB}$ per layer = $1.50\,\text{GiB}$ total in \texttt{float32}, executing matrix projections, layer normalization, and non-linear activations across $32$ sequential steps). All processes were constrained by a hard Win32 kernel working-set cap of \textbf{$600\,\text{MiB}$} via \texttt{SetProcessWorkingSetSizeEx(..., QUOTA\_LIMITS\_HARDWS\_MAX\_ENABLE)}.
+\begin{itemize}
+    \item \textbf{Arm 1 (Local Unbuffered SSD Weight Streaming):} A single process kept $8$ layers ($512\,\text{MiB}$) resident in RAM and streamed the remaining $16$ layers ($1,024\,\text{MiB}$) from NVMe SSD at every step using \texttt{FILE\_FLAG\_NO\_BUFFERING}.
+    \item \textbf{Arm 2 (3-Process Resident-Weight TCP Loopback Pipeline):} Three separate Python worker processes (\texttt{PID 6208}, \texttt{22960}, \texttt{19272}) ran concurrently on the same host, each holding $8$ layers ($512\,\text{MiB}$ weights; measured working sets $529.5\,\text{MiB}$, $530.6\,\text{MiB}$, and $546.8\,\text{MiB}$) in physical RAM and exchanging $16\,\text{KiB}$ activation vectors over \texttt{127.0.0.1} TCP sockets with \texttt{time.sleep}-emulated RTTs for three regimes: \textbf{LAN ($0.4\,\text{ms}$ RTT)}, \textbf{Wi-Fi ($4.5\,\text{ms}$ RTT)}, and \textbf{WAN ($60.0\,\text{ms}$ RTT)}.
+    \item \textbf{Arm 3 (Simulated Orchestrator Primitives):} Evaluated a $64\,\text{MiB}$ linear System-1 triage filter ($0.704\,\text{ms}$/item across $30$ prompts), Distributed Speculative Decoding (DSD) over the loopback pipeline ($1.01\times$ on LAN, $1.09\times$ on Wi-Fi), and a \texttt{DeadSignatureRouteTracker} that prunes synchronous $60\,\text{ms}$ WAN routes when $\text{RTT} > 15.0\,\text{ms}$ in favor of local asynchronous execution ($48.50\,\text{ms}$ TPOT).
+\end{itemize}
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Lab 02 Physical Benchmark: 24-Layer Transformer ($1.50\,\text{GiB}$) under a Hard $600\,\text{MiB}$ Win32 Working-Set RAM Quota ($32$ Autoregressive Tokens).} Partitioning layers across 3 isolated TCP processes in physical RAM eliminates $33.00\,\text{GiB}$ of NVMe swap and achieves a $13.70\times$ speedup on LAN ($3.35\times$ on $60\,\text{ms}$ WAN) with bit-exact parity.}
+\caption{\textbf{Reconciled Lab 02 Telemetry (\texttt{lab02\_physical\_results.json}): Single-Process Unbuffered NVMe SSD Weight Streaming vs.\ 3-Process Resident-Weight TCP Loopback Pipeline ($1.50\,\text{GiB}$, $24$ Dense Layers, $32$ Steps, $600\,\text{MiB}$ Hard Working-Set Quota).} All values match the raw JSON telemetry verbatim.}
 \label{tab:lab02}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{lccccccc}
+\begin{tabular}{lcccccccc}
 \toprule
-\textbf{Physical Execution Arm} & \textbf{Peak RSS / Node} & \textbf{NVMe Disk Read} & \textbf{TTFT (ms)} $\downarrow$ & \textbf{TPOT (ms/tok)} $\downarrow$ & \textbf{Throughput (tok/s)} $\uparrow$ & \textbf{Speedup vs.\ Swap} $\uparrow$ & \textbf{Max Abs Diff ($\max|\Delta|$)} \\
+\textbf{Lab 02 Execution Regime} & \textbf{Measured WS (MiB)} & \textbf{SSD Read Volume} & \textbf{TTFT (ms)} $\downarrow$ & \textbf{TPOT (ms/step)} $\downarrow$ & \textbf{Throughput (tok/s)} $\uparrow$ & \textbf{Total Time (s)} $\downarrow$ & \textbf{Speedup vs.\ Arm 1} $\uparrow$ & \textbf{Max Abs Diff ($\max|\Delta|$)} \\
 \midrule
-\textbf{Arm 1: Local Monolithic + NVMe Swap} & $533.1\,\text{MiB}$ & $33.00\,\text{GiB}$ ($1.57\,\text{GB/s}$) & $715.30\,\text{ms}$ & $692.58\,\text{ms}$ & $1.44\,\text{tok/s}$ & $1.00\times$ (Baseline) & $0.00\text{e+}00$ (Reference) \\
+\textbf{Arm 1: Unbuffered SSD Stream} & $530.9\,\text{MiB}$ & $33,792.0\,\text{MiB}$ ($1.57\,\text{GB/s}$) & $715.30\,\text{ms}$ & $692.58\,\text{ms}$ & $1.44\,\text{tok/s}$ & $22.16\,\text{s}$ & $1.00\times$ (Baseline) & $0.0$ (Reference) \\
 \midrule
-\textbf{Arm 2a: 3-Node TCP Ring (LAN 0.5ms)} & $531.6\,\text{MiB}$ & \textbf{0.00 GiB} & \textbf{50.84 ms} & \textbf{50.54 ms} & \textbf{19.79 tok/s} & \textbf{13.70$\times$ Faster} & \textbf{0.00e+00 (Bit-Exact)} \\
-\textbf{Arm 2b: 3-Node TCP Ring (Wi-Fi 5ms)} & $531.6\,\text{MiB}$ & \textbf{0.00 GiB} & $63.84\,\text{ms}$ & $64.02\,\text{ms}$ & \textbf{15.62 tok/s} & \textbf{10.82$\times$ Faster} & \textbf{0.00e+00 (Bit-Exact)} \\
-\textbf{Arm 2c: 3-Node TCP Ring (WAN 25ms)} & $531.6\,\text{MiB}$ & \textbf{0.00 GiB} & $126.15\,\text{ms}$ & $119.37\,\text{ms}$ & \textbf{8.38 tok/s} & \textbf{5.80$\times$ Faster} & \textbf{0.00e+00 (Bit-Exact)} \\
-\textbf{Arm 2d: 3-Node TCP Ring (WAN 60ms)} & $531.6\,\text{MiB}$ & \textbf{0.00 GiB} & $214.69\,\text{ms}$ & $206.70\,\text{ms}$ & \textbf{4.84 tok/s} & \textbf{3.35$\times$ Faster} & \textbf{0.00e+00 (Bit-Exact)} \\
+\textbf{Arm 2: Loopback LAN ($0.4\,\text{ms}$ RTT)} & $529.5\text{--}546.8\,\text{MiB}$ & \textbf{0.0 MiB} & $95.33\,\text{ms}$ & \textbf{50.54 ms} & \textbf{19.79 tok/s} & \textbf{1.62 s} & \textbf{13.70$\times$} & \textbf{0.0 (Exact)} \\
+\quad --- \emph{with Arm 3 DSD Speculative} & $529.5\text{--}546.8\,\text{MiB}$ & \textbf{0.0 MiB} & $95.33\,\text{ms}$ & \textbf{50.09 ms} & \textbf{19.96 tok/s} & $1.60\,\text{s}$ & \textbf{13.86$\times$ ($1.01\times$ DSD)} & \textbf{0.0 (Exact)} \\
+\textbf{Arm 2: Loopback Wi-Fi ($4.5\,\text{ms}$ RTT)} & $529.5\text{--}546.8\,\text{MiB}$ & \textbf{0.0 MiB} & \textbf{59.54 ms} & $64.02\,\text{ms}$ & \textbf{15.62 tok/s} & $2.05\,\text{s}$ & \textbf{10.82$\times$} & \textbf{0.0 (Exact)} \\
+\quad --- \emph{with Arm 3 DSD Speculative} & $529.5\text{--}546.8\,\text{MiB}$ & \textbf{0.0 MiB} & \textbf{59.54 ms} & \textbf{58.96 ms} & \textbf{16.96 tok/s} & $1.89\,\text{s}$ & \textbf{11.78$\times$ ($1.09\times$ DSD)} & \textbf{0.0 (Exact)} \\
+\textbf{Arm 2: Loopback WAN ($60.0\,\text{ms}$ RTT)} & $529.5\text{--}546.8\,\text{MiB}$ & \textbf{0.0 MiB} & $204.21\,\text{ms}$ & $206.70\,\text{ms}$ & \textbf{4.84 tok/s} & $6.61\,\text{s}$ & \textbf{3.35$\times$} & \textbf{0.0 (Exact)} \\
+\quad --- \emph{Arm 3 Route Pruned ($\text{RTT}>15\,\text{ms}$)} & Local Async Fallback & \textbf{0.0 MiB} & --- & \textbf{48.50 ms} & --- & --- & Saves $158.2\,\text{ms/step}$ & \textbf{0.0 (Exact)} \\
 \bottomrule
 \end{tabular}
 }
@@ -394,38 +314,55 @@ To test Proposition \ref{prop:ram_dominance} under strict physical OS enforcemen
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig2_lab02_physical_ram_pipeline.pdf}
-\caption{\textbf{Physical validation of the Single-Node RAM Wall (Lab 01) and Distributed RAM Ring-Pipeline vs.\ Local NVMe Swap (Lab 02).} (a) Comparison of active RAM required by quantized model tiers against the $2.79\,\text{GiB}$ free physical RAM ceiling measured on our $16\,\text{GiB}$ host at $82\%$ load. (b) Empirical token throughput ($\text{tok/s}$) across Arm 1 (local NVMe swap, $1.44\,\text{tok/s}$) and Arm 2 (3 isolated TCP worker processes holding 8 layers = $512\,\text{MiB}$ each in RAM, reaching $19.79\,\text{tok/s}$ on LAN). (c) Decomposition of Time Per Output Token (TPOT) into AVX-512 compute ($53.8\,\text{ms}$), NVMe SSD swap wait ($638.8\,\text{ms} = 92.2\%$ of Arm 1), and TCP socket transfer. (d) Cumulative wall-clock time across $32$ generated tokens ($22.18\,\text{s}$ swap vs.\ $1.62\,\text{s}$ LAN ring).}
+\caption{\textbf{Reconciled Lab 02 Controlled Benchmark (\texttt{lab02\_physical\_results.json}).} (A) Throughput across Arm 1 (unbuffered NVMe SSD streaming: $1.44\,\text{tok/s}$) and Arm 2 (3-process resident-weight TCP loopback pipeline with emulated RTTs: $19.79\,\text{tok/s}$ on $0.4\,\text{ms}$ LAN [$13.70\times$], $15.62\,\text{tok/s}$ on $4.5\,\text{ms}$ Wi-Fi [$10.82\times$], and $4.84\,\text{tok/s}$ on $60.0\,\text{ms}$ WAN [$3.35\times$]). (B) Exact measured TTFT and TPOT values per regime ($95.33\,\text{ms}$ TTFT and $50.54\,\text{ms}$ TPOT on LAN; $59.54\,\text{ms}$ TTFT and $64.02\,\text{ms}$ TPOT on Wi-Fi; $204.21\,\text{ms}$ TTFT and $206.70\,\text{ms}$ TPOT on $60\,\text{ms}$ WAN).}
 \label{fig:lab02}
 \end{figure}
 
-Table \ref{tab:lab02} and Figure \ref{fig:lab02} report the physical telemetry from \texttt{lab02\_physical\_results.json}. In Arm 1, holding 8 layers ($512\,\text{MiB}$) in RAM and streaming the remaining 16 layers ($1.00\,\text{GiB}$) from NVMe SSD forced the system to read \textbf{$33.00\,\text{GiB}$ of weight data from disk} across 32 tokens, spending $638.75\,\text{ms/token}$ ($92.2\%$ of total time) in I/O wait. In Arm 2, spawning three isolated OS worker processes (each holding 8 layers = $512\,\text{MiB}$ within its $600\,\text{MiB}$ quota and passing $16\,\text{KiB}$ activations via TCP sockets) reduced disk I/O to \textbf{$0.00\,\text{GiB}$}, accelerating throughput by \textbf{13.70$\times$ on LAN ($50.54\,\text{ms/tok}$)}, \textbf{10.82$\times$ on Wi-Fi ($64.02\,\text{ms/tok}$)}, and \textbf{3.35$\times$ even over $60\,\text{ms}$ WAN ($206.70\,\text{ms/tok}$)}, with an L2 output difference of $\max|\Delta| = 0.0$ across all 4,096 output dimensions!
+\textbf{Reconciliation Note on Table \ref{tab:lab02}:} In an earlier draft of this manuscript, Table \ref{tab:lab02} inadvertently mixed analytical TTFT projections from Lab 01 ($50.84\,\text{ms}$ LAN TTFT and a $25\,\text{ms}$ Regional WAN row) with Lab 02 measurements. Table \ref{tab:lab02} and Figure \ref{fig:lab02} now report the exact, unedited telemetry recorded in \texttt{lab02\_physical\_results.json}. Note that LAN TTFT ($95.33\,\text{ms}$) is slightly higher than Wi-Fi TTFT ($59.54\,\text{ms}$) in the single-run measurement because the LAN regime executed first immediately after socket initialization and OS page warming, whereas steady-state per-step TPOT strictly follows the emulated RTT ordering ($50.54\,\text{ms} < 64.02\,\text{ms} < 206.70\,\text{ms}$).
 
-\subsection{Study 3: Real LLM Swarm Progression on 30 Operational PT-BR Tasks (Labs 03, 04 \& 05)}
+% ============================================================================
+\section{Track B Experimental Results: Real LLM Orchestration and Held-Out Generalization Audit (Labs 03, 04 \& 05)}
 \label{sec:exp_labs03_05}
+% ============================================================================
 
-Having proven the physical distributed RAM substrate, \textbf{Labs 03, 04, and 05} evaluated real quantized GGUF models via \texttt{llama-server.exe} (\texttt{llama.cpp} build \texttt{b12211} win-cpu-x64) across \textbf{30 real-world Brazilian Portuguese (PT-BR) operational tasks} (\texttt{tasks\_data.py}): 12 rapid System-1 decisions (\textbf{Class 1}, \texttt{T01}--\texttt{T12}), 10 structured financial JSON extractions (\textbf{Class 2}, \texttt{T13}--\texttt{T22}), and 8 Python rule synthesis tasks (\textbf{Class 3}, \texttt{T23}--\texttt{T30}). Throughout all runs, a strict lifecycle manager (\texttt{LlamaServerManager}) enforced that \textbf{at most 1 model server resided in RAM at any instant} ($<1.5\,\text{GiB}$ active edge footprint).
+\subsection{Experimental Protocol, Hybrid Consolidation, and Energy Estimation}
+
+In \textbf{Labs 03, 04, and 05}, we evaluated real GGUF models via \texttt{llama-server.exe} (\texttt{llama.cpp} build \texttt{b12211}) across $N=30$ PT-BR operational tasks (\texttt{tasks\_data.py}): $12$ Class 1 System-1 triage tasks (\texttt{T01}--\texttt{T12}), $10$ Class 2 financial extraction tasks (\texttt{T13}--\texttt{T22}), and $8$ Class 3 Python synthesis tasks (\texttt{T23}--\texttt{T30}). To respect the $<1.5\,\text{GiB}$ edge RAM target on Tiers 1--2, \texttt{LlamaServerManager} enforced sequential process execution: only one \texttt{llama-server} instance resided in RAM at any time ($\sim 480\,\text{MiB}$ for \texttt{Qwen2.5-0.5B-Q4\_K\_M}, $\sim 1,120\,\text{MiB}$ for \texttt{Qwen2.5-1.5B-Q4\_K\_M}, and $2.10\,\text{GB}$ on-demand for \texttt{Qwen2.5-Coder-3B-Q4\_K\_M}).
+
+\textbf{Methodological Transparency on Consolidation, Energy, and Patch Variants (\texttt{P5a} vs.\ \texttt{P5b}):}
+\begin{enumerate}
+    \item \emph{Analytical CPU Energy Estimate:} Reported energy values (in Joules) are computed analytically as $E = P_{\text{CPU}} \times T_{\text{compute}}$ assuming a constant dynamic thermal load of $P_{\text{CPU}} = 24.0\,\text{W}$ on the i7-11370H processor (Note: \texttt{P2} and escalated tasks in \texttt{P3} include a $45.0\,\text{ms}$ remote-invocation latency term in \texttt{tempo\_total\_pipeline\_segundos} while computing energy strictly on local CPU time $109.83\,\text{s} \times 24\,\text{W} = 2,635.9\,\text{J}$). Energy was not measured with an external hardware wattmeter.
+    \item \emph{Hybrid Consolidation of Policy 5:} In Lab 05, rather than re-running all 30 tasks from scratch, the consolidation script reused the frozen Tier-1/Tier-2 baseline records from Lab 04 (\texttt{P4}) for tasks already resolved at Tier-1 or via 1-token Tier-2, and spliced in the newly measured executions of Step 2 (Controlled Micro-CoT on the 4 Class-1 failures \texttt{T01}, \texttt{T03}, \texttt{T08}, \texttt{T09}, adding a fixed $200\,\text{ms}$ routing overhead constant per task) and Step 3 (Tier-3 \texttt{Qwen2.5-Coder-3B} repair on the 3 Class-3 failures \texttt{T23}, \texttt{T25}, \texttt{T26}).
+    \item \emph{Distinguishing \texttt{Policy 5a (Unpatched Diagnostic)} vs.\ \texttt{Policy 5b (Patched Oracle + Prescriptive Hint)}:} We report both Lab 05 variants transparently in Table \ref{tab:policies_5}:
+    \begin{itemize}
+        \item \textbf{\texttt{Policy 5a} (Unpatched Lab 05 — \texttt{lab05\_tier3\_closure\_results.json}):} Uses a 45-token Micro-CoT budget without suffix closure and a task-agnostic AACR diff prompt against the unedited Lab 03 test oracle. It achieves \textbf{90.0\% global accuracy (27/30, 95\% Wilson CI $[74.4\%, 96.5\%]$)} in \textbf{119.07\,s} ($2,848.5\,\text{J}$), failing on \texttt{T03} and \texttt{T09} (Micro-CoT truncation at $45$ tokens) and \texttt{T26} ($2/4$ due to an oracle label typo in \texttt{tasks\_data.py}).
+        \item \textbf{\texttt{Policy 5b} (Patched Lab 05 — \texttt{README.md} / Post-Patch Run):} Applies a 65-token Micro-CoT with 1-token Suffix Closure (recovering \texttt{T09}), fixes the two arithmetic typos in the \texttt{T26} test oracle (\texttt{"12345678"} $\to \texttt{"9"}$, \texttt{"11111111"} $\to \texttt{"0"}$), and includes an explicit Modulo-11 algorithmic hint in the \texttt{T26} repair prompt, reaching \textbf{96.7\% in-sample accuracy (29/30, 95\% Wilson CI $[83.3\%, 99.4\%]$)} in \textbf{121.19\,s} ($2,899.5\,\text{J}$). Crucially, as shown in Section \ref{sec:heldout}, the code already generated by \texttt{Qwen2.5-Coder-3B} in the \emph{unpatched} run (\texttt{precise\_tier3\_results.json}) without the prescriptive hint was already a $100\%$ valid FEBRABAN Modulo-11 implementation!
+    \end{itemize}
+\end{enumerate}
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Consolidated progression across all 5 experimental policies on the 30 real operational PT-BR tasks (Labs 03, 04, and 05).} \textbf{Policy 4 (Lab 04)} beats the standalone $1.5\text{B}$ model in both accuracy ($76.7\%$ vs.\ $73.3\%$) and speed ($-23.8\%$ time, $-23.4\%$ energy), while \textbf{Policy 5 (Lab 05 Final)} achieves \textbf{96.7\% global accuracy (29/30)} with $100\%$ on Classes 2 and 3 and $50\%$ of all tasks resolved at Tier-1 edge ($<480\,\text{MiB}$ RAM).}
+\caption{\textbf{Audited Comparison Across Policies P1 to P5b on the 30 Operational PT-BR Tasks (Labs 03--05), including 95\% Wilson Score Confidence Intervals \cite{wilson1927probable} and Out-of-Sample Held-Out Generalization.} \textbf{P4} is Pareto-dominant over \textbf{P2} in accuracy ($+3.4\,\text{p.p.}$), time ($-23.8\%$), and energy ($-23.4\%$). \textbf{P5a/P5b} trade $+7.1\%\text{--}9.0\%$ higher latency and energy than \textbf{P2} for $+16.7\text{--}23.4\,\text{p.p.}$ higher accuracy.}
 \label{tab:policies_5}
 \resizebox{\textwidth}{!}{
 \begin{tabular}{lcccccc}
 \toprule
-\textbf{Evaluation Metric (30 Operational Tasks)} & \textbf{P1: Small Always (\texttt{0.5B})} & \textbf{P2: Large Always (\texttt{1.5B})} & \textbf{P3: Cascaded v0 (Lab 03)} & \textbf{P4: Swarm v1.0 AACR (Lab 04)} & \textbf{P5: Swarm v1.5 Final (Lab 05)} & \textbf{Cumulative Gain (P5 vs.\ Baselines)} \\
+\textbf{Metric / Evaluation Dimension ($N=30$)} & \textbf{P1: 0.5B Always} & \textbf{P2: 1.5B Always} & \textbf{P3: Cascade v0} & \textbf{P4: Swarm v1.0} & \textbf{P5a: Swarm v1.5 (Unpatched)} & \textbf{P5b: Swarm v1.5 (Patched)} \\
 \midrule
-\textbf{Global Operational Accuracy} $\uparrow$ & $40.0\%$ ($12/30$) & $73.3\%$ ($22/30$) & $63.3\%$ ($19/30$) & $76.7\%$ ($23/30$) & \textbf{96.7\% (29/30)} & \textbf{+23.4 p.p.\ vs.\ P2 / +56.7 p.p.\ vs.\ P1} \\
-\quad --- \textbf{Class 1: System-1 Triage (12 Tasks)} $\uparrow$ & $33.3\%$ ($4/12$) & $75.0\%$ ($9/12$) & $50.0\%$ ($6/12$) & $66.7\%$ ($8/12$) & \textbf{91.7\% (11/12)} & Micro-CoT + Suffix recovered T01, T08, T09 \\
-\quad --- \textbf{Class 2: Financial Extraction (10 Tasks)} $\uparrow$ & $50.0\%$ ($5/10$) & $100.0\%$ ($10/10$) & $100.0\%$ ($10/10$) & $100.0\%$ ($10/10$) & \textbf{100.0\% (10/10)} & \textbf{90.0\% (9/10) certified locally on 0.5B} \\
-\quad --- \textbf{Class 3: Rashomon Code LOO-CV (8 Tasks)} $\uparrow$ & $37.5\%$ ($3/8$) & $37.5\%$ ($3/8$) & $37.5\%$ ($3/8$) & $62.5\%$ ($5/8$) & \textbf{100.0\% (8/8)} & \textbf{5/8 on 0.5B + 3/8 on 3B Coder AACR} \\
+\textbf{In-Sample Accuracy ($K=4$ Dev)} & $40.0\%$ ($12/30$) & $73.3\%$ ($22/30$) & $63.3\%$ ($19/30$) & $76.7\%$ ($23/30$) & \textbf{90.0\% (27/30)} & \textbf{96.7\% (29/30)} \\
+\textbf{95\% Wilson Confidence Interval} & $[24.6\%, 57.7\%]$ & $[55.6\%, 85.8\%]$ & $[45.5\%, 78.1\%]$ & $[59.1\%, 88.2\%]$ & $[74.4\%, 96.5\%]$ & $[83.3\%, 99.4\%]$ \\
+\textbf{Held-Out Adjusted Accuracy ($\mathcal{T}_{\text{HO}}$)} & $43.3\%$ ($13/30$) & $73.3\%$ ($22/30$) & $63.3\%$ ($19/30$) & $76.7\%$ ($23/30$) & \textbf{86.7\% (26/30)} & \textbf{93.3\% (28/30)} \\
+\quad --- \textbf{Class 1: System-1 Triage (12)} & $33.3\%$ ($4/12$) & $75.0\%$ ($9/12$) & $50.0\%$ ($6/12$) & $66.7\%$ ($8/12$) & $83.3\%$ ($10/12$) & \textbf{91.7\% (11/12)} \\
+\quad --- \textbf{Class 2: Doc Extraction (10)} & $50.0\%$ ($5/10$) & $100.0\%$ ($10/10$) & $100.0\%$ ($10/10$) & $100.0\%$ ($10/10$) & \textbf{100.0\% (10/10)} & \textbf{100.0\% (10/10)} \\
+\quad --- \textbf{Class 3: Dev Suite $K=4$ (8)} & $37.5\%$ ($3/8$) & $37.5\%$ ($3/8$) & $37.5\%$ ($3/8$) & $62.5\%$ ($5/8$) & $87.5\%$ ($7/8$) & \textbf{100.0\% (8/8)} \\
+\quad --- \textbf{Class 3: Unseen Held-Out $K_{\text{HO}}=4$} & $50.0\%$ ($4/8$) & $37.5\%$ ($3/8$) & $37.5\%$ ($3/8$) & $62.5\%$ ($5/8$) & $75.0\%$ ($6/8$) & \textbf{87.5\% (7/8)} \\
 \midrule
-\textbf{Total Pipeline Wall-Clock Time (s)} $\downarrow$ & $57.76\,\text{s}$ & $111.18\,\text{s}$ & $96.21\,\text{s}$ & \textbf{84.70 s} & $121.19\,\text{s}$ & P4 is $-26.48\,\text{s}$ ($-23.8\%$) faster than P2 \\
-\textbf{Mean Latency per Task (ms)} $\downarrow$ & $1,925.2\,\text{ms}$ & $3,706.0\,\text{ms}$ & $3,206.9\,\text{ms}$ & \textbf{2,823.2 ms} & $4,039.7\,\text{ms}$ & Sub-$4.1\,\text{s}$ mean with formal verification \\
-\textbf{Estimated CPU Energy ($24\,\text{W}$ Dynamic TDP)} $\downarrow$ & $1,386.1\,\text{J}$ & $2,635.9\,\text{J}$ & $2,293.8\,\text{J}$ & \textbf{2,019.4 J} & $2,899.5\,\text{J}$ & P4 saves $616.5\,\text{J}$ ($-23.4\%$) vs.\ P2 \\
-\textbf{Tasks Resolved Entirely at Tier-1 (\texttt{0.5B})} $\uparrow$ & $100.0\%$ ($30/30$) & $0.0\%$ ($0/30$) & $53.3\%$ ($16/30$) & $50.0\%$ ($15/30$) & \textbf{50.0\% (15/30)} & $50\%$ of workload solved at $<480\,\text{MiB}$ RAM \\
-\textbf{Tasks Escalated to Tier-2 (\texttt{1.5B})} & $0.0\%$ ($0/30$) & $100.0\%$ ($30/30$) & $46.7\%$ ($14/30$) & $50.0\%$ ($15/30$) & \textbf{50.0\% (15/30)} & Selective escalation under uncertainty \\
-\textbf{Tasks Escalated to Tier-3 (\texttt{3B Coder})} $\downarrow$ & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & \textbf{10.0\% (3/30)} & Surgical activation strictly on C3 residuals \\
-\textbf{Peak Active Edge RAM Footprint} $\downarrow$ & $\sim 480\,\text{MiB}$ & $\sim 1,120\,\text{MiB}$ & $<1.50\,\text{GiB}$ & $<1.50\,\text{GiB}$ & \textbf{$<$1.50 GiB (T1--T2)} & 1 server active in RAM at any instant \\
+\textbf{Total Pipeline Time (s)} & \textbf{57.76 s} & $111.18\,\text{s}$ & $96.21\,\text{s}$ & \textbf{84.70 s ($-23.8\%$ vs P2)} & $119.07\,\text{s}$ ($+7.1\%$ vs P2) & $121.19\,\text{s}$ ($+9.0\%$ vs P2) \\
+\textbf{Mean Latency per Task (ms)} & $1,925.2\,\text{ms}$ & $3,706.0\,\text{ms}$ & $3,206.9\,\text{ms}$ & \textbf{2,823.2 ms} & $3,968.9\,\text{ms}$ & $4,039.7\,\text{ms}$ \\
+\textbf{Analytical CPU Energy ($24\,\text{W} \times t$)} & $1,386.1\,\text{J}$ & $2,635.9\,\text{J}$ & $2,293.8\,\text{J}$ & \textbf{2,019.4 J ($-23.4\%$ vs P2)} & $2,848.5\,\text{J}$ ($+8.1\%$ vs P2) & $2,899.5\,\text{J}$ ($+10.0\%$ vs P2) \\
+\textbf{Tasks Resolved at Tier-1 (\texttt{0.5B})} & $100.0\%$ ($30/30$) & $0.0\%$ ($0/30$) & $53.3\%$ ($16/30$) & $50.0\%$ ($15/30$) & \textbf{50.0\% (15/30)} & \textbf{50.0\% (15/30)} \\
+\textbf{Tasks Escalated to Tier-2 (\texttt{1.5B})} & $0.0\%$ ($0/30$) & $100.0\%$ ($30/30$) & $46.7\%$ ($14/30$) & $50.0\%$ ($15/30$) & $50.0\%$ ($15/30$) & $50.0\%$ ($15/30$) \\
+\textbf{Tasks Escalated to Tier-3 (\texttt{3B})} & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & $0.0\%$ ($0/30$) & \textbf{10.0\% (3/30)} & \textbf{10.0\% (3/30)} \\
 \bottomrule
 \end{tabular}
 }
@@ -434,70 +371,72 @@ Having proven the physical distributed RAM substrate, \textbf{Labs 03, 04, and 0
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig3_labs03_05_policy_progression.pdf}
-\caption{\textbf{End-to-end progression across Policies P1 to P5 on the 30 PT-BR operational tasks (Labs 03--05).} (a) Global accuracy progression from $40.0\%$ (\texttt{P1: 0.5B}) and $63.3\%$ (\texttt{P3: Cascaded v0}) to $76.7\%$ (\texttt{P4: Swarm v1.0}) and $96.7\%$ (\texttt{P5: Swarm v1.5 Final}, $29/30$ tasks). (b) Breakdown across Class 1 ($91.7\%$), Class 2 ($100.0\%$), and Class 3 ($100.0\%$). (c) Total pipeline execution time ($84.70\,\text{s}$ in P4 beating P2's $111.18\,\text{s}$ by $26.48\,\text{s}$; $121.19\,\text{s}$ in P5 for a $+23.4\,\text{p.p.}$ accuracy jump over P2).}
+\caption{\textbf{Accuracy Progression, 95\% Wilson Confidence Intervals, and Latency/Energy Trade-Off across Policies P1 to P5b.} (A) Global accuracy on the $N=30$ benchmark with $95\%$ Wilson error bars and the out-of-sample Held-Out marker ($93.3\%$, $28/30$) for \texttt{P5b}. (B) Pareto trade-off between total pipeline time/energy and accuracy: \texttt{P4} ($76.7\%$, $84.70\,\text{s}$, $2,019.4\,\text{J}$) strictly dominates \texttt{P2} ($73.3\%$, $111.18\,\text{s}$, $2,635.9\,\text{J}$), whereas \texttt{P5a} and \texttt{P5b} expend additional CPU time on Tier-3 code synthesis ($\sim 9\text{--}12\,\text{s}$ per repair call) to reach $90.0\%\text{--}96.7\%$ accuracy.}
 \label{fig:progression}
 \end{figure}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{fig4_forensic_case_studies_aacr.pdf}
-\caption{\textbf{Forensic ablation of the three core neuro-symbolic mechanisms across Labs 03, 04, and 05.} (a) System-1 positional logit debiasing ($T=1.6, \beta_A=2.5$) on Class 1 tasks \texttt{T06}, \texttt{T10}, and \texttt{T11} where the raw $0.5\text{B}$ model assigned $91.8\%\text{--}99.4\%$ probability to false option \texttt{A}. (b) Comparison of Tier-2 (\texttt{1.5B}) decoding regimes in Class 1: verbose JSON CoT ($3.84\,\text{s}$, $75.0\%$), pure 1-token ($0.42\,\text{s}$, $66.7\%$), 45-token Micro-CoT ($1.45\,\text{s}$, $83.3\%$), and 65-token Micro-CoT with Deterministic Suffix Closure ($1.52\,\text{s}$, $91.7\%$). (c) Class 3 Rashomon LOO-CV verification trajectory across \texttt{T23}--\texttt{T30}, reaching $100.0\%$ ($8/8$) in Policy 5.}
-\label{fig:ablations}
-\end{figure}
+\subsection{Out-of-Sample Held-Out Generalization and Boundary Audit (32 Unseen Cases)}
+\label{sec:heldout}
 
-\textbf{Didactic Analysis of the Lab 03 $\to$ Lab 04 $\to$ Lab 05 Progression (Tables \ref{tab:policies_5}--\ref{tab:conversion} and Figures \ref{fig:progression}--\ref{fig:ablations}):}
-\begin{enumerate}
-    \item \textbf{Why Naive Cascading Failed in Lab 03 (\texttt{P3}: $63.3\%$) and How Lab 04 (\texttt{P4}: $76.7\%$) Beat the Monolithic Baseline:} In Lab 03, naive cascading (\texttt{Policy 3}) underperformed standalone $1.5\text{B}$ ($63.3\%$ vs.\ $73.3\%$) due to three subtle bugs uncovered by our forensic log audit: (i) on \texttt{T06}, \texttt{T10}, and \texttt{T11}, raw $0.5\text{B}$ softmax assigned $91.8\%$, $98.8\%$, and $99.4\%$ confidence to option \texttt{A} (when the ground truth was \texttt{B}), preventing escalation (Figure \ref{fig:ablations}a); (ii) on \texttt{T13}, \texttt{T14}, \texttt{T15}, \texttt{T17}, and \texttt{T22}, the $0.5\text{B}$ model extracted the exact monetary substring from the document, but formatted the float with two dots (\texttt{"32.400.00"}), causing a naive string parser to multiply the value by $100$ and trigger 5 unnecessary escalations to Tier-2; and (iii) on \texttt{T27}, CPython's two-dictionary \texttt{exec()} threw a false \texttt{NameError} on \texttt{datetime}. Introducing Positional Debiasing ($T=1.6, \beta_A=2.5$) + Order Inversion, Motor B's \texttt{FastSymbolicNormalizer}, and the unified sandbox in \textbf{Lab 04 (\texttt{Policy 4})} immediately lifted accuracy to \textbf{76.7\% (23/30)} while cutting total pipeline latency to \textbf{84.70\,s} (\textbf{26.48\,s faster and 23.4\% less CPU energy than running 1.5B alone}!).
-    \item \textbf{Resolving the 1-Token Reasoning Bottleneck via Controlled Micro-CoT + Suffix Closure in Lab 05:} In Lab 04, switching Tier-2 Class 1 escalations to pure 1-token decoding cut Tier-2 latency from $3,840\,\text{ms}$ to $420\,\text{ms}$ and rescued \texttt{T05} from JSON truncation, but caused \texttt{T01}, \texttt{T08}, and \texttt{T09} to fail because the $1.5\text{B}$ model needed one sentence of intermediate deduction before emitting the label. In Lab 05, \textbf{Controlled Micro-CoT with Deterministic Suffix Closure} (Equation \ref{eq:suffix_closure}) recovered \texttt{T01} ($2,106.8\,\text{ms}$), \texttt{T08} ($1,350.7\,\text{ms}$), and \texttt{T09} ($2,310.5\,\text{ms}$, where the suffix gate extracted score \texttt{5} $\mapsto$ \texttt{E}), raising Class 1 accuracy to \textbf{91.7\% (11/12)} (Figure \ref{fig:ablations}b).
-    \item \textbf{Closing the Algorithmic Frontier in Class 3 via Tier-3 AACR and Forensic Label Verification:} While the $0.5\text{B}$ model solved $5/8$ Class 3 tasks (\texttt{T24}, \texttt{T27}, \texttt{T28}, \texttt{T29}, \texttt{T30}) locally in $<3\,\text{s}$, the remaining 3 tasks (\texttt{T23} BR Phone Formatting, \texttt{T25} Multi-type PIX Sanitization, and \texttt{T26} Modulo-11 Check Digit) exceeded the algorithmic capacity of both $0.5\text{B}$ and $1.5\text{B}$. Routing their exact AACR residual diffs ($\Delta_{\text{AACR}}$) to the Tier-3 specialist (\texttt{Qwen2.5-Coder-3B-Instruct}) produced clean, generalizable Python functions that achieved \textbf{4/4 (100\%) LOO-CV verification across all 8 Class 3 tasks (8/8 = 100.0\%)} (Table \ref{tab:conversion}).
-\end{enumerate}
+A critical question raised during internal scientific review is whether passing $K=4$ visible functional tests in Class 3 demonstrates genuine algorithmic generalization or merely conformance to known examples (and whether providing a prescriptive Modulo-11 hint in \texttt{P5b} masks autonomous synthesis). To answer this rigorously without modifying the historical LLM outputs, we extracted the exact Python functions recorded in the raw JSON logs (\texttt{lab05\_tier3\_closure\_results.json} and \texttt{precise\_tier3\_results.json}) for \texttt{0.5B} (\texttt{P1/P4}), \texttt{1.5B} (\texttt{P2}), and \texttt{3B Coder} (\texttt{P5a}, generated \emph{before} the \texttt{P5b} prescriptive prompt patch) and evaluated them on a newly constructed, frozen \textbf{Held-Out Adversarial Test Suite $\mathcal{T}_{\text{HO}}$} comprising $4$ unseen test cases per task ($32$ unseen test cases total, Table \ref{tab:heldout}).
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Conversion of all 10 initially failing or truncated tasks across Classes 1, 2, and 3 into certified solutions under Polybee F3-Swarm v1.5 (Labs 04 \& 05).}}
-\label{tab:conversion}
+\caption{\textbf{Out-of-Sample Generalization Audit on $\mathcal{T}_{\text{HO}}$ ($32$ Unseen Test Cases across Tasks \texttt{T23}--\texttt{T30}).} Functions are taken verbatim from the frozen telemetry logs without re-prompting. \texttt{T25} and \texttt{T27} empirically illustrate finite-test Rashomon multiplicity ($\epsilon_{\text{FA}}(4) > 0$).}
+\label{tab:heldout}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{lcccl}
+\begin{tabular}{llccccl}
 \toprule
-\textbf{Task ID \& Class} & \textbf{Lab 03 Baseline (\texttt{P3})} & \textbf{Lab 05 Final (\texttt{P5})} & \textbf{F3-Swarm v1.5 Resolving Mechanism} & \textbf{Forensic Diagnostic \& Verification Outcome} \\
+\textbf{Task ID} & \textbf{Unseen Held-Out Adversarial / Boundary Inputs ($\mathcal{T}_{\text{HO}}$)} & \textbf{\texttt{0.5B} Raw} & \textbf{\texttt{1.5B} Raw} & \textbf{\texttt{3B} (Unpatched)} & \textbf{F3-Swarm Selected} & \textbf{Forensic Generalization Finding on Unseen Cases} \\
 \midrule
-\texttt{T01} (Class 1) & OK ($3.67\,\text{s}$ JSON) & \textbf{OK ($2.35\,\text{s}$)} & Tier-2 Controlled Micro-CoT ($22$ words) & Deduced overbilling refund $\to$ \texttt{Resposta final: C} \\
-\texttt{T05} (Class 1) & Fail (JSON Truncated) & \textbf{OK ($1.12\,\text{s}$)} & Tier-2 System-1 1-Token Prefix & Eliminated 150-token JSON overflow $\to$ \texttt{B (ALTO)} \\
-\texttt{T06} (Class 1) & Fail ($0.5\text{B}$ $P(A)=91.8\%$) & \textbf{OK ($1.18\,\text{s}$)} & Logit Debiasing ($T=1.6, \beta_A=2.5$) $\to$ Tier-2 & Unmasked $0.5\text{B}$ uncertainty ($p_{\max}=50.1\%$) $\to$ \texttt{B (NAO)} \\
-\texttt{T08} (Class 1) & Fail in P4 1-Token & \textbf{OK ($1.60\,\text{s}$)} & Tier-2 Controlled Micro-CoT ($11$ words) & Linked Procon notice to legal clause $\to$ \texttt{Resposta final: A} \\
-\texttt{T09} (Class 1) & Fail in P1--P4 & \textbf{OK ($2.56\,\text{s}$)} & Micro-CoT + 1-Token Suffix Closure ($\Psi_{\text{sem}}$) & Suffix gate emitted priority \texttt{5} $\mapsto$ \texttt{E} after 42-word CoT \\
-\texttt{T10} (Class 1) & Fail ($0.5\text{B}$ $P(A)=98.8\%$) & \textbf{OK ($0.79\,\text{s}$)} & Order-Inversion Gate $\to$ Tier-2 1-Token & Detected option flip asymmetry ($p_{\max}=71.3\%$) $\to$ \texttt{B (NAO)} \\
-\texttt{T11} (Class 1) & Fail ($0.5\text{B}$ $P(A)=99.4\%$) & \textbf{OK ($1.13\,\text{s}$)} & Order-Inversion Gate $\to$ Tier-2 1-Token & Detected LC 116/2003 5\% ISS ceiling violation $\to$ \texttt{B} \\
-\texttt{T13--T22} (Class 2) & 5 Escalated to $1.5\text{B}$ & \textbf{10/10 (9 on $0.5\text{B}$)} & Motor B \texttt{FastSymbolicNormalizer} ($\mathcal{V}_{\text{MotorB}}$) & Certified literal substring + BRL float on $0.5\text{B}$ ($-80\%$ escalations) \\
-\texttt{T27, T29} (Class 3) & Fail ($0/4$ NameError) & \textbf{OK (4/4 on $0.5\text{B}$)} & Unified Sandbox \texttt{exec(code, env, env)} & Resolved CPython global/local import scope directly on $0.5\text{B}$ \\
-\texttt{T23, T25, T26} (C3) & Fail ($1/4, 2/4, 0/4$) & \textbf{OK (4/4 on $3\text{B}$)} & Tier-3 \texttt{Qwen2.5-Coder-3B} + AACR Diff & Repaired regex/Modulo-11 branches to $100\%$ LOO-CV pass rate \\
+\texttt{T23} (Phone) & \texttt{"41988776655"}, \texttt{"5132223344"}, \texttt{"+55 11 91234-5678"}, \texttt{"85 99111 2233"} & $1/4$ & $1/4$ & \textbf{4/4} & \textbf{4/4 (\cmark)} & \texttt{3B} \texttt{re.sub(r'\textbackslash D','',t)} generalizes to spaces \& rejects 13-digit DDI \\
+\texttt{T24} (ISS) & SP ($2500\to 125$), PR ($1200\to 36$), MG ($850\to 34$), RS ($3000\to 60$) & \textbf{4/4} & \textbf{4/4} & --- & \textbf{4/4 (\cmark)} & Exact generalization across seen and unseen municipalities \\
+\texttt{T25} (PIX) & \texttt{" FINANCEIRO@POLYBEE.AI "}, CPF, \texttt{"evp-98765"}, \texttt{"evp-12345678901-xyz"} & $0/4$ & $3/4$ & \textbf{3/4} & \textbf{3/4 (\xmark)} & \textbf{False Acceptance ($\epsilon_{\text{FA}}$):} \texttt{3B} strips letters on 11-digit alphanumeric EVP \\
+\texttt{T26} (Mod11) & \texttt{"00000002"}$\to$\texttt{"7"}, \texttt{"87654321"}$\to$\texttt{"2"}, \texttt{"00000005"}$\to$\texttt{"1"}, \texttt{"00000006"}$\to$\texttt{"0"} & $0/4$ & $0/4$ & \textbf{4/4} & \textbf{4/4 (\cmark)} & Unpatched \texttt{3B} code (\texttt{2+(i\%8)}) generalizes $100\%$ to unseen inputs \\
+\texttt{T27} (Date) & \texttt{"29/02/2024"} (Leap), \texttt{"29/02/2025"} (Invalid), \texttt{"31/04/2026"} (Invalid), \texttt{"15/08/2026"} & \textbf{4/4} & $2/4$ & --- & \textbf{4/4 (\cmark)} & \textbf{Rashomon Split:} \texttt{0.5B} (\texttt{strptime})=$4/4$; \texttt{1.5B} (regex)=$2/4$ (accepts Feb 29 2025) \\
+\texttt{T28} (Disc) & $(5, 20.0)\to 100$, $(10, 50.0)\to 475$, $(20, 30.0)\to 540$, $(60, 15.0)\to 720$ & \textbf{4/4} & \textbf{4/4} & --- & \textbf{4/4 (\cmark)} & Exact piecewise linear discount generalization \\
+\texttt{T29} (Email) & \texttt{"engenharia@weg.net"}, \texttt{"suporte@OUTLOOK.COM"}, \texttt{"ana@yahoo.com"}, \texttt{"ceo@Itau..."} & $0/4^*$ & $3/4$ & --- & \textbf{4/4 (\cmark)} & Lab 04 \texttt{0.5B} lowercased domain check generalizes $4/4$ ($1.5\text{B}$ misses \texttt{OUTLOOK}) \\
+\texttt{T30} (ANS) & Boundary ages: $0\to\texttt{"0-18"}$, $18\to\texttt{"0-18"}$, $28\to\texttt{"19-28"}$, $48\to\texttt{"29-48"}$ & \textbf{4/4} & \textbf{4/4} & --- & \textbf{4/4 (\cmark)} & Exact boundary-value generalization on all thresholds \\
+\midrule
+\textbf{Total $\mathcal{T}_{\text{HO}}$} & \textbf{32 Unseen Held-Out Test Cases ($8$ Tasks $\times 4$ Cases)} & $17/32$ & $21/32$ & $11/12$ & \textbf{31/32 (96.9\%)} & \textbf{Strict $4/4$ Task Generalization: 7/8 (87.5\%); $\hat{\epsilon}_{\text{FA}}(4) = 12.5\%$} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
 
-% ============================================================================
-\section{Threats to Validity, Forensic Audit, and Wake-Sleep Roadmap}
-% ============================================================================
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig4_forensic_case_studies_aacr.pdf}
+\caption{\textbf{Out-of-Sample Generalization Audit ($\mathcal{T}_{\text{HO}}$, 32 Unseen Cases) and Class-Level Breakdown.} (A) Unseen test cases passed per Class 3 task: in \texttt{T27}, \texttt{0.5B} (\texttt{datetime.strptime}) passes $4/4$ calendar boundary checks while \texttt{1.5B} (regex) drops to $2/4$; in \texttt{T25}, \texttt{3B} passes $3/4$ unseen cases but fails on an adversarial alphanumeric EVP key containing 11 digits. (B) Strict task accuracy across classes, comparing $K=4$ in-sample verification ($100.0\%$ in \texttt{P5b}) against unseen Held-Out verification ($87.5\%$ in \texttt{P5b}).}
+\label{fig:ablations}
+\end{figure}
 
-\textbf{1. Forensic Audit of Benchmark Ground-Truth Labels (\texttt{T26} Modulo-11 Discovery):}
-A major methodological contribution of our verifier-guided workflow in Lab 05 was the forensic audit of Task \texttt{T26} (\emph{Calculate Brazilian Modulo-11 Check Digit with weights $2\dots 9$ from right to left, returning \texttt{'0'} if remainder $<2$ else $11 - \text{remainder}$}). When \texttt{Qwen2.5-Coder-3B} synthesized the clean canonical implementation:
-\begin{center}
-\small\texttt{soma = sum(int(c) * (2 + (i \% 8)) for i, c in enumerate(reversed(numero)))} \\
-\small\texttt{resto = soma \% 11; return '0' if resto < 2 else str(11 - resto)}
-\end{center}
-the initial static test harness reported only $2/4$ passes (failing on inputs \texttt{"12345678"} and \texttt{"11111111"}). Rather than blindly penalizing the model, we audited the arithmetic manually: for \texttt{"12345678"}, the right-to-left weighted sum is $8(2)+7(3)+6(4)+5(5)+4(6)+3(7)+2(8)+1(9) = 156$. Since $156 = 14 \times 11 + 2$, the remainder is $\text{resto} = 2$, and the true check digit is $11 - 2 = \mathbf{9}$—\emph{the exact value returned by \texttt{Qwen2.5-Coder-3B}}, whereas the static test script had mistakenly recorded the raw remainder \texttt{"2"}! Likewise, for \texttt{"11111111"}, $\sum_{i=0}^7 (2+i) = 44 \equiv 0 \pmod{11} < 2 \implies \text{DV} = \mathbf{0}$. Correcting the two human arithmetic typos in \texttt{tasks\_data.py} confirmed $4/4$ ($100\%$) LOO-CV verification across all 8 Class 3 tasks.
-
-\textbf{2. Epistemic Transparency on the Single Remaining Discrepancy (\texttt{T03}):}
-Across all $30$ operational tasks in Policy 5 ($29/30 = 96.7\%$), the sole task that did not match the reference label was \textbf{\texttt{T03}} (IT Incident Urgency Classification), where Tier-2 selected option \texttt{C (ALTA / High)} instead of \texttt{D (CRITICA / Critical)} after its Micro-CoT reasoning correctly identified high financial transaction risk. We explicitly refrain from tuning the prompt of \texttt{T03} post-hoc to force a $100\%$ score; reporting $96.7\%$ ($29/30$) with zero prompt overfitting preserves strict scientific integrity.
-
-\textbf{3. Scope of Process Isolation vs.\ Multi-Machine Physical LAN Deployment:}
-In Lab 02, our 3-node distributed RAM ring pipeline was validated using three OS-isolated worker processes with independent Win32 kernel working-set quotas ($600\,\text{MiB}$ each) communicating over real TCP/IP sockets with injected network RTT profiles ($0.5\,\text{ms}$ LAN to $60\,\text{ms}$ WAN), while Labs 03--05 enforced sequential single-server process isolation on a single physical host. Our immediate roadmap for \textbf{Polybee F3-Swarm v2.0} integrates: (i) multi-host mDNS zero-configuration discovery across heterogeneous LAN desktops/laptops, (ii) persistent SQLite caching of Rashomon-certified Python functions ($<0.5\,\text{ms}$ replay latency), and (iii) \textbf{F3-Metabolic-Optim NREM Wake-Sleep Consolidation} \cite{oliveira2026f3agi}, distilling Tier-3 AACR code repairs into lightweight $15\,\text{MB}$ LoRA adapters for the Tier-1 $0.5\text{B}$ edge model during idle nighttime cycles.
+Table \ref{tab:heldout} and Figure \ref{fig:ablations} yield three substantive scientific insights that directly validate Proposition \ref{prop:swarm_dominance}:
+\begin{enumerate}
+    \item \textbf{Empirical Proof of Rashomon Multiplicity on \texttt{T27} (\texttt{0.5B} Beats \texttt{1.5B} Out-of-Sample):} On the $K=4$ development cases of \texttt{T27} (Brazilian date parsing), both \texttt{0.5B} (\texttt{datetime.strptime(texto, '\%d/\%m/\%Y')}) and \texttt{1.5B} (\texttt{re.match(r'\^{}(\textbackslash d\{2\})\textbackslash /(\textbackslash d\{2\})\textbackslash /(\textbackslash d\{4\})\$', texto)}) achieve $4/4$ ($100\%$) once CPython's unified namespace is enabled. However, on the unseen Held-Out Suite $\mathcal{T}_{\text{HO}}$ containing non-leap-year \texttt{"29/02/2025"} and invalid calendar date \texttt{"31/04/2026"}, \textbf{the smaller \texttt{0.5B} model achieves $4/4$ ($100\%$) whereas \texttt{1.5B} drops to $2/4$ ($50\%$)}, falsely outputting \texttt{"2025-02-29"} and \texttt{"2026-04-31"}! Because F3-Swarm retains the Tier-1 solution whenever it passes verification, it preserves the calendar-sound \texttt{0.5B} implementation.
+    \item \textbf{Measuring the Finite-Test False-Acceptance Rate $\hat{\epsilon}_{\text{FA}}(4)$ on \texttt{T25}:} In \texttt{T25} (PIX Key Sanitization), \texttt{Qwen2.5-Coder-3B} achieved $4/4$ on $\mathcal{T}_{\text{dev}}$ by stripping non-digits and checking \texttt{if len(digitos) == 11: return digitos}. While this succeeds on emails, formatted CPFs, and random keys with $\neq 11$ digits, our adversarial held-out test \texttt{"  evp-12345678901-xyz  "} (an alphanumeric random PIX key containing exactly 11 digits) exposes a false acceptance: the function strips the letters and returns \texttt{"12345678901"} ($3/4$ on $\mathcal{T}_{\text{HO}}$). Across the $8$ Class 3 tasks, $7/8$ ($87.5\%$) pass all $4/4$ unseen held-out cases ($31/32 = 96.9\%$ case-level accuracy), yielding an empirical task-level false-acceptance rate of $\hat{\epsilon}_{\text{FA}}(4) = 1/8 = 12.5\%$.
+    \item \textbf{Autonomous Synthesis of Modulo-11 (\texttt{T26}) Without Prescriptive Prompt Leakage:} In the unpatched Step 3 log (\texttt{precise\_tier3\_results.json}), \emph{prior} to the \texttt{P5b} prompt patch, \texttt{Qwen2.5-Coder-3B} autonomously synthesized \texttt{peso = 2 + (i \% 8); resto = soma \% 11; return '0' if resto < 2 else str(11 - resto)}. Evaluating this unpatched function on the $4$ unseen Modulo-11 cases in Table \ref{tab:heldout} yields \textbf{4/4 (100\%)}, confirming that the Tier-3 model did not require the prescriptive \texttt{P5b} prompt hint to solve FEBRABAN Modulo-11; the $2/4$ score in \texttt{P5a} was solely an artifact of the two miscalculated expected values in the original \texttt{tasks\_data.py} file.
+\end{enumerate}
 
 % ============================================================================
-\section*{Reproducibility and Open-Source Code Availability}
+\section{Limitations, Threats to Validity, and Future Work}
+\label{sec:limitations}
 % ============================================================================
-All benchmark scripts (\texttt{f3\_swarm\_lab01\_bench.py} through \texttt{f3\_swarm\_lab05\_tier3\_closure.py}), the 30-task PT-BR operational suite (\texttt{tasks\_data.py}), hardware introspection tools, and raw JSON telemetry logs (\texttt{lab01} to \texttt{lab05}) are released open-source under the MIT License at \url{https://github.com/henrique-polybee/polybee-f3-swarm}.
+
+To guide future work and ensure rigorous interpretation of our findings, we summarize the six primary limitations of the present study:
+\begin{enumerate}
+    \item \textbf{Single-Host Loopback Emulation in Track A (Lab 02):} The 3-worker TCP pipeline in Lab 02 was executed across three OS processes on a single machine via \texttt{127.0.0.1} with \texttt{time.sleep()}-injected RTTs and dense $4096 \times 4096$ matrices, rather than full LLM attention/KV-cache layers across separate physical hosts. Real multi-host Wi-Fi and WAN links exhibit packet jitter, TCP congestion window dynamics, and NIC serialization overhead not captured by constant sleep delays.
+    \item \textbf{Non-Integration of Track A and Track B:} Track B (\texttt{Labs 03--05}) executed all GGUF models locally via sequential \texttt{llama-server} process multiplexing rather than sharding \texttt{Qwen2.5-Coder-3B} across the Track A TCP ring. Physical multi-host integration via \texttt{llama.cpp} RPC is an unvalidated future milestone.
+    \item \textbf{Sample Size ($N=30$) and Iterative Development Risk:} Because the $30$-task operational benchmark was used across Labs 03--05 to diagnose failure modes (such as CPython's \texttt{exec} scoping, multi-dot BRL floats, and Micro-CoT token budgets), architectural hyperparameters ($T=1.6, \beta_A=2.5, N_{\text{predict}}=65$) carry a risk of benchmark overfitting. Under a binomial model, $27/30$ ($90.0\%$) corresponds to a $95\%$ Wilson confidence interval of $[74.4\%, 96.5\%]$, and $29/30$ ($96.7\%$) to $[83.3\%, 99.4\%]$.
+    \item \textbf{Latency and Energy Trade-Off of Tier-3 Escalation:} While \texttt{Policy 4} ($76.7\%$, $84.70\,\text{s}$) is strictly faster and more energy-efficient than standalone \texttt{1.5B} (\texttt{Policy 2}: $73.3\%$, $111.18\,\text{s}$), invoking the $3\text{B}$ specialist in \texttt{Policy 5a/5b} increases total execution time to $119.07\text{--}121.19\,\text{s}$ ($+7.1\%\text{--}9.0\%$ slower than \texttt{P2}), representing a quality-versus-latency trade-off rather than simultaneous dominance across all metrics.
+    \item \textbf{Finite-Test Verification ($\epsilon_{\text{FA}} > 0$) and Prompt-Guided Repair:} Four unit tests cannot guarantee formal program verification over arbitrary inputs (as demonstrated by \texttt{T25}'s $3/4$ score on $\mathcal{T}_{\text{HO}}$), and \texttt{Policy 5b} exposed all $4$ development test cases inside the repair prompt. Future evaluations must enforce strict train/validation/test splits where repair prompts only see $K_{\text{train}}$ public examples and final scoring is computed exclusively on hidden $K_{\text{test}}$ suites.
+    \item \textbf{Absence of OS Security Sandboxing in \texttt{exec()}:} The unified-namespace harness (\texttt{exec(code, env, env)}) does not restrict filesystem, network, or syscall access and must not be used with untrusted inputs without container or WebAssembly isolation.
+\end{enumerate}
+
+% ============================================================================
+\section*{Reproducibility and Open-Source Artifacts}
+% ============================================================================
+All benchmark scripts, raw JSON telemetry logs (\texttt{hardware\_inventory\_lab01.json}, \texttt{f3\_swarm\_lab01\_results.json}, \texttt{lab02\_physical\_results.json}, \texttt{lab03\_real\_llm\_results.json}, \texttt{lab04\_aacr\_results.json}, \texttt{lab05\_tier3\_closure\_results.json}, \texttt{precise\_tier3\_results.json}, \texttt{step2\_micro\_cot\_results.json}), and the automated JSON-driven verification and Held-Out audit script (\texttt{reproduce\_all\_results.py}) are publicly available under the MIT License at \url{https://github.com/henrique-polybee/polybee-f3-swarm}.
 
 % ============================================================================
 \begin{thebibliography}{99}
@@ -511,12 +450,27 @@ Henrique Oliveira.
 \bibitem{borzunov2023petals}
 Alexander Borzunov, Dmitry Baranchuk, Tim Dettmers, Max Ryabinin, Younes Belkada, Artem Chumachenko, Pavel Samygin, and Colin Raffel.
 \newblock Petals: Collaborative Inference and Fine-tuning of Large Models.
-\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL System Demonstrations)}, pages 558--568, 2023. \url{https://arxiv.org/abs/2209.01188}
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL System Demonstrations)}, pages 558--568, 2023 (NeurIPS 2022 Workshop). \url{https://arxiv.org/abs/2209.01188}
 
-\bibitem{typesafe2025jev}
-TypeSafe AI Research Team.
-\newblock Introducing System One Models and Jev: Sub-second Calibrated Decision Models for Agentic Routing.
-\newblock \emph{TypeSafe AI Technical Report}, 2025. \url{https://typesafe.ai/blog/introducing-system-one-models-and-jev}
+\bibitem{dahshan2026swarmllm}
+Mostafa Dahshan, Quazi Mamun, et al.
+\newblock SWARM-LLM: Collaborative Inference for Edge-based Small Language Models.
+\newblock \emph{arXiv preprint arXiv:2606.14711 [cs.DC]}, April 22, 2026. \url{https://arxiv.org/abs/2606.14711}
+
+\bibitem{liu2025flowspec}
+Xing Liu et al.
+\newblock FlowSpec: Continuous Pipelined Speculative Decoding for Efficient Distributed LLM Inference.
+\newblock \emph{arXiv preprint arXiv:2507.02620 [cs.DC]}, July 2025 (Revised January 2026). \url{https://arxiv.org/abs/2507.02620}
+
+\bibitem{narasimhan2024cascades}
+Harikrishna Narasimhan, Wittawat Jitkrittum, Aditya Krishna Menon, Ankit Singh Rawat, Seungyeon Kim, and Sanjiv Kumar.
+\newblock Faster Cascades via Speculative Decoding.
+\newblock \emph{arXiv preprint arXiv:2405.19261} (Google Research), 2024/2025. \url{https://arxiv.org/abs/2405.19261}
+
+\bibitem{typesafe2026jev}
+Diogo Almeida and TypeSafe AI Team.
+\newblock Introducing System One Models and Jev: Non-Autoregressive Calibrated Decision Models for Software Automation.
+\newblock \emph{TypeSafe AI Technical Announcement}, September 15, 2026. \url{https://typesafe.ai/}
 
 \bibitem{mlodozeniec2026rashomon}
 Bruno Mlodozeniec and Spencer Frei.
@@ -558,6 +512,11 @@ Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, E
 \newblock Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.
 \newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, volume 35, pages 24824--24837, 2022. \url{https://arxiv.org/abs/2201.11903}
 
+\bibitem{wilson1927probable}
+Edwin~B. Wilson.
+\newblock Probable Inference, the Law of Succession, and Statistical Inference.
+\newblock \emph{Journal of the American Statistical Association}, 22(158):209--212, 1927.
+
 \bibitem{chen2024punica}
 Lequn Chen, Zihao Ye, Yongji Wu, Danyang Zhuo, Luis Ceze, and Arvind Krishnamurthy.
 \newblock Punica: Multi-Tenant LoRA Serving.
@@ -568,138 +527,82 @@ Ying Sheng, Shiyi Cao, Dacheng Li, Coleman Hooper, Nicholas Lee, Shuo Yang, Chri
 \newblock S-LoRA: Serving Thousands of Concurrent LoRA Adapters.
 \newblock \emph{arXiv preprint arXiv:2311.03285}, 2023. \url{https://arxiv.org/abs/2311.03285}
 
-\bibitem{zainal2024syngap}
-Isabelle Aguilar, Zayn Andre Zainal, and Omid Kavehei.
-\newblock Metaplasticity as adaptive gradient preconditioning for incremental learning.
-\newblock \emph{arXiv preprint arXiv:2608.14634}, 2026. \url{https://arxiv.org/abs/2608.14634}
-
-\bibitem{vanrossum2025mistake}
-Aaron Pache and Mark C.~W. van Rossum.
-\newblock Mistake gating leads to energy and memory efficient continual learning.
-\newblock \emph{arXiv preprint arXiv:2604.14336}, 2026. \url{https://arxiv.org/abs/2604.14336}
-
 \end{thebibliography}
 
 \newpage
 \appendix
 
 % ============================================================================
-\section{Mathematical Proofs of Theoretical Guarantees}
+\section{Mathematical Proofs of Conditional Propositions}
 \label{app:proofs}
 % ============================================================================
 
-\textbf{Proof of Proposition \ref{prop:ram_dominance} (Strict Dominance of Distributed RAM Ring over Local NVMe Swap).}
-Let an $L$-layer Transformer have total weight memory $M_{\text{model}}$ bytes and per-layer weight size $m_l = M_{\text{model}}/L$. Under a single-node physical RAM Working-Set quota $Q_{\text{RAM}} < M_{\text{model}}$, at most $L_{\text{RAM}} = \lfloor Q_{\text{RAM}} / m_l \rfloor$ layers remain resident in DRAM, while $L_{\text{swap}} = L - L_{\text{RAM}}$ layers ($\Delta M_{\text{swap}} = M_{\text{model}} - Q_{\text{RAM}}$ bytes) must be fetched from NVMe storage on every autoregressive token step $t$. Because matrix-vector multiplication work $T_{\text{compute}}(L) = \sum_{l=1}^L T_{\text{AVX512}}(W_l, \mathbf{h}_t)$ and total DRAM read time $M_{\text{model}}/B_{\text{DRAM}}$ are invariant to whether the $L$ layers execute inside one process or sequentially across $K$ processes on identical CPU cores, the net per-token latency difference $\Delta \text{TPOT} = \text{TPOT}_{\text{swap}} - \text{TPOT}_{\text{ring}}$ between Equation (\ref{eq:tpot_swap}) and Equation (\ref{eq:tpot_ring}) is:
+\textbf{Proof of Proposition \ref{prop:ram_dominance} (Analytical Crossover for Resident-Weight Pipelining vs.\ Disk Streaming).}
+Under Equation (\ref{eq:tpot_swap}), single-process execution with working-set quota $Q_{\text{RAM}} < M_{\text{model}}$ retains $L_{\text{RAM}}$ layers in DRAM and reads $\Delta M_{\text{swap}} = M_{\text{model}} - L_{\text{RAM}}m_l$ bytes from unbuffered SSD at bandwidth $B_{\text{SSD}}$ on each step. Under Equation (\ref{eq:tpot_ring}), partitioning the $L$ stages across $K$ processes with $M_{\text{model}}/K \le Q_{\text{RAM}}$ keeps all $M_{\text{model}}$ bytes in DRAM and transfers $K$ vectors of size $S_{\text{act}}$ over TCP. Subtracting Equation (\ref{eq:tpot_ring}) from Equation (\ref{eq:tpot_swap}) cancels $T_{\text{compute}}(L)$ and yields:
 \begin{equation}
-\Delta \text{TPOT} = \frac{\Delta M_{\text{swap}}}{B_{\text{SSD}}} + L_{\text{swap}}\,\tau_{\text{fault}} - K\left(\tau_{\text{net}} + \frac{S_{\text{act}}}{B_{\text{net}}}\right).
+\text{TPOT}_{\text{stream}} - \text{TPOT}_{\text{pipe}} = \Delta M_{\text{swap}}\!\left(\frac{1}{B_{\text{SSD}}} - \frac{1}{B_{\text{DRAM}}}\right) + L_{\text{swap}}\,\tau_{\text{io}} - K\!\left(\tau_{\text{hop}} + \frac{S_{\text{act}}}{B_{\text{net}}}\right).
 \end{equation}
-Setting $\Delta \text{TPOT} > 0$ and dividing by $K$ yields the exact threshold $\tau_{\text{net}} < \tau_{\text{crit}} = \frac{\Delta M_{\text{swap}}}{K \cdot B_{\text{SSD}}} + \frac{L_{\text{swap}}}{K}\tau_{\text{fault}} - \frac{S_{\text{act}}}{B_{\text{net}}}$. Substituting the physical parameters of Lab 02 ($\Delta M_{\text{swap}} = 1.00\,\text{GiB} = 1073.74\,\text{MB}$, $K = 3$, $B_{\text{SSD}} = 1572.66\,\text{MB/s}$, $S_{\text{act}} = 16,384\,\text{bytes}$, $B_{\text{net}} \ge 12.5\,\text{MB/s}$) gives $\frac{\Delta M_{\text{swap}}}{K \cdot B_{\text{SSD}}} = \frac{1073.74}{3 \times 1572.66} = 0.2276\,\text{s} = 227.6\,\text{ms}$, while $\frac{S_{\text{act}}}{B_{\text{net}}} \le 1.3\,\text{ms}$, establishing $\tau_{\text{crit}} > 212\,\text{ms}$ per hop. Finally, because TCP guarantees lossless ordered byte delivery of the 32-bit IEEE-754 buffer $\mathbf{h}_t \in \mathbb{R}^{4096}$ between layer slices $\mathcal{L}_k$ and $\mathcal{L}_{k+1}$, each layer $l$ receives the exact bit pattern it receives in monolithic in-RAM execution, proving $\max_j |\mathbf{h}_{L,j}^{\text{ring}} - \mathbf{h}_{L,j}^{\text{mono}}| \equiv 0.0$. $\blacksquare$
+Dividing by $K$ gives $\tau_{\text{hop}} < \tau_{\text{crit}}$ in Equation (\ref{eq:net_bound}). Bit-exact parity ($\max|\Delta| = 0.0$) holds because each worker $k$ applies the exact same deterministic \texttt{float32} NumPy/AVX-512 operations to the lossless byte buffer received from worker $k-1$. $\blacksquare$
 
-\textbf{Proof of Lemma \ref{lemma:inversion} (Elimination of Unilateral Positional False Positives).}
-Let $\mathcal{O} = (o_1, o_2)$ where $s(o_2) - s(o_1) = \Delta s > 0$, and suppose slot $A$ receives additive positional bias $b_{\text{pos}} > \Delta s + \beta_A$. Under forward ordering $\mathcal{O}$, option $o_1$ occupies slot $A$ and $o_2$ occupies slot $B$. By Equation (\ref{eq:system1_cal}), the calibrated logit margin between slot $A$ and slot $B$ is:
-\begin{equation}
-\tilde{z}_A(\mathcal{O}) - \tilde{z}_B(\mathcal{O}) = \frac{s(o_1) + b_{\text{pos}} - \beta_A - s(o_2)}{T} = \frac{b_{\text{pos}} - \beta_A - \Delta s}{T} > 0,
-\end{equation}
-so $\arg\max_k p_k(\mathcal{O}) = A$, mapping to semantic choice $\Phi(\mathcal{O}) = o_1$. Because $\arg\max_k p_k(\mathcal{O}) = A$, Algorithm 1 Line 4 obligatorily triggers the inverted query $\pi(\mathcal{O}) = (o_2, o_1)$, where $o_2$ now occupies slot $A$ and $o_1$ occupies slot $B$. Under $\pi(\mathcal{O})$, the calibrated logit margin is:
-\begin{equation}
-\tilde{z}_A(\pi(\mathcal{O})) - \tilde{z}_B(\pi(\mathcal{O})) = \frac{s(o_2) + b_{\text{pos}} - \beta_A - s(o_1)}{T} = \frac{\Delta s + (b_{\text{pos}} - \beta_A)}{T} > \frac{2\,\Delta s}{T} > 0,
-\end{equation}
-which selects slot $A$ in the inverted prompt, mapping to semantic choice $\Phi(\pi(\mathcal{O})) = o_2 \neq o_1 = \Phi(\mathcal{O})$. Thus $\mathbb{I}(\Phi(\mathcal{O}) = \Phi(\pi(\mathcal{O}))) = 0$, forcing $\mathcal{G}_{\text{Sys1}}(x; \mathcal{O}) = 0$ and routing the task to Tier-2. $\blacksquare$
+\textbf{Proof of Lemma \ref{lemma:inversion} (Conditional Detection of Additive First-Slot Bias).}
+Under the additive decomposition $z_k(\mathcal{O}) = s(o_k) + b_k$ with $s(o_2) - s(o_1) = \Delta s > 0$, forward ordering $\mathcal{O} = (o_1, o_2)$ places $o_1$ in slot $A$, yielding calibrated difference $\tilde{z}_A(\mathcal{O}) - \tilde{z}_B(\mathcal{O}) = (b_{\text{pos}} - \beta_A - \Delta s)/T$. When $b_{\text{pos}} - \beta_A > \Delta s$, $\Phi(\mathcal{O}) = o_1$. Under reversed ordering $\pi(\mathcal{O}) = (o_2, o_1)$, $o_2$ occupies slot $A$, yielding $\tilde{z}_A(\pi(\mathcal{O})) - \tilde{z}_B(\pi(\mathcal{O})) = (\Delta s + b_{\text{pos}} - \beta_A)/T > 2\Delta s / T > 0$, so $\Phi(\pi(\mathcal{O})) = o_2 \neq \Phi(\mathcal{O})$ and $\mathcal{G}_{\text{Sys1}} = 0$. Conversely, if an order-invariant misconception satisfies $s(o_{\text{wrong}}) - s(o_{\text{true}}) > |b_{\text{pos}} - \beta_A|$, then $o_{\text{wrong}}$ wins under both orderings ($\Phi(\mathcal{O}) = \Phi(\pi(\mathcal{O})) = o_{\text{wrong}}$), establishing the non-zero semantic error floor $\epsilon_{\text{sem}} > 0$. $\blacksquare$
 
-\textbf{Proof of Proposition \ref{prop:swarm_dominance} (Strict Monotonic Accuracy Dominance of Verifier-Gated Swarms).}
-For any task $x \in \mathcal{T}_{\text{ver}}$, soundness of the verifier $\mathcal{V}$ guarantees that no incorrect candidate is ever accepted at Tier-1 or Tier-2 ($\Pr(\text{Correct}(h^{(k)}) = 1 \mid \mathcal{V}(h^{(k)}) = 1) = 1$). Let $E_k$ denote the event $\mathcal{V}(h^{(k)}) = 1$ at Tier $k \in \{1, 2, 3\}$. Because Tier 2 is invoked if and only if $\neg E_1$, and Tier 3 is invoked if and only if $\neg E_1 \land \neg E_2$, the disjoint union $E_{\text{swarm}} = E_1 \sqcup (\neg E_1 \land E_2) \sqcup (\neg E_1 \land \neg E_2 \land E_3)$ has probability:
-\begin{equation}
-\Pr(E_{\text{swarm}}) = p_1 + (1 - p_1)p_2 + (1 - p_1)(1 - p_2)p_3 = 1 - (1 - p_1)(1 - p_2)(1 - p_3).
-\end{equation}
-In our empirical Class 3 benchmark ($N=8$), $p_1 = 5/8 = 0.625$ on $0.5\text{B}$, and $p_3 = 3/3 = 1.00$ on the 3 residual tasks escalated to Tier-3 (\texttt{Qwen2.5-Coder-3B}), yielding $\text{Acc}(\mathcal{S}_{\text{F3}}; \text{Class 3}) = 1 - (1 - 0.625)(1 - 0)(1 - 1.0) = 1.00$ ($100.0\%$), compared to $37.5\%$ ($3/8$) for standalone Tier-1 or Tier-2. $\blacksquare$
+\textbf{Proof of Proposition \ref{prop:swarm_dominance} (Conditional Cascade Accuracy Bound under Finite-Test Verification).}
+Let $E_m$ be the event $\mathcal{V}_K(h_{\text{T}m}) = 1$ for tier $m \in \{1,2,3\}$. Because tier $m$ is queried if and only if $\bigwedge_{j < m} \neg E_j$, the disjoint union $E_{\text{pass}} = E_1 \sqcup (\neg E_1 \land E_2) \sqcup (\neg E_1 \land \neg E_2 \land E_3)$ occurs with probability $\text{Pass}_K(\mathcal{S}_{\text{F3}}) = p_1 + (1-p_1)p_2 + (1-p_1)(1-p_2)p_3 = 1 - (1-p_1)(1-p_2)(1-p_3)$, proving Equation (\ref{eq:swarm_acc_insample}). On an out-of-sample distribution $\mathcal{D}_{\text{OOS}}$, conditioning on $E_{\text{pass}}$ and applying the definition $\epsilon_{\text{FA}}(K) = \Pr(\text{Correct}_{\text{OOS}} = 0 \mid E_{\text{pass}})$ yields $\Pr(\text{Correct}_{\text{OOS}} = 1) \ge \Pr(E_{\text{pass}})\,\Pr(\text{Correct}_{\text{OOS}} = 1 \mid E_{\text{pass}}) = \text{Pass}_K(\mathcal{S}_{\text{F3}})(1 - \epsilon_{\text{FA}}(K))$, proving Equation (\ref{eq:swarm_acc_oos}). $\blacksquare$
 
 % ============================================================================
-\section{Hardware, Hyperparameter, and Calibration Configuration Details}
-% ============================================================================
-
-\begin{table}[htbp]
-\centering
-\caption{\textbf{Complete physical hardware, hyperparameter, and neuro-symbolic gate constants for Polybee F3-Swarm v1.5 across Labs 01 to 05.}}
-\label{tab:hyperparams}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{llcc}
-\toprule
-\textbf{Subsystem / Layer} & \textbf{Parameter Symbol \& Physical Description} & \textbf{Empirical Value / Setting} & \textbf{Code / Lab Reference} \\
-\midrule
-\textbf{Host Hardware (Labs 01--05)} & Processor / Microarchitecture & Intel Core i7-11370H (4C/8T @ $3.30\,\text{GHz}$, Tiger Lake) & \texttt{hardware\_inventory\_lab01.json} \\
- & Active Vector ISA Extensions & \texttt{AVX2, AVX-512F, AVX-512DQ, AVX-512BW, AVX-512VL} & CPUID Leaf 7 Telemetry \\
- & Total Physical RAM / Baseline Free RAM & $15.788\,\text{GiB}$ Total / $2.789\,\text{GiB}$ Free ($82\%$ OS load) & \texttt{GlobalMemoryStatusEx} \\
- & Unbuffered Sequential NVMe Read Speed & $1,452.95\text{--}1,572.66\,\text{MB/s}$ (\texttt{FILE\_FLAG\_NO\_BUFFERING}) & \texttt{f3\_swarm\_lab02\_physical\_test.py} \\
- & Dynamic CPU Power Envelope ($P_{\text{TDP}}$) & $24.0\,\text{W}$ sustained under AVX-512 inference & Labs 03--05 Energy Integrator \\
-\midrule
-\textbf{Lab 02 Distributed Ring} & Per-Process Hard Working-Set Quota $Q_{\text{RAM}}$ & $600.0\,\text{MiB}$ (\texttt{QUOTA\_LIMITS\_HARDWS\_MAX\_ENABLE}) & \texttt{SetProcessWorkingSetSizeEx} \\
- & Transformer Dimensions ($L \times d_{\text{model}}$) & $24$ layers $\times 4096 \times 4096$ \texttt{float32} ($1.50\,\text{GiB}$) & $3$ TCP Workers ($8$ layers = $512\,\text{MiB}$/node) \\
-\midrule
-\textbf{Tier-1 Edge SLM (Motor A)} & Model Backbone \& Quantization & \texttt{Qwen2.5-0.5B-Instruct-Q4\_K\_M.gguf} ($491\,\text{MB}$) & Peak RSS $\approx 480\,\text{MiB}$ \\
- & Logit Temperature $T$ / Positional Penalty $\beta_A$ & $T = 1.60 \;/\; \beta_A = 2.50$ ($\beta_{k \neq A} = 0.0$) & \texttt{f3\_swarm\_lab04\_aacr\_calibrated.py} \\
- & Confidence Gate $\tau_{\text{conf}}$ / Inversion Trigger & $\tau_{\text{conf}} = 0.85$ / Trigger flip if $p_{\max} < 0.88 \lor \hat{k} = A$ & Equation (\ref{eq:gate_sys1}) \\
-\midrule
-\textbf{Tier-2 Local Escalation} & Model Backbone \& Quantization & \texttt{Qwen2.5-1.5B-Instruct-Q4\_K\_M.gguf} ($1.11\,\text{GB}$) & Peak RSS $\approx 1,120\,\text{MiB}$ \\
- & Controlled Micro-CoT Budget / Suffix Gate & $N_{\text{predict}} = 65, T = 0.0$ + 1-token \texttt{"\textbackslash nResposta final: "} & \texttt{f3\_swarm\_lab05\_tier3\_closure.py} \\
-\midrule
-\textbf{Tier-3 Specialist \& Sandbox} & Model Backbone \& Quantization & \texttt{Qwen2.5-Coder-3B-Instruct-Q4\_K\_M.gguf} ($2.10\,\text{GB}$) & Activated on $10\%$ of tasks ($3/30$) \\
- & Rashomon Verification Criterion & $4/4$ ($100\%$) Leave-One-Out in unified \texttt{exec(env, env)} & Equation (\ref{eq:unified_sandbox}) \& (\ref{eq:aacr_diff}) \\
-\bottomrule
-\end{tabular}
-}
-\end{table}
-
-% ============================================================================
-\section{Complete Catalog and Granular Telemetry of the 30 Operational Tasks}
+\section{Granular Task-by-Task Audit Matrix (T01 to T30)}
 \label{app:granular}
 % ============================================================================
 
-To enable full independent auditing, Table \ref{tab:granular_30} reports the task-by-task outcomes, ground-truth targets, resolving tiers, and exact wall-clock latencies across all $30$ operational tasks (\texttt{T01} to \texttt{T30}) for all 5 policies (\texttt{lab05\_tier3\_closure\_results.json}).
+Table \ref{tab:granular_30} reports the complete task-by-task audit across all $30$ PT-BR operational tasks for Policies \texttt{P1}, \texttt{P2}, \texttt{P3}, \texttt{P4}, \texttt{P5a} (Unpatched Lab 05), and \texttt{P5b} (Patched Lab 05 + Held-Out status).
 
 \begin{table}[htbp]
 \centering
-\caption{\textbf{Granular task-by-task audit matrix across all 30 real operational PT-BR tasks (\texttt{T01}--\texttt{T30}) and Policies P1 to P5.}}
+\caption{\textbf{Granular Task-by-Task Telemetry Across All 30 Operational PT-BR Tasks (\texttt{T01}--\texttt{T30}).} For Class 3 (\texttt{T23}--\texttt{T30}), the \texttt{P5b} column displays both In-Sample ($K=4$) and Unseen Held-Out ($\mathcal{T}_{\text{HO}}$) outcomes.}
 \label{tab:granular_30}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{llccccclcc}
+\begin{tabular}{llcccccclcc}
 \toprule
-\textbf{Task ID} & \textbf{Class \& Operational Task Description (PT-BR)} & \textbf{Gold Target} & \textbf{P1 (\texttt{0.5B})} & \textbf{P2 (\texttt{1.5B})} & \textbf{P3 (\texttt{v0})} & \textbf{P4 (\texttt{v1.0})} & \textbf{P5 (\texttt{v1.5 Final})} & \textbf{Final Resolving Layer \& Mechanism in P5} & \textbf{P5 Latency} \\
+\textbf{ID} & \textbf{Class \& Operational Task Description (PT-BR)} & \textbf{Gold} & \textbf{P1} & \textbf{P2} & \textbf{P3} & \textbf{P4} & \textbf{P5a (Unp.)} & \textbf{P5b (Dev / HO)} & \textbf{Resolving Layer \& Mechanism (P5a / P5b)} & \textbf{P5a Lat.} \\
 \midrule
-\texttt{T01} & C1: Triagem N1 vs N2 vs Financeiro (Estorno Fatura) & \texttt{C} & \xmark & \cmark & \cmark & \xmark & \cmark & Tier-2 (\texttt{1.5B} Controlled Micro-CoT, 22 words) & $2,351.8\,\text{ms}$ \\
-\texttt{T02} & C1: Detec\c{c}\~ao de Risco PIX Noturno ($R\$\,9.850$) & \texttt{A} & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,099.8\,\text{ms}$ \\
-\texttt{T03} & C1: Classifica\c{c}\~ao Urg\^encia Incidente TI Gateway & \texttt{D} & \xmark & \cmark & \xmark & \xmark & \xmark\,(\texttt{C}) & Tier-2 (\texttt{1.5B} Micro-CoT + Suffix Closure) & $2,489.3\,\text{ms}$ \\
-\texttt{T04} & C1: An\'alise de Sentimento SAC (Elogio Atendente) & \texttt{A} & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,065.9\,\text{ms}$ \\
-\texttt{T05} & C1: Risco de Churn B2B (Redu\c{c}\~ao 80\% Licen\c{c}as) & \texttt{B} & \cmark & \xmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,124.9\,\text{ms}$ \\
-\texttt{T06} & C1: Elegibilidade Cr\'edito R\'apido c/ Restri\c{c}\~ao Serasa & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,182.4\,\text{ms}$ \\
-\texttt{T07} & C1: Detec\c{c}\~ao de Phishing / Golpe WhatsApp & \texttt{A} & \xmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,167.7\,\text{ms}$ \\
-\texttt{T08} & C1: Roteamento Notifica\c{c}\~ao Extrajudicial Procon & \texttt{A} & \cmark & \xmark & \cmark & \xmark & \cmark & Tier-2 (\texttt{1.5B} Controlled Micro-CoT, 11 words) & $1,595.7\,\text{ms}$ \\
-\texttt{T09} & C1: Score de Prioridade Atendimento VIP Tier-1 & \texttt{E} & \xmark & \xmark & \xmark & \xmark & \cmark & Tier-2 (\texttt{1.5B} Micro-CoT + Suffix $\Psi_{\text{sem}}(5)\mapsto\texttt{E}$) & $2,555.5\,\text{ms}$ \\
-\texttt{T10} & C1: Inten\c{c}\~ao de Cancelamento vs Altera\c{c}\~ao Vencimento & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $786.0\,\text{ms}$ \\
-\texttt{T11} & C1: Detec\c{c}\~ao Discrep\^ancia Fiscal ISS (LC 116/2003) & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,130.6\,\text{ms}$ \\
-\texttt{T12} & C1: Triagem Bug Cr\'itico vs Melhoria Padding 2px & \texttt{B} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Calibrated System-1, $p_{\max}=99.9\%$)} & \textbf{213.2 ms} \\
+\texttt{T01} & C1: Triagem N1 vs N2 vs Financeiro (Estorno) & \texttt{C} & \xmark & \cmark & \cmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} Controlled Micro-CoT, 22 words) & $2,317.7\,\text{ms}$ \\
+\texttt{T02} & C1: Detec\c{c}\~ao de Risco PIX Noturno ($R\$\,9.850$) & \texttt{A} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,099.8\,\text{ms}$ \\
+\texttt{T03} & C1: Classifica\c{c}\~ao Urg\^encia Incidente TI Gateway & \texttt{D} & \xmark & \cmark & \xmark & \xmark & \xmark & \xmark\,(\texttt{C}) & Tier-2 (\texttt{1.5B} Micro-CoT Truncated / \texttt{C} vs \texttt{D}) & $1,928.3\,\text{ms}$ \\
+\texttt{T04} & C1: An\'alise de Sentimento SAC (Elogio) & \texttt{A} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,065.9\,\text{ms}$ \\
+\texttt{T05} & C1: Risco de Churn B2B (Redu\c{c}\~ao 80\% Licen\c{c}as) & \texttt{B} & \cmark & \xmark & \xmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,124.9\,\text{ms}$ \\
+\texttt{T06} & C1: Elegibilidade Cr\'edito R\'apido c/ Serasa & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,182.4\,\text{ms}$ \\
+\texttt{T07} & C1: Detec\c{c}\~ao de Phishing / Golpe WhatsApp & \texttt{A} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,167.7\,\text{ms}$ \\
+\texttt{T08} & C1: Roteamento Notifica\c{c}\~ao Procon (Jur\'idico) & \texttt{A} & \cmark & \xmark & \cmark & \xmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} Controlled Micro-CoT, 11 words) & $1,540.7\,\text{ms}$ \\
+\texttt{T09} & C1: Score Prioridade Atendimento VIP Tier-1 & \texttt{E} & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark\,(Suffix) & Tier-2 (Truncated at 45t in P5a; Fixed by Suffix in P5b) & $1,956.6\,\text{ms}$ \\
+\texttt{T10} & C1: Inten\c{c}\~ao Cancelamento vs Vencimento & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $786.0\,\text{ms}$ \\
+\texttt{T11} & C1: Discrep\^ancia Fiscal ISS (LC 116/2003) & \texttt{B} & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} System-1 1-Token Prefix) & $1,130.6\,\text{ms}$ \\
+\texttt{T12} & C1: Triagem Bug Cr\'itico vs Melhoria 2px & \texttt{B} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Calibrated System-1, $p_{\max}=99.9\%$)} & \textbf{213.2 ms} \\
 \midrule
-\texttt{T13} & C2: Fatura Cloud Computing AWS ($R\$\,14.850,20$) & \texttt{14850.2} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,991.5\,\text{ms}$ \\
-\texttt{T14} & C2: Recibo Honor\'arios Advocat\'icios ($R\$\,7.500,00$) & \texttt{7500.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,745.1\,\text{ms}$ \\
-\texttt{T15} & C2: Aquisi\c{c}\~ao Servidores Dell ($R\$\,32.400,00$) & \texttt{32400.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,787.1\,\text{ms}$ \\
-\texttt{T16} & C2: Reembolso Viagem Corporativa ($R\$\,1.840,50$) & \texttt{1840.5} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,998.8\,\text{ms}$ \\
-\texttt{T17} & C2: Licenciamento Oracle Brasil ($R\$\,56.000,00$) & \texttt{56000.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,349.6\,\text{ms}$ \\
-\texttt{T18} & C2: Loca\c{c}\~ao Im\'ovel Faria Lima ($R\$\,18.200,00$) & \texttt{18200.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,531.2\,\text{ms}$ \\
-\texttt{T19} & C2: Seguran\c{c}a e Monitoramento ($R\$\,4.350,00$) & \texttt{4350.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,616.7\,\text{ms}$ \\
-\texttt{T20} & C2: Auditoria Cont\'abil PriceAudit ($R\$\,45.000,00$) & \texttt{45000.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,179.6\,\text{ms}$ \\
-\texttt{T21} & C2: Treinamento In-Company ($R\$\,6.200,00$) & \texttt{6200.0} & \xmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} Escalated Structured Extraction) & $4,851.9\,\text{ms}$ \\
-\texttt{T22} & C2: Indeniza\c{c}\~ao VendaFlex ($R\$\,28.900,00$) & \texttt{28900.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,245.7\,\text{ms}$ \\
+\texttt{T13} & C2: Fatura Cloud Computing AWS ($R\$\,14.850,20$) & \texttt{14850.2} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,991.5\,\text{ms}$ \\
+\texttt{T14} & C2: Recibo Honor\'arios Advocat\'icios ($R\$\,7.500$) & \texttt{7500.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,745.1\,\text{ms}$ \\
+\texttt{T15} & C2: Aquisi\c{c}\~ao Servidores Dell ($R\$\,32.400,00$) & \texttt{32400.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,787.1\,\text{ms}$ \\
+\texttt{T16} & C2: Reembolso Viagem Corporativa ($R\$\,1.840,50$) & \texttt{1840.5} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,998.8\,\text{ms}$ \\
+\texttt{T17} & C2: Licenciamento Oracle Brasil ($R\$\,56.000,00$) & \texttt{56000.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,349.6\,\text{ms}$ \\
+\texttt{T18} & C2: Loca\c{c}\~ao Im\'ovel Faria Lima ($R\$\,18.200,00$) & \texttt{18200.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $1,531.2\,\text{ms}$ \\
+\texttt{T19} & C2: Seguran\c{c}a e Monitoramento ($R\$\,4.350,00$) & \texttt{4350.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,616.7\,\text{ms}$ \\
+\texttt{T20} & C2: Auditoria Cont\'abil PriceAudit ($R\$\,45.000$) & \texttt{45000.0} & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,179.6\,\text{ms}$ \\
+\texttt{T21} & C2: Treinamento In-Company ($R\$\,6.200,00$) & \texttt{6200.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & Tier-2 (\texttt{1.5B} Escalated Structured Extraction) & $4,851.9\,\text{ms}$ \\
+\texttt{T22} & C2: Indeniza\c{c}\~ao VendaFlex ($R\$\,28.900,00$) & \texttt{28900.0} & \xmark & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} + Motor B Symbolic Normalizer)} & $2,245.7\,\text{ms}$ \\
 \midrule
-\texttt{T23} & C3: Formatar Telefone BR (Fixo 10d e Celular 11d) & \texttt{LOO 4/4} & \xmark & \xmark & \xmark & \xmark & \cmark & \textbf{Tier-3 (\texttt{Qwen2.5-Coder-3B} + AACR Diff)} & $25,183.3\,\text{ms}$ \\
-\texttt{T24} & C3: Calcular Al\'iquota ISS Municipal (SP/PR/MG) & \texttt{LOO 4/4} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Rashomon LOO-CV 4/4)} & $2,983.6\,\text{ms}$ \\
-\texttt{T25} & C3: Higienizar Chave PIX (Email, CPF, EVP) & \texttt{LOO 4/4} & \xmark & \xmark & \xmark & \xmark & \cmark & \textbf{Tier-3 (\texttt{Qwen2.5-Coder-3B} + AACR Diff)} & $24,021.4\,\text{ms}$ \\
-\texttt{T26} & C3: D\'igito Verificador M\'odulo 11 (Pesos 2..9) & \texttt{LOO 4/4} & \xmark & \xmark & \xmark & \xmark & \cmark & \textbf{Tier-3 (\texttt{Qwen2.5-Coder-3B} + AACR Diff)} & $21,578.1\,\text{ms}$ \\
-\texttt{T27} & C3: Parsear Data BR (\texttt{DD/MM/AAAA}) p/ ISO 8601 & \texttt{LOO 4/4} & \xmark & \xmark & \xmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Unified Sandbox LOO-CV 4/4)} & \textbf{1,593.6 ms} \\
-\texttt{T28} & C3: Desconto Comercial Progressivo por Faixa & \texttt{LOO 4/4} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Rashomon LOO-CV 4/4)} & $2,304.2\,\text{ms}$ \\
-\texttt{T29} & C3: Extrair Dom\'inio Corporativo vs P\'ublico & \texttt{LOO 4/4} & \xmark & \xmark & \xmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Unified Sandbox LOO-CV 4/4)} & \textbf{1,893.4 ms} \\
-\texttt{T30} & C3: Classificar Faixa Et\'aria ANS ($0\text{--}18$ a $49+$) & \texttt{LOO 4/4} & \cmark & \cmark & \cmark & \cmark & \cmark & \textbf{Tier-1 (\texttt{0.5B} Rashomon LOO-CV 4/4)} & \textbf{1,573.2 ms} \\
+\texttt{T23} & C3: Formatar Telefone BR (Fixo 10d / Cel 11d) & $4/4$ & \xmark & \xmark & \xmark & \xmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-3 (\texttt{Qwen2.5-Coder-3B} + AACR Diff)} & $24,341.4\,\text{ms}$ \\
+\texttt{T24} & C3: Calcular Al\'iquota ISS Municipal (SP/PR/MG) & $4/4$ & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-1 (\texttt{0.5B} 4-Case Functional Harness)} & $2,983.6\,\text{ms}$ \\
+\texttt{T25} & C3: Higienizar Chave PIX (Email, CPF, EVP) & $4/4$ & \xmark & \xmark & \xmark & \xmark & \cmark & \cmark\ / \xmark\ ($3/4$ HO) & Tier-3 (\texttt{3B} passes $4/4$ Dev; fails 11-digit EVP in $\mathcal{T}_{\text{HO}}$) & $23,831.2\,\text{ms}$ \\
+\texttt{T26} & C3: D\'igito Verificador M\'odulo 11 (Pesos 2..9) & $4/4$ & \xmark & \xmark & \xmark & \xmark & \xmark$^\dagger$ & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-3 (\texttt{3B} Unpatched Code passes $4/4$ Fixed Oracle \& HO)} & $21,736.6\,\text{ms}$ \\
+\texttt{T27} & C3: Parsear Data BR (\texttt{DD/MM/AAAA}) p/ ISO & $4/4$ & \xmark & \xmark & \xmark & \cmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-1 (\texttt{0.5B} \texttt{strptime} passes $4/4$ Dev \& Leap HO)} & \textbf{1,593.6 ms} \\
+\texttt{T28} & C3: Desconto Comercial Progressivo por Faixa & $4/4$ & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-1 (\texttt{0.5B} 4-Case Functional Harness)} & $2,304.2\,\text{ms}$ \\
+\texttt{T29} & C3: Extrair Dom\'inio Corporativo vs P\'ublico & $4/4$ & \xmark & \xmark & \xmark & \cmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-1 (\texttt{0.5B} Unified Harness $4/4$ Dev \& HO)} & \textbf{1,893.4 ms} \\
+\texttt{T30} & C3: Classificar Faixa Et\'aria ANS ($0\text{--}18$ a $49+$) & $4/4$ & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark\ / \cmark\ ($4/4$) & \textbf{Tier-1 (\texttt{0.5B} 4-Case Functional Harness)} & \textbf{1,573.2 ms} \\
 \bottomrule
 \end{tabular}
 }
+\vspace{2pt}
+{\footnotesize $^\dagger$In \texttt{T26}, the function synthesized by \texttt{Qwen2.5-Coder-3B} in the unpatched run (\texttt{precise\_tier3\_results.json}) was already a mathematically exact FEBRABAN Modulo-11 implementation; its $2/4$ score in \texttt{P5a} resulted from two miscalculated expected strings in the original \texttt{tasks\_data.py} test oracle.}
 \end{table}
 
 \end{document}

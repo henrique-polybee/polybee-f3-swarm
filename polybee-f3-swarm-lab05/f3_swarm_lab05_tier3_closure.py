@@ -319,13 +319,9 @@ def main():
             "  * Em todos os outros casos: retornar chave.strip() PRESERVANDO os traços internos intactos!"
         ),
         "T26": (
-            "- Correção e especificação exata para Módulo 11 Polybee:\n"
-            "  soma = 0\n"
-            "  for i, c in enumerate(reversed(numero)):\n"
-            "      peso = 2 + (i % 8)  # gera pesos 2, 3, 4, 5, 6, 7, 8, 9, 2...\n"
-            "      soma += int(c) * peso\n"
-            "  resto = soma % 11\n"
-            "  return '0' if resto < 2 else str(11 - resto)"
+            "- Falhas reportadas pelo verificador funcional (K=4):\n"
+            "  * Para entrada ('00000001',), sua função retornou '2', mas o esperado era '9'.\n"
+            "  * Para entrada ('12345678',), sua função retornou '2', mas o esperado era '9'."
         )
     }
 
