@@ -10,7 +10,7 @@
 [![RAM: <1.5 GiB](https://img.shields.io/badge/RAM%20Active-%3C%201.5%20GiB-blueviolet.svg)]()
 [![DOI: Zenodo](https://img.shields.io/badge/Zenodo-DOI%20upon%20v1.5.2%20release-yellow.svg)](https://github.com/henrique-polybee/polybee-f3-swarm)
 
-> **Polybee AI Research Laboratory — arXiv Preprint [cs.AI] (Submission Candidate v1.5.2)**  
+> **Polybee AI Research Laboratory — Manuscript prepared for arXiv [cs.AI] (Submission Candidate v1.5.2)**  
 > **Title:** *Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware*  
 > **Author:** Henrique Oliveira (Polybee AI Research Laboratory, São Paulo, SP, Brazil — [https://polybee.ai/](https://polybee.ai/))  
 > 

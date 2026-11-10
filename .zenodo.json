@@ -23,7 +23,6 @@
     "green ai",
     "frugal agentic intelligence"
   ],
-  "upload_type": "publication",
-  "publication_type": "preprint",
+  "upload_type": "software",
   "notes": "Polybee AI Research Laboratory Technical Preprint Manuscript (TR-2026-F3S-05, v1.5.2 — Submission Candidate [cs.AI]). Audited telemetry, LaTeX source, figures, and reproduction scripts covering Labs 01 to 05. Zenodo DOI will be assigned upon v1.5.2 release."
 }
