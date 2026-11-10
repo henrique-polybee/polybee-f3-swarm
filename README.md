@@ -8,14 +8,15 @@
 [![Accuracy: 96.7% In-Sample | 93.3% Held-Out](https://img.shields.io/badge/Accuracy-96.7%25%20In--Sample%20%7C%2093.3%25%20Held--Out-success.svg)]()
 [![Hardware: Edge CPU](https://img.shields.io/badge/Hardware-Edge%20CPU%20(Intel%20i7--11370H)-orange.svg)]()
 [![RAM: <1.5 GiB](https://img.shields.io/badge/RAM%20Active-%3C%201.5%20GiB-blueviolet.svg)]()
-[![DOI: Zenodo](https://img.shields.io/badge/Zenodo-DOI%20upon%20v1.5.2%20release-yellow.svg)](https://github.com/henrique-polybee/polybee-f3-swarm)
+[![DOI: 10.5281/zenodo.24095260](https://zenodo.org/badge/DOI/10.5281/zenodo.24095260.svg)](https://doi.org/10.5281/zenodo.24095260)
+[![ORCID: 0009-0004-2730-292X](https://img.shields.io/badge/ORCID-0009--0004--2730--292X-A6CE39.svg)](https://orcid.org/0009-0004-2730-292X)
 
 > **Polybee AI Research Laboratory — Manuscript prepared for arXiv [cs.AI] (Submission Candidate v1.5.2)**  
 > **Title:** *Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware*  
-> **Author:** Henrique Oliveira (Polybee AI Research Laboratory, São Paulo, SP, Brazil — [https://polybee.ai/](https://polybee.ai/))  
+> **Author:** Henrique Oliveira (ORCID: [0009-0004-2730-292X](https://orcid.org/0009-0004-2730-292X) — Polybee AI Research Laboratory, São Paulo, SP, Brazil — [https://polybee.ai/](https://polybee.ai/))  
+> **Permanent Archival DOI:** [10.5281/zenodo.24095260](https://doi.org/10.5281/zenodo.24095260)  
 > 
 > 📄 **[Download Technical Preprint Manuscript (PDF)](paper/Polybee_F3_Swarm_v1_5_arXiv_Preprint.pdf)** | 📝 **[LaTeX Source (`.tex`)](paper/polybee_f3_swarm_v1_5_arxiv.tex)** | 📦 **[Complete LaTeX Bundle (`.zip`)](paper/Polybee_F3_Swarm_v1_5_arXiv_Source.zip)** | 🔬 **[Technical Markdown](paper/PAPER_POLYBEE_F3_SWARM_2026.md)**  
-> ℹ️ *Note: Zenodo DOI will be permanently minted upon the official v1.5.2 release.*
 
 ---
 
@@ -288,8 +289,9 @@ If you use **Polybee F3-Swarm**, our benchmark dataset, or our algorithmic calib
   year        = {2026},
   month       = {November},
   institution = {Polybee AI Research Laboratory},
-  url         = {https://github.com/henrique-polybee/polybee-f3-swarm},
-  note        = {Zenodo DOI will be assigned upon v1.5.2 release}
+  url         = {https://doi.org/10.5281/zenodo.24095260},
+  doi         = {10.5281/zenodo.24095260},
+  note        = {Author ORCID: 0009-0004-2730-292X}
 }
 ```
 

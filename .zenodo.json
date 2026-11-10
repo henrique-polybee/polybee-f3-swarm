@@ -4,7 +4,8 @@
   "creators": [
     {
       "name": "Oliveira, Henrique",
-      "affiliation": "Polybee AI Research Laboratory, São Paulo, SP, Brazil"
+      "affiliation": "Polybee AI Research Laboratory, São Paulo, SP, Brazil",
+      "orcid": "0009-0004-2730-292X"
     }
   ],
   "access_right": "open",
@@ -24,5 +25,5 @@
     "frugal agentic intelligence"
   ],
   "upload_type": "software",
-  "notes": "Polybee AI Research Laboratory Technical Preprint Manuscript (TR-2026-F3S-05, v1.5.2 — Submission Candidate [cs.AI]). Audited telemetry, LaTeX source, figures, and reproduction scripts covering Labs 01 to 05. Zenodo DOI will be assigned upon v1.5.2 release."
+  "notes": "Polybee AI Research Laboratory Technical Preprint Manuscript (TR-2026-F3S-05, v1.5.2 — Submission Candidate [cs.AI]). Audited telemetry, LaTeX source, figures, and reproduction scripts covering Labs 01 to 05. Official Zenodo DOI: 10.5281/zenodo.24095260."
 }

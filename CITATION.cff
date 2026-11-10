@@ -3,18 +3,20 @@ message: "If you use this benchmark, architecture, or codebase in your research,
 title: "Polybee F3-Swarm v1.5.2: Verifier-Guided Heterogeneous SLM Routing, Symbolic Evidence Normalization, and Controlled Memory-Pipeline Benchmarks on Commodity Edge Hardware"
 abstract: "Polybee F3-Swarm is an enterprise-grade 3-tier heterogeneous language model swarm orchestrating edge and local models (Qwen2.5-0.5B, 1.5B, and Coder-3B) with calibrated uncertainty, micro-chain-of-thought with deterministic suffix closure, distributed RAM pooling, and Four-Case Functional Testing (K=4) + Unseen Held-Out Suite code repair, achieving 96.7% in-sample and 93.3% held-out-adjusted aggregate accuracy (the best observed accuracy among evaluated policies on the proposed 30-task benchmark) across 30 Brazilian Portuguese enterprise tasks under strict < 1.5 GiB active edge RAM."
 type: article
+doi: "10.5281/zenodo.24095260"
+url: "https://doi.org/10.5281/zenodo.24095260"
 authors:
   - family-names: "Oliveira"
     given-names: "Henrique"
+    orcid: "https://orcid.org/0009-0004-2730-292X"
     affiliation: "Polybee AI Research Laboratory, São Paulo, SP, Brazil"
     website: "https://polybee.ai/"
 identifiers:
   - type: report
     value: "TR-2026-F3S-05"
-  - type: other
-    value: "Zenodo DOI will be assigned upon v1.5.2 release"
+  - type: doi
+    value: "10.5281/zenodo.24095260"
 repository-code: "https://github.com/henrique-polybee/polybee-f3-swarm"
-url: "https://github.com/henrique-polybee/polybee-f3-swarm"
 version: "1.5.2"
 date-released: "2026-11-09"
 license: "MIT"
@@ -34,9 +36,11 @@ preferred-citation:
   authors:
     - family-names: "Oliveira"
       given-names: "Henrique"
+      orcid: "https://orcid.org/0009-0004-2730-292X"
       affiliation: "Polybee AI Research Laboratory, São Paulo, SP, Brazil"
   institution: "Polybee AI Research Laboratory"
   journal: "Manuscript prepared for arXiv [cs.AI] (Submission Candidate v1.5.2)"
   year: 2026
   month: 11
-  url: "https://github.com/henrique-polybee/polybee-f3-swarm"
+  doi: "10.5281/zenodo.24095260"
+  url: "https://doi.org/10.5281/zenodo.24095260"
